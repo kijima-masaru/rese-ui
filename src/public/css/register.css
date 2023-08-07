@@ -1,0 +1,59 @@
+/*---------- ページ全体 ----------*/
+.register {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    max-height: auto;
+    background: rgb(238, 238, 238);
+}
+
+/*---------- h1：会員登録 ----------*/
+.register__head {
+    text-align: center;
+}
+
+/*---------- フォーム全体 ----------*/
+.register__form {
+    text-align: center;
+}
+
+/*---------- 入力フォーム ----------*/
+.form__input input {
+    padding: 10px;
+    width: 400px;
+    height: 50px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    appearance: none;
+}
+
+.form__input {
+    padding: 10px;
+}
+
+/*---------- 会員登録ボタン ----------*/
+.form__button {
+    text-align: center;
+    padding: 10px;
+}
+
+.button__submit {
+    padding: 10px;
+    width: 400px;
+    height: 50px;
+    border: none;
+    border-radius: 3px;
+    background: rgb(68, 68, 255);
+    color: #fff;
+    cursor: pointer;
+}
+
+/*---------- アナウンス ----------*/
+.content_text {
+    color: rgb(147, 147, 147);
+}
+
+/*---------- ログインページのリンク ----------*/
+.content_register {
+    color: rgb(63, 63, 255);
+}

@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// メール再送信のルーティング
+Route::post('/email/verification-notification', [VerificationController::class, 'sendEmailVerificationNotification'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
+
+
+//開発環境
+//ログインページ：http://localhost/login
+//新規登録ページ：http://localhost/register
+//データベース : http://localhost:8080
