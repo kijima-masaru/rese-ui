@@ -10,3 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/shops.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 </head>
+
+<body>
+    <main>
+        <div class="shops"></div>
+    </main>
+</body>
