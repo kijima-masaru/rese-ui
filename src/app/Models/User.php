@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Reserveとの関連を定義
+    public function reserve()
+    {
+        return $this->hasOne(Reserve::class);
+    }
+
+    //Favoriteとの関連を定義
+    public function favorite()
+    {
+        return $this->hasOne(Favorite::class);
+    }
 }
