@@ -1,3 +1,5 @@
+<!-- reset-password.blade.php -->
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -83,3 +85,4 @@
     </main>
 </body>
 </html>
+

@@ -13,6 +13,8 @@
 
 <body>
     <main>
-        <div class="shops"></div>
+        <div class="shops">
+            <p>こんにちは</p>
+        </div>
     </main>
 </body>

@@ -1,22 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\StampController;
+use App\Http\Controllers\WorkController;
+use App\Http\Controllers\BreakController;
+use App\Http\Controllers\UsersController;
+use App\Http\Controllers\VerificationController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// ログインが必要なルートグループ
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [StampController::class, 'index']);
+});
 
-// メール再送信のルーティング
-Route::post('/email/verification-notification', [VerificationController::class, 'sendEmailVerificationNotification'])
-    ->middleware(['auth', 'throttle:6,1'])
-    ->name('verification.send');
 
 
 //開発環境

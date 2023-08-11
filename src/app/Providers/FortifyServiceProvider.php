@@ -37,8 +37,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->make('router')->aliasMiddleware('verified', \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class);
-
         Fortify::createUsersUsing(CreateNewUser::class);
 
         Fortify::registerView(function () {
