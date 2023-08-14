@@ -43,10 +43,6 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.register');
         });
 
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
-
         Fortify::loginView(function () {
             return view('auth.login');
         });
@@ -70,9 +66,6 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(10)->by($email . $request->ip());
         });
 
-        Route::middleware('verified')->group(function () {
-            // メール確認が必要なルートやルートグループ
-        });
     }
 }
 

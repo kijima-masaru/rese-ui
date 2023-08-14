@@ -1,0 +1,30 @@
+.shops {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    background: rgb(238, 238, 238);
+}
+
+.shop__card {
+    width: 250px;
+    height: auto;
+    display: inline-block;
+    /* カードを横並びに配置する */
+    margin:  20px;
+    /* カード間の余白を設定 */
+}
+
+.card__img img {
+    max-width: 100%;
+    /* 画像がカード幅に収まるように調整 */
+    height: auto;
+    /* アスペクト比を保持したまま高さを自動調整 */
+}
+
+.shop__view {
+    display: flex;
+}
+
+.view__area {
+    padding-right: 10px;
+}

@@ -9,10 +9,6 @@ class MypageController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {
-            return view('mypage');
-        } else {
-            return redirect()->route('login'); // ログインしていない場合はログイン画面にリダイレクト
-        }
+        return view('mypage');
     }
 }

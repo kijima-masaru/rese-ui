@@ -1,17 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AttendanceController;
-use App\Http\Controllers\StampController;
-use App\Http\Controllers\WorkController;
-use App\Http\Controllers\BreakController;
-use App\Http\Controllers\UsersController;
-use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ShopsController;
+use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DoneController;
+use App\Http\Controllers\ThanksController;
+use App\Http\Controllers\FavoriteController;
 
 // ログインが必要なルートグループ
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/', [StampController::class, 'index']);
+Route::middleware('auth')->group(function () {
+    // 店舗一覧ページの表示
+    Route::get('/', [ShopsController::class, 'index']);
+    // 店舗詳細ページの表示
+    Route::get('/detail/:shop_id', [DetailController::class, 'index']);
+    // マイページの表示
+    Route::get('/mypage', [MypageController::class, 'index']);
+    // 予約完了ページの表示
+    Route::get('/done', [DoneController::class, 'index']);
+    // お気に入り追加/解除のルート追加
+    Route::post('/favorites/toggle', [FavoriteController::class, 'toggleFavorite']);
 });
+
+// サンクスページの表示
+Route::get('/thanks', [ThanksController::class, 'index']);
 
 
 

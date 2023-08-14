@@ -1,0 +1,36 @@
+.common {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    height: 130px;
+    max-height: auto;
+    display: flex;
+}
+
+.common__header {
+    display: flex;
+}
+
+.header {
+    padding: 10px;
+}
+
+.header__right {
+    margin-left: 600px;
+    margin-top: 15px;
+}
+
+.header__content {
+    display: flex;
+    padding: 10px;
+}
+
+.header__url {
+    padding: 20px;
+    font-size: 17px;
+}
+
+.header__logout {
+    padding: 20px;
+    font-size: 17px;
+}

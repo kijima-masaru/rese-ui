@@ -14,7 +14,30 @@
 <body>
     <main>
         <div class="done">
-            <div class="header"></div>
+            <!-- 共通ヘッダー -->
+            <div class="common">
+                <div class="header">
+                    <h1>Rese</h1>
+                </div>
+                <div class="header__right">
+                    <div class="header__content">
+                        <div class="header__url">
+                            <a href="{{ route('mypage') }}">マイページ</a>
+                        </div>
+                        <div class="header__url">
+                            <a href="{{ route('shops') }}">店舗一覧</a>
+                        </div>
+                        <div class="header__logout">
+                            <form class="logout__form" action="/logout" method="post">
+                                @csrf
+                                <button class="logout__button">ログアウト</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ページ本体 -->
             <div class="main">
                 <div class="text">ご予約ありがとうございます。</div>
                 <div class="button">

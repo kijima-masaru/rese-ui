@@ -15,8 +15,8 @@
     <main>
         <!--共通ヘッダー-->
         <div class="common">
-            <div class="header__Atte">
-                <h1>Atte</h1>
+            <div class="header">
+                <h1>Rese</h1>
             </div>
         </div>
         <div class="login">
