@@ -38,10 +38,16 @@
             </div>
 
             <!-- ページ本体 -->
-            <div class="main">
-                <div class="text">ご予約ありがとうございます。</div>
-                <div class="button">
-                    <button class="button__submit" type="submit">マイページへ</button>
+            <div class="done">
+                <div class="done__text">
+                    <h1>ご予約ありがとうございます</h1>
+                </div>
+                <div class="done__content">
+                    @if(session('reservation'))
+                        <p>日付: {{ session('reservation')->day }}</p>
+                        <p>時間: {{ session('reservation')->time }}</p>
+                        <p>人数: {{ session('reservation')->people }}</p>
+                    @endif
                 </div>
             </div>
         </div>

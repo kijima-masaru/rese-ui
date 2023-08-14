@@ -15,7 +15,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/shops', 'ShopsController@index')->name('shops.index');
     Route::get('/shops/search', 'ShopsController@search')->name('shops.search');
     // 店舗詳細ページの表示
-    Route::get('/detail/:shop_id', [DetailController::class, 'index']);
+    Route::get('/shops/{shop}', 'DetailController@index')->name('shop.detail');
+    // 予約機能のルート
+    Route::post('/reservations/{shop}', 'ReservationController@store')->name('reservations.store');
+    Route::view('/reservation/done', 'done')->name('reservation.done');
     // マイページの表示
     Route::get('/mypage', [MypageController::class, 'index']);
     // 予約完了ページの表示
