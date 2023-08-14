@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Shop extends Model
 {
@@ -11,13 +12,13 @@ class Shop extends Model
 
     protected $fillable = ['name', 'area', 'genre', 'overview', 'img'];
 
-    public function favorites()
+    public function isFavoritedBy(User $user): bool
     {
-        return $this->belongsToMany(User::class, 'favorites', 'shop_id', 'user_id');
+        return $this->favorites->contains('id', $user->id);
     }
 
-    public function isFavoritedBy(User $user)
+    public function favorites(): BelongsToMany
     {
-        return $this->favorites->contains($user);
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
 }

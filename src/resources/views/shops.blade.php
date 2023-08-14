@@ -38,6 +38,14 @@
         <div class="shops">
             <!-- ページ本体 -->
             <div class="main">
+                <div class="shop__search">
+                    <form action="{{ route('shops.search') }}" method="GET">
+                        <input type="text" name="area" placeholder="エリアを入力">
+                        <input type="text" name="genre" placeholder="ジャンルを入力">
+                        <input type="text" name="name" placeholder="店名を入力">
+                        <button type="submit">検索</button>
+                    </form>
+                </div>
                 @foreach ($shops as $shop)
                 <div class="shop__card">
                     <div class="card__img">
@@ -71,45 +79,25 @@
                     <div class="card__button">
                         <div class="button__detail"></div>
                         <div class="button__favorite">
-                            <button class="favorite-button" data-shop-id="{{ $shop->id }}" data-favorited="{{ $shop->isFavoritedBy(auth()->user()) ? 'true' : 'false' }}">
-                                @if ($shop->isFavoritedBy(auth()->user()))
-                                    お気に入り済み
-                                @else
-                                    お気に入りする
-                                @endif
-                            </button>
+                            @if (auth()->check() && $shop->isFavoritedBy(auth()->user()))
+                                <form action="{{ route('favorites.remove', ['shop' => $shop]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit">お気に入り解除</button>
+                                </form>
+                            @elseif (auth()->check())
+                                <form action="{{ route('favorites.add', ['shop' => $shop]) }}" method="POST">
+                                    @csrf
+                                        <button type="submit">お気に入り追加</button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}">ログインしてお気に入り追加</a>
+                            @endif
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
         </div>
-
-    <!-- お気に入り登録・解除機能の記述 -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.button__favorite').click(function() {
-                var shopId = $(this).data('shop-id');
-                var isFavorited = $(this).hasClass('favorited');
-
-                $.ajax({
-                    url: '/favorites/toggle',
-                    type: 'POST',
-                    data: { shop_id: shopId, favorited: isFavorited },
-                    success: function(response) {
-                        if (response.status === 'success') {
-                            if (isFavorited) {
-                                $(this).removeClass('favorited');
-                            } else {
-                                $(this).addClass('favorited');
-                            }
-                        }
-                    }
-                });
-            });
-        });
-    </script>
-
     </main>
 </body>
