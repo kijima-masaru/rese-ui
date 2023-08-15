@@ -77,7 +77,9 @@
                         </div>
                     </div>
                     <div class="card__button">
-                        <div class="button__detail"></div>
+                        <div class="button__detail">
+                            <a href="{{ route('shop.detail', ['shop' => $shop]) }}">詳しく見る</a>
+                        </div>
                         <div class="button__favorite">
                             @if (auth()->check() && $shop->isFavoritedBy(auth()->user()))
                                 <form action="{{ route('favorites.remove', ['shop' => $shop]) }}" method="POST">
