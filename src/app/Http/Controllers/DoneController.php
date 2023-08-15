@@ -1,4 +1,4 @@
-<?php
+<?php //予約完了ページ表示用コントローラ
 
 namespace App\Http\Controllers;
 

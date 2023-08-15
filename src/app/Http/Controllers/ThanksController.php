@@ -1,4 +1,4 @@
-<?php
+<?php //サンクスページ表示用コントローラ
 
 namespace App\Http\Controllers;
 

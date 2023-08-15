@@ -1,4 +1,4 @@
-<?php
+<?php //お気に入り機能用コントローラ
 
 namespace App\Http\Controllers;
 

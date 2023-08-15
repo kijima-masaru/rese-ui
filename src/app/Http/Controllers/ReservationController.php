@@ -1,4 +1,4 @@
-<?php
+<?php //予約機能用コントローラ
 
 namespace App\Http\Controllers;
 

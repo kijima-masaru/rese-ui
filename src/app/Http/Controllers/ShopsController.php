@@ -1,4 +1,4 @@
-<?php
+<?php //店舗一覧ページ表示・検索用コントローラ
 
 namespace App\Http\Controllers;
 

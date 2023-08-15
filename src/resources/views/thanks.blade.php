@@ -21,5 +21,19 @@
         </div>
 
         <!--ページ本体-->
+        <div class="thanks">
+            <div class="thanks__message">
+                <h1>ご登録ありがとうございます。</h1>
+            </div>
+            <!--ログインページへのアクセス-->
+                <div class="register__form-content">
+                    <div class="content__text">
+                        <p>ログインはこちらから</p>
+                    </div>
+                    <div class="content__register">
+                        <a href="{{ route('login') }}">ログイン</a>
+                    </div>
+                </div>
+        </div>
     </main>
 </body>
