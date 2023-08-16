@@ -46,7 +46,7 @@
                         <h1>ご予約状況</h1>
                     </div>
                     <div class="reserve__box">
-                        @if($reserves->count() > 0)
+                        @if($reserves && $reserves->count() > 0)
                             @foreach($reserves as $reserve)
                                 <div class="reserve__info">
                                     <p>日付: {{ $reserve->day }}</p>
@@ -69,7 +69,24 @@
                     <div class="mypage__text">
                         <h1>お気に入り店舗</h1>
                     </div>
-                    <div class="favorite__box"></div>
+                    <div class="favorite__box">
+                        @if($favoriteShops->count() > 0)
+                            @foreach($favoriteShops as $favoriteShop)
+                                <div class="favorite__shop">
+                                    <h2>{{ $favoriteShop->name }}</h2>
+                                    <p>エリア: {{ $favoriteShop->area }}</p>
+                                    <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                    <form action="{{ route('favorites.remove', ['shop' => $favoriteShop]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">お気に入り解除</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>お気に入り店舗はありません。</p>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

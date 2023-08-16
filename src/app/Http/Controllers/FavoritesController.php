@@ -11,12 +11,15 @@ class FavoritesController extends Controller
     public function add(Shop $shop)
     {
         auth()->user()->favorites()->attach($shop->id);
-        return redirect()->back()->with('success', 'お気に入りに追加しました');
+        $favoriteShops = auth()->user()->favorites; // お気に入り店舗情報を取得
+        return view('mypage', ['favoriteShops' => $favoriteShops])->with('success', 'お気に入りに追加しました');
     }
 
     public function remove(Shop $shop)
     {
         auth()->user()->favorites()->detach($shop->id);
-        return redirect()->back()->with('success', 'お気に入りを解除しました');
+        $favoriteShops = auth()->user()->favorites; // お気に入り店舗情報を取得
+        return view('mypage', ['favoriteShops' => $favoriteShops])->with('success', 'お気に入りを解除しました');
     }
 }
+
