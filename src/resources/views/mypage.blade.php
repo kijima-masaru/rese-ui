@@ -13,46 +13,63 @@
 
 <body>
     <main>
-        <div class="mypage">
-            <!-- 共通ヘッダー -->
-            <div class="common">
-                <div class="header">
-                    <h1>Rese</h1>
-                </div>
-                <div class="header__right">
-                    <div class="header__content">
-                        <div class="header__url">
-                            <a href="{{ route('mypage') }}">マイページ</a>
-                        </div>
-                        <div class="header__url">
-                            <a href="{{ route('shops') }}">店舗一覧</a>
-                        </div>
-                        <div class="header__logout">
-                            <form class="logout__form" action="/logout" method="post">
-                                @csrf
-                                <button class="logout__button">ログアウト</button>
-                            </form>
-                        </div>
+        <!-- 共通ヘッダー -->
+        <div class="common">
+            <div class="header">
+                <h1>Rese</h1>
+            </div>
+            <div class="header__right">
+                <div class="header__content">
+                    <div class="header__url">
+                        <a href="{{ route('mypage') }}">マイページ</a>
+                    </div>
+                    <div class="header__url">
+                        <a href="{{ route('shops.index') }}">店舗一覧</a>
+                    </div>
+                    <div class="header__logout">
+                        <form class="logout__form" action="/logout" method="post">
+                            @csrf
+                            <button class="logout__button">ログアウト</button>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <!-- ページ本体 -->
-            <div class="main">
-                <div class="main_head">
-                    <h1>{{ auth()->user()->name }}さんのマイページです。</h1>
-                </div>
-                <div class="main_reserve">
-                    <div class="text">
+        </div>
+        <!-- ページ本体 -->
+        <div class="mypage">
+            <div class="mypage__head">
+                <h1>{{ auth()->user()->name }}さんのマイページです。</h1>
+            </div>
+            <div class="mypage__content">
+                <div class="mypage__reserve">
+                    <div class="mypage__text">
                         <h1>ご予約状況</h1>
                     </div>
-                    <div class="reserve_box"></div>
+                    <div class="reserve__box">
+                        @if($reserves->count() > 0)
+                            @foreach($reserves as $reserve)
+                                <div class="reserve__info">
+                                    <p>日付: {{ $reserve->day }}</p>
+                                    <p>時間: {{ $reserve->time }}</p>
+                                    <p>人数: {{ $reserve->people }}</p>
+                                    <button class="reserve__edit-button">予約内容変更</button>
+                                    <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                            <button type="submit" class="reserve__delete-button">予約削除</button>
+                                    </form>
+                                </div>
+                            @endforeach
+                        @else
+                            <p>予約情報はありません。</p>
+                        @endif
+                    </div>
                 </div>
-                <div class="main_favorite">
-                    <div class="text">
+                <div class="mypage__favorite">
+                    <div class="mypage__text">
                         <h1>お気に入り店舗</h1>
                     </div>
-                    <div class="favorite_box"></div>
+                    <div class="favorite__box"></div>
                 </div>
             </div>
         </div>

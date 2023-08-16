@@ -21,10 +21,10 @@
             <div class="header__right">
                 <div class="header__content">
                     <div class="header__url">
-                        <a>マイページ</a>
+                        <a href="{{ route('mypage') }}">マイページ</a>
                     </div>
                     <div class="header__url">
-                        <a>店舗一覧</a>
+                        <a href="{{ route('shops.index') }}">店舗一覧</a>
                     </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">

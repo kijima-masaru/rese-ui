@@ -9,6 +9,9 @@ class MypageController extends Controller
 {
     public function index()
     {
-        return view('mypage');
+        $user = Auth::user();
+        $reserves = $user->reserves;
+
+        return view('mypage', compact('reserves'));
     }
 }

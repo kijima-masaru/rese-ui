@@ -21,8 +21,9 @@ Route::middleware('auth')->group(function () {
     // 予約機能のルート
     Route::post('/reservations/{shop}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::view('/reservation/done', 'done')->name('reservation.done');
+    Route::delete('/reservations/{reservation}', 'ReservationController@destroy')->name('reservations.destroy');
     // マイページの表示
-    Route::get('/mypage', [MypageController::class, 'index']);
+    Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
     // 予約完了ページの表示
     Route::get('/done', [DoneController::class, 'index']);
     // お気に入り追加/解除のルート追加

@@ -25,7 +25,7 @@
                             <a href="{{ route('mypage') }}">マイページ</a>
                         </div>
                         <div class="header__url">
-                            <a href="{{ route('shops') }}">店舗一覧</a>
+                            <a href="{{ route('shops.index') }}">店舗一覧</a>
                         </div>
                         <div class="header__logout">
                             <form class="logout__form" action="/logout" method="post">
@@ -44,9 +44,9 @@
                 </div>
                 <div class="done__content">
                     @if(session('reservation'))
-                        <p>日付: {{ session('reservation')->day }}</p>
-                        <p>時間: {{ session('reservation')->time }}</p>
-                        <p>人数: {{ session('reservation')->people }}</p>
+                        <p>日付: {{ session('reservation')['day'] }}</p>
+                        <p>時間: {{ session('reservation')['time'] }}</p>
+                        <p>人数: {{ session('reservation')['people'] }}</p>
                     @endif
                 </div>
             </div>
