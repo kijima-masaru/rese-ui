@@ -46,7 +46,7 @@
                         <h1>ご予約状況</h1>
                     </div>
                     <div class="reserve__box">
-                        @if($reserves && $reserves->count() > 0)
+                        @if($reserves->count() > 0)
                             @foreach($reserves as $reserve)
                                 <div class="reserve__info">
                                     <p>日付: {{ $reserve->day }}</p>
