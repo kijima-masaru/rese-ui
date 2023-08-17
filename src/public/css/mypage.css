@@ -26,3 +26,13 @@
 .mypage__text {
     text-align: center;
 }
+
+.reserve__img img {
+    width: 250px;
+    height: auto;
+}
+
+.favorite__img img {
+    width: 250px;
+    height: auto;
+}

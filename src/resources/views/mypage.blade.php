@@ -49,10 +49,24 @@
                         @if($reserves->count() > 0)
                             @foreach($reserves as $reserve)
                                 <div class="reserve__info">
-                                    <h2>{{ $reserve->shop->name }}</h2>
-                                    <p>日時: {{ $reserve->time }}</p>
-                                    <p>人数: {{ $reserve->people }}</p>
-                                    <a href="{{ route('reservation.edit') }}">予約内容変更</a>
+                                    <div class="reserve__name">
+                                        <h2>{{ $reserve->shop->name }}</h2>
+                                    </div>
+                                    <div class="reserve__img">
+                                        <img src="{{ asset('storage/' . $reserve->shop->img . '.jpeg') }}" alt="{{ $reserve->shop->name }}の画像">
+                                    </div>
+                                    <div class="reserve__day">
+                                        <p>日時: {{ $reserve->time }}</p>
+                                    </div>
+                                    <div class="reserve__people">
+                                        <p>人数: {{ $reserve->people }}</p>
+                                    </div>
+                                    <div class="reserve__detail">
+                                        <a href="{{ route('shop.detail', ['shop' => $reserve->shop]) }}">詳細を見る</a>
+                                    </div>
+                                    <div class="reserve__edit">
+                                        <a href="{{ route('reservation.edit') }}">予約内容変更</a>
+                                    </div>
                                     <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
                                         @csrf
                                         @method('DELETE')
@@ -74,8 +88,14 @@
                             @foreach($favoriteShops as $favoriteShop)
                                 <div class="favorite__shop">
                                     <h2>{{ $favoriteShop->name }}</h2>
+                                    <div class="favorite__img">
+                                        <img src="{{ asset('storage/' . $favoriteShop->img . '.jpeg') }}" alt="{{ $favoriteShop->name }}の画像">
+                                    </div>
                                     <p>エリア: {{ $favoriteShop->area }}</p>
                                     <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                    <div class="favorite__detail">
+                                        <a href="{{ route('shop.detail', ['shop' => $favoriteShop]) }}">詳細を見る</a>
+                                    </div>
                                     <form action="{{ route('favorites.remove', ['shop' => $favoriteShop]) }}" method="POST">
                                         @csrf
                                         @method('DELETE')
