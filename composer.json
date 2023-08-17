@@ -1,5 +1,6 @@
 {
     "require": {
-        "laravel/fortify": "^1.17"
+        "laravel/fortify": "^1.17",
+        "livewire/livewire": "^2.12"
     }
 }

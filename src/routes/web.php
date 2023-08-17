@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopsController; //店舗一覧ページ表示・検索機能用コントローラ
 use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コントローラ
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
+use App\Http\Controllers\EditController; //予約内容変更ページ表示・機能用コントローラ
 use App\Http\Controllers\MypageController; //マイページ表示用コントローラ
 use App\Http\Controllers\DoneController; //予約完了ページ表示用コントローラ
 use App\Http\Controllers\FavoritesController; //お気に入り機能用コントローラ
@@ -22,6 +23,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/reservations/{shop}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::view('/reservation/done', 'done')->name('reservation.done');
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+
+    Route::get('/edit', [EditController::class, 'index'])->name('reservation.edit');
+    Route::post('/update-reservation', [EditController::class, 'update'])->name('update_reservation');
+
 
     // マイページの表示
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');

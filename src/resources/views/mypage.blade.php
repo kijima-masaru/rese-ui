@@ -49,10 +49,10 @@
                         @if($reserves->count() > 0)
                             @foreach($reserves as $reserve)
                                 <div class="reserve__info">
-                                    <p>日付: {{ $reserve->day }}</p>
-                                    <p>時間: {{ $reserve->time }}</p>
+                                    <h2>{{ $reserve->shop->name }}</h2>
+                                    <p>日時: {{ $reserve->time }}</p>
                                     <p>人数: {{ $reserve->people }}</p>
-                                    <button class="reserve__edit-button">予約内容変更</button>
+                                    <a href="{{ route('reservation.edit') }}">予約内容変更</a>
                                     <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
                                         @csrf
                                         @method('DELETE')
