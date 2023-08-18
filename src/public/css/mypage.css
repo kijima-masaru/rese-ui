@@ -15,7 +15,20 @@
 
 .mypage__reserve {
     width: 600px;
-    height: auto;
+}
+
+.reserve__box {
+    text-align: center;
+}
+
+.reserve__wrapper {
+    width: 500px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 15px;
+    margin-left: 50px;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .mypage__favorite {
@@ -23,16 +36,30 @@
     height: auto;
 }
 
+.favorite__box {
+    text-align: center;
+}
+
+.favorite__wrapper {
+    width: 500px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding: 15px;
+    margin-left: 50px;
+    background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .mypage__text {
     text-align: center;
 }
 
 .reserve__img img {
-    width: 250px;
+    width: 400px;
     height: auto;
 }
 
 .favorite__img img {
-    width: 250px;
+    width: 400px;
     height: auto;
 }

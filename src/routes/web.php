@@ -14,8 +14,7 @@ use App\Http\Controllers\ThanksController; //サンクスページ表示用コ�
 // ログインが必要なルートグループ
 Route::middleware('auth')->group(function () {
     // 店舗一覧ページの表示
-    Route::get('/', [ShopsController::class, 'index']);
-    Route::get('/shops', [ShopsController::class, 'index'])->name('shops.index');
+    Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
     Route::get('/shops/search', [ShopsController::class, 'search'])->name('shops.search');
     // 店舗詳細ページの表示
     Route::get('/shops/{shop}', [DetailController::class, 'index'])->name('shop.detail');

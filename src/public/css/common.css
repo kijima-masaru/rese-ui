@@ -1,14 +1,14 @@
+/* 共通スタイル */
 .common {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
-    height: 130px;
-    max-height: auto;
     display: flex;
-}
-
-.common__header {
-    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* 要素間のスペースを均等に分配 */
+    align-items: center;
+    /* 垂直方向の中央揃え */
 }
 
 .header {
@@ -16,8 +16,9 @@
 }
 
 .header__right {
-    margin-left: 600px;
     margin-top: 15px;
+    display: flex;
+    /* 横並びにする */
 }
 
 .header__content {
@@ -25,12 +26,46 @@
     padding: 10px;
 }
 
-.header__url {
-    padding: 20px;
+.header__url,
+.header__logout {
+    padding: 10px 20px;
     font-size: 17px;
 }
 
-.header__logout {
-    padding: 20px;
-    font-size: 17px;
+/* メディアクエリ */
+@media (max-width: 480px) {
+
+    /* スマートフォン用のスタイル調整 */
+    .common {
+        flex-direction: column;
+        /* 縦並びに調整 */
+        align-items: flex-start;
+        /* 左揃え */
+    }
+
+    .header__right {
+        margin-top: 0;
+        margin-right: auto;
+        /* 左寄せ */
+    }
+
+    .header__content {
+        flex-direction: column;
+        /* 縦並びに調整 */
+    }
+
+    .header__url,
+    .header__logout {
+        padding: 10px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    /* タブレット用のスタイル調整 */
+    /* 同じスタイルで問題ないため、特に調整不要 */
+}
+
+@media (min-width: 769px) {
+    /* PC用のスタイル調整 */
+    /* 同じスタイルで問題ないため、特に調整不要 */
 }
