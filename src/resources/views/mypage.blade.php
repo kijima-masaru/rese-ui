@@ -96,8 +96,10 @@
                                         <div class="favorite__img">
                                             <img src="{{ asset('storage/' . $favoriteShop->img . '.jpeg') }}" alt="{{ $favoriteShop->name }}の画像">
                                         </div>
-                                        <p>エリア: {{ $favoriteShop->area }}</p>
-                                        <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                        <div class="favorite__text">
+                                            <p>エリア: {{ $favoriteShop->area }}</p>
+                                            <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                        </div>
                                         <div class="favorite__detail">
                                             <a href="{{ route('shop.detail', ['shop' => $favoriteShop]) }}">詳細を見る</a>
                                         </div>

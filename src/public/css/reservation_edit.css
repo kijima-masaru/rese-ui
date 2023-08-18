@@ -1,0 +1,30 @@
+.edit {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    background: rgb(238, 238, 238);
+}
+
+.edit__head {
+    text-align: center;
+}
+
+.edit__form {
+    width: 250px;
+    height: auto;
+    display: inline-block;
+    margin: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.form__img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.form__button {
+    text-align: center;
+}
