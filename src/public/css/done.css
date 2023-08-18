@@ -1,0 +1,19 @@
+.done {
+    margin: 0 auto;
+    padding: 30px 15px;
+    max-width: 1230px;
+    background: rgb(238, 238, 238);
+}
+
+.done__head {
+    text-align: center;
+}
+
+.done__content {
+    text-align: center;
+    font-size: 30px;
+}
+
+.done__text {
+    text-align: center;
+}
