@@ -5,20 +5,25 @@
     background: rgb(238, 238, 238);
 }
 
+.shop__search {
+    text-align: center;
+    padding: 10px;
+}
+
 .shop__card {
     width: 250px;
     height: auto;
     display: inline-block;
-    /* カードを横並びに配置する */
-    margin:  20px;
-    /* カード間の余白を設定 */
+    margin: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .card__img img {
     max-width: 100%;
-    /* 画像がカード幅に収まるように調整 */
     height: auto;
-    /* アスペクト比を保持したまま高さを自動調整 */
 }
 
 .shop__view {
@@ -27,4 +32,8 @@
 
 .view__area {
     padding-right: 10px;
+}
+
+.card__button {
+    text-align: center;
 }
