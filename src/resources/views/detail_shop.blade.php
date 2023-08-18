@@ -41,11 +41,11 @@
                 <div class="back__button">
                     <a href="{{ route('shops.index') }}">⇦ 店舗一覧に戻る</a>
                 </div>
-                <div class="detail__name">
-                    <h1>{{ $shop->name }}</h1>
-                </div>
                 <div class="detail__img">
                     <img src="{{ asset('storage/' . $shop->img . '.jpeg') }}" alt="{{ $shop->name }} Image">
+                </div>
+                <div class="detail__name">
+                    <h1>{{ $shop->name }}</h1>
                 </div>
                 <div class="detail__content">
                     <div class="detail__area">
@@ -60,18 +60,20 @@
                 </div>
             </div>
             <div class="detail__reserve">
-                <h2>予約する</h2>
+                <div class="reserve__head">
+                    <h2>予約する</h2>
+                </div>
                 <form action="{{ route('reservations.store', ['shop' => $shop->id]) }}" method="post">
                     @csrf
-                    <div class="reserve__day">
+                    <div class="reserve__form">
                         <label for="day">日付:</label>
                         <input type="date" name="day" required><br>
                     </div>
-                    <div class="reserve__time">
+                    <div class="reserve__form">
                         <label for="time">時間:</label>
                         <input type="time" name="time" required><br>
                     </div>
-                    <div class="reserve__people">
+                    <div class="reserve__form">
                         <label for="people">人数:</label>
                     <input type="number" name="people" required><br>
                     </div>
