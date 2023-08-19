@@ -1,3 +1,4 @@
+/* 共通スタイル */
 .detail {
     margin: 0 auto;
     padding: 30px 15px;
@@ -73,11 +74,47 @@
     padding: 60px;
 }
 
-.reserve__button  button {
+.reserve__button button {
     width: 250px;
     height: 50px;
     background: rgb(68, 68, 255);
     color: #fff;
     cursor: pointer;
     border: none;
+}
+
+/* スマートフォン用スタイル（768px以下） */
+@media (max-width: 768px) {
+    .detail__shop {
+        width: 100%;
+        /* ブレイクポイント以下で幅を100%に変更 */
+        margin: 20px 0;
+        /* 上下のマージンを追加 */
+        padding: 10px;
+        /* パディングを調整 */
+    }
+
+    .detail__img img {
+        width: 100%;
+        /* 画像の幅を100%に変更 */
+    }
+
+    .detail__name,
+    .detail__content,
+    .detail__genre,
+    .detail__overview,
+    .detail__reserve {
+        margin-left: 0;
+        /* 左マージンを0に変更 */
+    }
+
+    .reserve__form input {
+        width: 100%;
+        /* 入力フィールドの幅を100%に変更 */
+    }
+
+    .reserve__button {
+        padding: 20px 0;
+        /* パディングを調整 */
+    }
 }
