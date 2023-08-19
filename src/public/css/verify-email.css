@@ -49,3 +49,42 @@
 .content_register {
     color: rgb(63, 63, 255);
 }
+
+/*---------- スマートフォン用のスタイル ----------*/
+@media (max-width: 768px) {
+
+    /* 768px以下の画面幅に適用されるスタイルをここに追加 */
+    /* 例えば、フォントサイズを変更したり、余白を調整したりできます */
+    .mail {
+        padding: 20px 10px;
+    }
+
+    .mail__text {
+        font-size: 16px;
+    }
+
+    .mail__red {
+        font-size: 18px;
+    }
+
+    .register__form-content {
+        font-size: 16px;
+    }
+
+    .content_text {
+        font-size: 14px;
+    }
+
+    .form__button {
+        padding: 5px;
+    }
+
+    .button__submit {
+        width: 100%;
+        font-size: 18px;
+    }
+
+    .content_register {
+        font-size: 18px;
+    }
+}
