@@ -1,3 +1,4 @@
+/* デフォルトスタイル */
 .shops {
     margin: 0 auto;
     padding: 30px 15px;
@@ -36,4 +37,19 @@
 
 .card__button {
     text-align: center;
+}
+
+/* スマートフォン向けスタイル（768px以下） */
+@media (max-width: 768px) {
+    .shop__card {
+        width: 100%;
+        /* 幅を100%に設定して幅いっぱいに表示 */
+        margin: 10px;
+        /* マージンを上下に設定して余白を調整 */
+    }
+
+    .view__area {
+        padding-right: 0;
+        /* パディングを削除 */
+    }
 }
