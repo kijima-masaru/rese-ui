@@ -1,71 +1,94 @@
-/* 共通スタイル */
+/* 共通のスタイル */
 .common {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
+    height: auto;
+    /* 高さを自動調整 */
+    max-height: 300px;
+    /* 最大高さを設定 */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    /* 要素間のスペースを均等に分配 */
+    /* コンテンツを折り返す */
     align-items: center;
-    /* 垂直方向の中央揃え */
+    /* 垂直方向の中央寄せ */
 }
 
+/* ヘッダーコンテナ */
+.common__header {
+    display: flex;
+    flex-wrap: wrap;
+    /* コンテンツを折り返す */
+    justify-content: space-between;
+    /* コンテンツを左右に配置 */
+}
+
+/* ヘッダーコンテンツ */
 .header {
     padding: 10px;
+    flex: 1 1 auto;
+    /* コンテンツを均等に広げる */
 }
 
 .header__right {
     margin-top: 15px;
-    display: flex;
-    /* 横並びにする */
 }
 
 .header__content {
     display: flex;
-    padding: 10px;
+    flex-wrap: wrap;
+    /* コンテンツを折り返す */
+    justify-content: space-between;
+    /* コンテンツを左右に配置 */
+    align-items: center;
+    /* 垂直方向の中央寄せ */
 }
 
 .header__url,
 .header__logout {
-    padding: 10px 20px;
+    padding: 10px;
     font-size: 17px;
 }
 
-/* メディアクエリ */
-@media (max-width: 480px) {
-
-    /* スマートフォン用のスタイル調整 */
+@media screen and (max-width: 480px) {
     .common {
-        flex-direction: column;
-        /* 縦並びに調整 */
-        align-items: flex-start;
-        /* 左揃え */
+        padding: 20px 10px;
+        /* パディングを調整 */
+        max-height: 200px;
+        /* 最大高さを調整 */
     }
 
     .header__right {
-        margin-top: 0;
-        margin-right: auto;
-        /* 左寄せ */
+        margin-left: 0;
+        /* マージンをリセット */
     }
 
     .header__content {
-        flex-direction: column;
-        /* 縦並びに調整 */
-    }
-
-    .header__url,
-    .header__logout {
-        padding: 10px;
+        padding: 5px;
+        /* パディングを調整 */
     }
 }
 
-@media (min-width: 481px) and (max-width: 768px) {
-    /* タブレット用のスタイル調整 */
-    /* 同じスタイルで問題ないため、特に調整不要 */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .header__right {
+        margin-left: 300px;
+        /* マージンを調整 */
+    }
+
+    .header__content {
+        padding: 15px;
+        /* パディングを調整 */
+    }
 }
 
-@media (min-width: 769px) {
-    /* PC用のスタイル調整 */
-    /* 同じスタイルで問題ないため、特に調整不要 */
+@media screen and (min-width: 769px) {
+    .header__right {
+        margin-left: 600px;
+        /* マージンをリセット */
+    }
+
+    .header__content {
+        padding: 20px;
+        /* パディングをリセット */
+    }
 }

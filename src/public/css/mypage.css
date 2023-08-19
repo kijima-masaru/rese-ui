@@ -1,3 +1,4 @@
+/* デフォルトスタイル */
 .mypage {
     margin: 0 auto;
     padding: 30px 15px;
@@ -13,16 +14,19 @@
     display: flex;
 }
 
-.mypage__reserve {
+.mypage__reserve,
+.mypage__favorite {
     width: 600px;
     text-align: center;
 }
 
-.reserve__box {
+.reserve__box,
+.favorite__box {
     text-align: center;
 }
 
-.reserve__wrapper {
+.reserve__wrapper,
+.favorite__wrapper {
     width: 500px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
@@ -32,33 +36,9 @@
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.reserve__img img {
-    width: 400px;
-    height: auto;
-}
-
-.mypage__favorite {
-    width: 600px;
-    height: auto;
-    text-align: center;
-}
-
-.favorite__box {
-    text-align: center;
-}
-
-.favorite__wrapper {
-    width: 500px;
-    border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 15px;
-    margin-left: 50px;
-    background: #fff;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
+.reserve__img img,
 .favorite__img img {
-    width: 400px;
+    max-width: 100%;
     height: auto;
 }
 
@@ -66,4 +46,22 @@
     padding-bottom: 15px;
     margin-bottom: 10px;
     text-align: center;
+}
+
+/* スマートフォン向けスタイル（768px以下） */
+@media screen and (max-width: 768px) {
+    .mypage__content {
+        flex-direction: column;
+    }
+
+    .mypage__reserve,
+    .mypage__favorite {
+        width: 100%;
+    }
+
+    .reserve__wrapper,
+    .favorite__wrapper {
+        width: 100%;
+        margin-left: 0;
+    }
 }
