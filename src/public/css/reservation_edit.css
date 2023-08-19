@@ -1,3 +1,4 @@
+/* デスクトップ用スタイル */
 .edit {
     margin: 0 auto;
     padding: 30px 15px;
@@ -27,4 +28,18 @@
 
 .form__button {
     text-align: center;
+}
+
+/* スマートフォン用スタイル（768px以下の場合） */
+@media screen and (max-width: 768px) {
+    .edit {
+        padding: 15px;
+    }
+
+    .edit__form {
+        width: 100%;
+        /* 幅を100%に変更 */
+        margin: 10px 0;
+        /* マージンを変更 */
+    }
 }
