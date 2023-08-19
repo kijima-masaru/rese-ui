@@ -9,10 +9,11 @@ use App\Http\Controllers\MypageController; //マイページ表示用コント�
 use App\Http\Controllers\DoneController; //予約完了ページ表示用コントローラ
 use App\Http\Controllers\FavoritesController; //お気に入り機能用コントローラ
 use App\Http\Controllers\ThanksController; //サンクスページ表示用コントローラ
+use App\Http\Controllers\VerificationController; //認証メール再送信用コントローラ
 
 
 // ログインが必要なルートグループ
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'verified')->group(function () {
     // 店舗一覧ページの表示
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
     Route::get('/shops/search', [ShopsController::class, 'search'])->name('shops.search');
@@ -38,6 +39,11 @@ Route::middleware('auth')->group(function () {
 
 // サンクスページの表示
 Route::get('/thanks', [ThanksController::class, 'index']);
+
+// メール再送信のルーティング
+Route::post('/email/verification-notification', [VerificationController::class, 'sendEmailVerificationNotification'])
+    ->middleware(['auth', 'throttle:6,1'])
+    ->name('verification.send');
 
 
 
