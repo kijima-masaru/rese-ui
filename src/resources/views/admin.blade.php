@@ -20,12 +20,6 @@
             </div>
             <div class="header__right">
                 <div class="header__content">
-                    <div class="header__url">
-                        <a href="{{ route('mypage') }}">マイページ</a>
-                    </div>
-                    <div class="header__url">
-                        <a href="{{ route('shops.index') }}">店舗一覧</a>
-                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -36,6 +30,8 @@
             </div>
         </div>
         <!-- ページ本体 -->
-        <div class="admin"></div>
+        <div class="admin">
+            <p>管理者</p>
+        </div>
     </main>
 </body>

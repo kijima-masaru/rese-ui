@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController; //管理者ページ表示用コントローラ
+use App\Http\Controllers\OwnerController; //店舗代表者ページ表示用コントローラ
 use App\Http\Controllers\ShopsController; //店舗一覧ページ表示・検索機能用コントローラ
 use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コントローラ
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
@@ -14,6 +16,9 @@ use App\Http\Controllers\VerificationController; //認証メール再送信用�
 
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    // 店舗代表者ページの表示
+    Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
     // 店舗一覧ページの表示
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
     Route::get('/shops/search', [ShopsController::class, 'search'])->name('shops.search');

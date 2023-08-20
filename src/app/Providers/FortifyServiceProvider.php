@@ -21,6 +21,7 @@ use App\Notifications\VerifyEmail;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
+use Laravel\Fortify\Contracts\LoginResponse; //ログイン後のリダイレクト先をカスタマイズ
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,19 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // ログイン後のリダイレクト先をusersテーブルのroleによってカスタマイズ
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                if ($request->user()->role === 'admin') {
+                    return redirect()->route('admin.index');
+                } elseif ($request->user()->role === 'owner') {
+                return redirect()->route('owner.index');
+                } else {
+                return redirect()->route('shops.index');
+                }
+            }
+        });
     }
 
     /**
