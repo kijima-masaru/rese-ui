@@ -16,14 +16,24 @@ use App\Http\Controllers\VerificationController; //認証メール再送信用�
 
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
+    // 管理者ページの表示(管理者がログインするとリダイレクトされる)
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    // 店舗代表者ページの表示
+    // 管理者ページでのユーザー情報の取得・表示
+    Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
+    // 管理者ページでのユーザーのrole変更機能
+    Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
+
+    // 店舗代表者ページの表示(店舗代表者がログインするとリダイレクトされる)
     Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
-    // 店舗一覧ページの表示
+
+    // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
+    // 店舗一覧ページの検索機能
     Route::get('/shops/search', [ShopsController::class, 'search'])->name('shops.search');
+
     // 店舗詳細ページの表示
     Route::get('/shops/{shop}', [DetailController::class, 'index'])->name('shop.detail');
+
     // 予約機能のルート
     Route::post('/reservations/{shop}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::view('/reservation/done', 'done')->name('reservation.done');

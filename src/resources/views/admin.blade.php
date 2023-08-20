@@ -30,8 +30,42 @@
             </div>
         </div>
         <!-- ページ本体 -->
-        <div class="admin">
-            <p>管理者</p>
-        </div>
+
+<div class="admin">
+    <div class="container">
+    <h1>ユーザー一覧</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ユーザー名</th>
+                <th>役割</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>
+                        <form action="{{ route('admin.updateRole', $user->id) }}" method="post">
+                            @csrf
+                            @method('PATCH')
+                            <select name="role">
+                                <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>admin</option>
+                                <option value="owner" {{ $user->role === 'owner' ? 'selected' : '' }}>owner</option>
+                                <option value="user" {{ $user->role === 'user' ? 'selected' : '' }}>user</option>
+                            </select>
+                            <button type="submit">更新</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
+</div>
+
     </main>
 </body>
