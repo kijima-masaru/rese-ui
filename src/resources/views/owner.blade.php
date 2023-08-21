@@ -31,9 +31,12 @@
         </div>
         <!-- ページ本体 -->
         <div class="owner">
+            <div class="owner__title">
+                <h1>店舗情報を作成・更新できます。</h1>
+            </div>
             <div class="owner__new">
                 <div class="new__head">
-                    <h1>店舗情報の新規作成</h1>
+                    <h2>店舗情報の新規作成</h2>
                 </div>
                 <div class="new__form">
                     <form method="POST" action="{{ route('owner.store') }}">
@@ -65,7 +68,43 @@
                     </form>
                 </div>
             </div>
-            <div class="owner__edit"></div>
+            <div class="owner__edit">
+                <div class="edit__head">
+                    <h2>店舗情報の修正</h2>
+                </div>
+                @foreach ($shops as $shop)
+                <div class="edit__form">
+                    <form method="POST" action="{{ route('owner.update', $shop->id) }}">
+                        @csrf
+                        @method('PUT')
+                            <div class="form-group">
+                                <label for="name">店舗名：</label>
+                                <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="area">エリア：</label>
+                                <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="genre">ジャンル：</label>
+                                <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="overview">概要：</label>
+                                <textarea name="overview" id="overview" class="form-control" required>{{ old('overview', $shop->overview) }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="img">画像名：</label>
+                                <input type="text" name="img" id="img" class="form-control" value="{{ old('img', $shop->img) }}" required>
+                            </div>
+                            <div class="edit__button">
+                                <button type="submit" class="btn btn-primary">更新</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </main>
 </body>

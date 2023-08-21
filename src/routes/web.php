@@ -27,6 +27,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
     // 店舗情報の作成機能
     Route::post('/owner/store', [OwnerController::class, 'store'])->name('owner.store');
+    // 店舗情報の修正機能
+    Route::get('/owner/edit', [OwnerController::class, 'edit'])->name('owner.edit');
+    // 店舗情報の更新機能
+    Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');
 
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
