@@ -18,6 +18,7 @@ class CreateReservesTable extends Migration
             $table->date('day')->nullable();
             $table->datetime('time')->nullable();
             $table->string('people')->nullable();
+            $table->string('status')->default('user');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
             $table->timestamps();

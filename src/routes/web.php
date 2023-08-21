@@ -25,6 +25,9 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // 店舗代表者ページの表示(店舗代表者がログインするとリダイレクトされる)
     Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
+    // 店舗情報の作成機能
+    Route::post('/owner/store', [OwnerController::class, 'store'])->name('owner.store');
+
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
@@ -52,17 +55,13 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/favorites/{shop}', [FavoritesController::class, 'remove'])->name('favorites.remove');
 });
 
-// サンクスページの表示
-Route::get('/thanks', [ThanksController::class, 'index']);
-
 // メール再送信のルーティング
 Route::post('/email/verification-notification', [VerificationController::class, 'sendEmailVerificationNotification'])
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
 
-
 //開発環境
-//ログインページ：http://localhost/login
-//新規登録ページ：http://localhost/register
-//データベース : http://localhost:8080
+//ログインページ:http://localhost/login
+//新規登録ページ:http://localhost/register
+//データベース:http://localhost:8080

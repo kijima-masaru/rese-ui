@@ -21,4 +21,10 @@ class Shop extends Model
     {
         return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
+
+    // 外部キーであるuser_idの設定
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

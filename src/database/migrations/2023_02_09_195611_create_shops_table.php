@@ -20,6 +20,7 @@ class CreateShopsTable extends Migration
             $table->string('genre');
             $table->string('overview');
             $table->string('img');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
     }
