@@ -13,7 +13,8 @@ return [
     |
     */
 
-    'default' => env('FILESYSTEM_DRIVER', 'local'),
+    // 元々は、'default' => env('FILESYSTEM_DRIVER', 'local'),
+    'default' => 'public',
 
     /*
     |--------------------------------------------------------------------------

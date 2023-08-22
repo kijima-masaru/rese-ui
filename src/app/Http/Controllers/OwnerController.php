@@ -19,7 +19,7 @@ class OwnerController extends Controller
     public function store(Request $request)
     {
         // 画像をアップロード
-        $imgPath = $request->file('img')->store('public/img');
+        $imgPath = $request->file('img')->store('img');
 
         // 新しい店舗情報を作成して保存
         $shop = new Shop();
@@ -62,7 +62,16 @@ class OwnerController extends Controller
         $shop->area = $request->input('area');
         $shop->genre = $request->input('genre');
         $shop->overview = $request->input('overview');
-        $shop->img = $request->input('img');
+
+        // 新しい画像がアップロードされた場合、古い画像を削除して新しい画像を保存
+        if ($request->hasFile('new_img')) {
+            $newImgPath = $request->file('new_img')->store('public/img');
+            // ここで古い画像を削除する処理を追加する必要があります
+
+            // 新しい画像のパスを保存
+            $shop->img = $newImgPath;
+        }
+
         $shop->save();
 
         return redirect()->route('owner.edit')->with('success', '店舗情報を更新しました！');
