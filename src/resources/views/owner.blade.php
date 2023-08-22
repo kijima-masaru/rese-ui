@@ -39,7 +39,7 @@
                     <h2>店舗情報の新規作成</h2>
                 </div>
                 <div class="new__form">
-                    <form method="POST" action="{{ route('owner.store') }}">
+                    <form method="POST" action="{{ route('owner.store') }}" enctype="multipart/form-data">
                     @csrf
                         <div class="form-group">
                             <label for="name">店舗名：</label>
@@ -58,8 +58,8 @@
                             <textarea name="overview" id="overview" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="img">画像名</label>
-                            <input type="text" name="img" id="img" class="form-control" required>
+                            <label for="img">画像</label>
+                            <input type="file" name="img">
                         </div>
                         <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         <div class="new__button">
@@ -108,4 +108,5 @@
         </div>
     </main>
 </body>
+
 

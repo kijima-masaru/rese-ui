@@ -16,20 +16,20 @@ use App\Http\Controllers\VerificationController; //認証メール再送信用�
 
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
-    // 管理者ページの表示(管理者がログインするとリダイレクトされる)
+    // 管理者ページを表示するためのルート(管理者がログインするとリダイレクトされる)
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    // 管理者ページでのユーザー情報の取得・表示
+    // 管理者ページでのユーザー情報の取得・表示するためのルート
     Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
-    // 管理者ページでのユーザーのrole変更機能
+    // 管理者ページでのユーザーのrole変更するためのルート
     Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
 
-    // 店舗代表者ページの表示(店舗代表者がログインするとリダイレクトされる)
+    // 店舗代表者ページを表示するためのルート(店舗代表者がログインするとリダイレクトされる)
     Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
-    // 店舗情報の作成機能
+    // 店舗情報の作成するためのルート
     Route::post('/owner/store', [OwnerController::class, 'store'])->name('owner.store');
-    // 店舗情報の修正機能
+    // 店舗情報の修正するためのルート
     Route::get('/owner/edit', [OwnerController::class, 'edit'])->name('owner.edit');
-    // 店舗情報の更新機能
+    // 店舗情報の更新するためのルート
     Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');
 
 
