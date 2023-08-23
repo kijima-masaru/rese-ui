@@ -61,10 +61,16 @@
                                     <td>{{ $reservation->people }}人</td>
                                     <td>{{ $reservation->status }}</td>
                                     <td>
+                                        <form action="{{ route('send.notification.email', ['id' => $reservation->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-success">お知らせメールを送信</button>
+                                        </form>
+                                    </td>
+                                    <td>
                                         <form action="{{ route('update.status', ['id' => $reservation->id]) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-                                            <button type="submit" class="btn btn-primary">お客様のご来店後はこちらを押してください</button>
+                                            <button type="submit" class="btn btn-primary">お客様のご来店後にこちらを押してください</button>
                                         </form>
                                     </td>
                                 </tr>

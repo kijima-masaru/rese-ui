@@ -40,6 +40,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/owner_reserve', [Owner_ReserveController::class, 'index'])->name('owner.reserve');
     // 店舗予約確認ページの予約状況更新ボタンのルート
     Route::put('/update-status/{id}', [Owner_ReserveController::class, 'updateStatus'])->name('update.status');
+    // 店舗予約確認ページのお知らせメール送信ルート
+    Route::post('/send-notification-email/{id}', [Owner_ReserveController::class, 'sendNotificationEmail'])->name('send.notification.email');
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
