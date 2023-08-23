@@ -26,4 +26,15 @@ class Owner_ReserveController extends Controller
 
         return view('owner_reserve', compact('shops', 'reservations'));
     }
+
+    // お客様ご来店後に予約状況を変更する機能
+    public function updateStatus($id)
+    {
+        $reservation = Reserve::findOrFail($id);
+
+        $reservation->status = 'after'; $reservation->save();
+
+        // 変更が完了したらリダイレクト
+        return redirect()->route('owner.reserve');
+    }
 }

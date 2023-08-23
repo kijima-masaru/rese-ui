@@ -60,6 +60,13 @@
                                     <td>{{ $reservation->time }}</td>
                                     <td>{{ $reservation->people }}人</td>
                                     <td>{{ $reservation->status }}</td>
+                                    <td>
+                                        <form action="{{ route('update.status', ['id' => $reservation->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-primary">お客様のご来店後はこちらを押してください</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

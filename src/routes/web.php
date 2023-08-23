@@ -36,8 +36,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::put('/owner/edit-image/{id}', [OwnerController::class, 'editImage'])->name('owner.edit-image');
     // 店舗情報の画像を更新するためのルート
     Route::put('/owner/update-image/{id}', [OwnerController::class, 'updateImage'])->name('owner.update-image');
-    // 店舗予約確認ページを表示するためのルート(店舗代表者がログインするとリダイレクトされる)
+    // 店舗予約確認ページを表示するためのルート
     Route::get('/owner_reserve', [Owner_ReserveController::class, 'index'])->name('owner.reserve');
+    // 店舗予約確認ページの予約状況更新ボタンのルート
+    Route::put('/update-status/{id}', [Owner_ReserveController::class, 'updateStatus'])->name('update.status');
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
