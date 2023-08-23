@@ -19,7 +19,9 @@ class Owner_ReserveController extends Controller
         // 店舗ごとの予約情報を取得
         $reservations = [];
         foreach ($shops as $shop) {
-            $reservations[$shop->id] = Reserve::where('shop_id', $shop->id)->get();
+            $reservations[$shop->id] = Reserve::where('shop_id', $shop->id)
+                ->with('user')
+                ->get();
         }
 
         return view('owner_reserve', compact('shops', 'reservations'));

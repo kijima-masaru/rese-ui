@@ -47,6 +47,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>名前</th>
                                 <th>日付：時間</th>
                                 <th>人数</th>
                                 <th>予約状況</th>
@@ -55,6 +56,7 @@
                         <tbody>
                             @foreach ($reservations[$shop->id] as $reservation)
                                 <tr>
+                                    <td>{{ $reservation->user->name }}</td>
                                     <td>{{ $reservation->time }}</td>
                                     <td>{{ $reservation->people }}人</td>
                                     <td>{{ $reservation->status }}</td>
