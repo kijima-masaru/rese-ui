@@ -78,6 +78,10 @@
                         @csrf
                         @method('PUT')
                             <div class="form-group">
+                                <label for="img">現在の画像：</label>
+                                <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
+                            </div>
+                            <div class="form-group">
                                 <label for="name">店舗名：</label>
                                 <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
                             </div>
@@ -92,10 +96,6 @@
                             <div class="form-group">
                                 <label for="overview">概要：</label>
                                 <textarea name="overview" id="overview" class="form-control" required>{{ old('overview', $shop->overview) }}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="img">現在の画像：</label>
-                                <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
                             </div>
                             <div class="edit__button">
                                 <button type="submit" class="btn btn-primary">更新</button>
