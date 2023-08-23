@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController; //管理者ページ表示用コントローラ
 use App\Http\Controllers\OwnerController; //店舗代表者ページ表示用コントローラ
+use App\Http\Controllers\Owner_ReserveController; //店舗予約確認ページ表示用コントローラ
 use App\Http\Controllers\ShopsController; //店舗一覧ページ表示・検索機能用コントローラ
 use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コントローラ
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
@@ -35,6 +36,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::put('/owner/edit-image/{id}', [OwnerController::class, 'editImage'])->name('owner.edit-image');
     // 店舗情報の画像を更新するためのルート
     Route::put('/owner/update-image/{id}', [OwnerController::class, 'updateImage'])->name('owner.update-image');
+    // 店舗予約確認ページを表示するためのルート(店舗代表者がログインするとリダイレクトされる)
+    Route::get('/owner_reserve', [Owner_ReserveController::class, 'index'])->name('owner.reserve');
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
