@@ -22,6 +22,7 @@ class ReservationController extends Controller
             'people' => $request->people,
             'user_id' => $user->id,
             'shop_id' => $shop->id,
+            'status' => 'before', // 初期値を設定
         ]);
 
         return redirect()->route('reservation.done')->with([
