@@ -9,6 +9,7 @@ use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コ�
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
 use App\Http\Controllers\EditController; //予約内容変更ページ表示・機能用コントローラ
 use App\Http\Controllers\MypageController; //マイページ表示用コントローラ
+use App\Http\Controllers\ReviewController; //レビュー機能用コントローラ
 use App\Http\Controllers\DoneController; //予約完了ページ表示用コントローラ
 use App\Http\Controllers\FavoritesController; //お気に入り機能用コントローラ
 use App\Http\Controllers\ThanksController; //サンクスページ表示用コントローラ
@@ -17,12 +18,17 @@ use App\Http\Controllers\VerificationController; //認証メール再送信用�
 
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
+
+    // 管理者ページ用ルート
+
     // 管理者ページを表示するためのルート(管理者がログインするとリダイレクトされる)
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     // 管理者ページでのユーザー情報の取得・表示するためのルート
     Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
     // 管理者ページでのユーザーのrole変更するためのルート
     Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
+
+    // 店舗代表者ページ用ルート
 
     // 店舗代表者ページを表示するためのルート(店舗代表者がログインするとリダイレクトされる)
     Route::get('/owner', [OwnerController::class, 'index'])->name('owner.index');
@@ -42,6 +48,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::put('/update-status/{id}', [Owner_ReserveController::class, 'updateStatus'])->name('update.status');
     // 店舗予約確認ページのお知らせメール送信ルート
     Route::post('/send-notification-email/{id}', [Owner_ReserveController::class, 'sendNotificationEmail'])->name('send.notification.email');
+
+    // 一般利用者ページ用ルート
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
