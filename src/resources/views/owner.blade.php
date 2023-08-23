@@ -103,6 +103,21 @@
                         </form>
                     </div>
                 </div>
+                <div class="img__edit">
+                    <div class="img__form">
+                        <form method="POST" action="{{ route('owner.update-image', $shop->id) }}" enctype="multipart/form-data">
+                            @csrf
+                            @method('PUT')
+                            <div class="form-group">
+                                <label for="new-img">新しい画像：</label>
+                                <input type="file" name="img" id="new-img">
+                            </div>
+                            <div class="edit-image-button">
+                                <button type="submit" class="btn btn-primary">画像を更新する</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 @endforeach
             </div>
         </div>

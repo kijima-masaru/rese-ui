@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; // Authファサードをインポート
+use Illuminate\Support\Facades\Storage;
 use App\Models\Shop; // Shopモデルをインポート
 
 class OwnerController extends Controller
@@ -66,5 +67,43 @@ class OwnerController extends Controller
         $shop->save();
 
         return redirect()->route('owner.edit')->with('success', '店舗情報を更新しました！');
+    }
+
+    public function editImage($id)
+    {
+        // 対象の店舗情報を取得
+        $shop = Shop::findOrFail($id);
+
+        // ユーザーIDが一致することを確認
+        if ($shop->user_id !== Auth::id()) {
+            return abort(403, 'You are not authorized to edit this shop.');
+        }
+
+        return view('owner.edit-image', compact('shop'));
+    }
+
+    public function updateImage(Request $request, $id)
+    {
+        // 対象の店舗情報を取得
+        $shop = Shop::findOrFail($id);
+
+        // ユーザーIDが一致することを確認
+        if ($shop->user_id !== Auth::id()) {
+            return abort(403, 'You are not authorized to edit this shop.');
+        }
+
+        // 新しい画像をアップロード
+        $newImgPath = $request->file('img')->store('img');
+
+        // 古い画像を削除
+        if ($shop->img) {
+            Storage::delete($shop->img);
+        }
+
+        // 画像のパスを更新
+        $shop->img = $newImgPath;
+        $shop->save();
+
+        return redirect()->route('owner.edit', $id)->with('success', '店舗情報の画像を更新しました！');
     }
 }

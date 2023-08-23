@@ -31,7 +31,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/owner/edit', [OwnerController::class, 'edit'])->name('owner.edit');
     // 店舗情報の更新するためのルート
     Route::put('/owner/update/{id}', [OwnerController::class, 'update'])->name('owner.update');
-
+    // 店舗情報の画像を修正するためのルート
+    Route::put('/owner/edit-image/{id}', [OwnerController::class, 'editImage'])->name('owner.edit-image');
+    // 店舗情報の画像を更新するためのルート
+    Route::put('/owner/update-image/{id}', [OwnerController::class, 'updateImage'])->name('owner.update-image');
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
