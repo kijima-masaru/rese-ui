@@ -66,14 +66,23 @@
                                             <div class="reserve__detail">
                                                 <a href="{{ route('shop.detail', ['shop' => $reserve->shop]) }}">詳細を見る</a>
                                             </div>
-                                            <div class="reserve__edit">
-                                                <a href="{{ route('reservation.edit') }}">予約内容の変更はこちら</a>
-                                            </div>
-                                            <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="reserve__delete-button">予約削除</button>
-                                            </form>
+                                            @if($reserve->status !== 'after') <!-- 予約が"after"でない場合に表示 -->
+                                                <div class="reserve__edit">
+                                                    <a href="{{ route('reservation.edit') }}">予約内容の変更はこちら</a>
+                                                </div>
+                                                <div class="reserve__button">
+                                                    <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="reserve__delete-button">予約削除</button>
+                                                    </form>
+                                                </div>
+                                            @endif
+                                            @if($reserve->status === 'after') <!-- 予約が"after"の場合に表示 -->
+                                                <div class="reserve__review">
+                                                    <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビューを投稿</a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

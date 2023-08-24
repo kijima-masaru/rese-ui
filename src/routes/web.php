@@ -9,10 +9,9 @@ use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コ�
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
 use App\Http\Controllers\EditController; //予約内容変更ページ表示・機能用コントローラ
 use App\Http\Controllers\MypageController; //マイページ表示用コントローラ
-use App\Http\Controllers\ReviewController; //レビュー機能用コントローラ
 use App\Http\Controllers\DoneController; //予約完了ページ表示用コントローラ
 use App\Http\Controllers\FavoritesController; //お気に入り機能用コントローラ
-use App\Http\Controllers\ThanksController; //サンクスページ表示用コントローラ
+use App\Http\Controllers\ReviewController; //レビュー機能用コントローラ
 use App\Http\Controllers\VerificationController; //認証メール再送信用コントローラ
 
 
@@ -75,6 +74,11 @@ Route::middleware('auth', 'verified')->group(function () {
     // お気に入り追加/解除のルート追加
     Route::post('/favorites/{shop}', [FavoritesController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/{shop}', [FavoritesController::class, 'remove'])->name('favorites.remove');
+    // レビューのフォーム表示
+    Route::get('/review/{reserve}', [ReviewController::class, 'create'])->name('review.create');
+    // レビューの保存
+    Route::post('/review/{reserve}', [ReviewController::class, 'store'])->name('review.store');
+
 });
 
 // メール再送信のルーティング
