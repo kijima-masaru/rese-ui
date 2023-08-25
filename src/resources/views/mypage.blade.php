@@ -83,6 +83,9 @@
                                                     <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビューを投稿</a>
                                                 </div>
                                             @endif
+                                            <!-- QRコードを表示するリンク -->
+                                            <div class="reserve__qrcode">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
