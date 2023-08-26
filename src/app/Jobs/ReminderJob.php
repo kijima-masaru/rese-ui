@@ -22,7 +22,7 @@ class ReminderJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($reserve)
     {
         $this->reserve = $reserve;
     }

@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         foreach ($reservations as $reservation) {
             dispatch(new ReminderJob($reservation));
         }
-    })->dailyAt('09:00');
+    })->dailyAt('08:00');
     }
 
     /**
