@@ -46,6 +46,7 @@ class ComposerStaticInita9da707df4d303cdbcaae2c7293925a3
             'Symfony\\Component\\Finder\\' => 25,
             'Symfony\\Component\\EventDispatcher\\' => 34,
             'Symfony\\Component\\ErrorHandler\\' => 31,
+            'Stripe\\' => 7,
             'SimpleSoftwareIO\\QrCode\\' => 24,
         ),
         'P' => 
@@ -166,6 +167,10 @@ class ComposerStaticInita9da707df4d303cdbcaae2c7293925a3
         'Symfony\\Component\\ErrorHandler\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/error-handler',
+        ),
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
         ),
         'SimpleSoftwareIO\\QrCode\\' => 
         array (
