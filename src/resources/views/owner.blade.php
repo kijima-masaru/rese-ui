@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('owner.reserve') }}">予約情報の確認</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('owner_stripe.index') }}">決済ページ</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -64,10 +67,10 @@
                             <textarea name="overview" id="overview" class="form-control" required></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="img">画像</label>
+                            <label for="img">画像：</label>
                             <input type="file" name="img">
                         </div>
-                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         <div class="new__button">
                             <button type="submit" class="btn btn-primary">店舗情報を作成する</button>
                         </div>
@@ -79,54 +82,54 @@
                     <h2>店舗情報の修正</h2>
                 </div>
                 @foreach ($shops as $shop)
-                <div class="edit__form">
-                    <form method="POST" action="{{ route('owner.update', $shop->id) }}">
-                        @csrf
-                        @method('PUT')
-                            <div class="form-group">
-                                <label for="img">現在の画像：</label>
-                                <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
+                    <div class="edit__card">
+                        <div class="edit__form">
+                            <form method="POST" action="{{ route('owner.update', $shop->id) }}">
+                                @csrf
+                                @method('PUT')
+                                <div class="form-group">
+                                    <label for="img">現在の画像：</label>
+                                    <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
+                                </div>
+                                <div class="form-group">
+                                    <label for="name">店舗名：</label>
+                                    <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="area">エリア：</label>
+                                    <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="genre">ジャンル：</label>
+                                    <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre) }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="overview">概要：</label>
+                                    <textarea name="overview" id="overview" class="form-control" required>{{ old('overview', $shop->overview) }}</textarea>
+                                </div>
+                                <div class="edit__button">
+                                    <button type="submit" class="btn btn-primary">更新</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="img__edit">
+                            <div class="img__form">
+                                <form method="POST" action="{{ route('owner.update-image', $shop->id) }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label for="new-img">新しい画像：</label>
+                                        <input type="file" name="img" id="new-img">
+                                    </div>
+                                    <div class="edit-image-button">
+                                        <button type="submit" class="btn btn-primary">画像を更新する</button>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="form-group">
-                                <label for="name">店舗名：</label>
-                                <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="area">エリア：</label>
-                                <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area) }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="genre">ジャンル：</label>
-                                <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre) }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="overview">概要：</label>
-                                <textarea name="overview" id="overview" class="form-control" required>{{ old('overview', $shop->overview) }}</textarea>
-                            </div>
-                            <div class="edit__button">
-                                <button type="submit" class="btn btn-primary">更新</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="img__edit">
-                    <div class="img__form">
-                        <form method="POST" action="{{ route('owner.update-image', $shop->id) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('PUT')
-                            <div class="form-group">
-                                <label for="new-img">新しい画像：</label>
-                                <input type="file" name="img" id="new-img">
-                            </div>
-                            <div class="edit-image-button">
-                                <button type="submit" class="btn btn-primary">画像を更新する</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </main>
 </body>
-

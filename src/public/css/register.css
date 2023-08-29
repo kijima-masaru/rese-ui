@@ -1,80 +1,90 @@
-/*---------- ページ全体 ----------*/
-.register {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    max-height: auto;
-    background: rgb(238, 238, 238);
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
 }
 
-/*---------- h1：会員登録 ----------*/
+/* 画面の最大幅 */
+main {
+    max-width: 1230px;
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
+}
+
+/* 共通ヘッダー */
+.header {
+    text-align: center;
+}
+
+/* 会員登録ヘッドライン */
 .register__head {
     text-align: center;
+    margin-bottom: 20px;
 }
 
-/*---------- フォーム全体 ----------*/
-.register__form {
+/* フォーム要素 */
+.form__input {
+    margin-bottom: 15px;
     text-align: center;
 }
 
-/*---------- 入力フォーム ----------*/
+/* 入力フィールド */
 .form__input input {
+    width: 100%;
     padding: 10px;
-    width: 400px;
-    /* 幅を100%に設定して親要素に合わせる */
-    height: 50px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    appearance: none;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 半透明の白色背景 */
+    color: #fff;
 }
 
-.form__input {
-    padding: 10px;
+/* エラーメッセージ */
+.form__error {
+    color: red;
+    text-align: center;
 }
 
-/*---------- 会員登録ボタン ----------*/
+/* ボタン */
 .form__button {
     text-align: center;
-    padding: 10px;
 }
 
 .button__submit {
-    padding: 10px;
-    width: 100%;
-    /* 幅を100%に設定して親要素に合わせる */
-    max-width: 400px;
-    /* 最大幅を設定 */
-    height: 50px;
-    border: none;
-    border-radius: 3px;
-    background: rgb(68, 68, 255);
+    background-color: #007bff;
+    /* 鮮やかな青色 */
     color: #fff;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
 }
 
-/*---------- アナウンス ----------*/
-.content_text {
-    color: rgb(147, 147, 147);
+.button__submit:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
 }
 
-/*---------- ログインページのリンク ----------*/
-.content_register {
-    color: rgb(63, 63, 255);
+/* コンテンツテキスト */
+.content__text {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-/*---------- レスポンシブデザイン ----------*/
+/* リンク */
+.content__link a {
+    color: #007bff;
+    text-decoration: none;
+}
 
-/* スマートフォン用スタイル（ブレイクポイント768px以下） */
-@media screen and (max-width: 768px) {
+.content__link a:hover {
+    text-decoration: underline;
+}
 
-    /* 会員登録フォームの幅を調整 */
-    .form__input input,
-    .button__submit {
-        width: 100%;
-        /* 幅を100%に設定して親要素に合わせる */
-        max-width: none;
-        /* 最大幅を解除 */
-    }
-
-    /* その他の必要なレスポンシブスタイルをここに追加 */
+.content__link {
+    text-align: center;
 }

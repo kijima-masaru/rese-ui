@@ -65,7 +65,7 @@
                     <div class="content__text">
                         <p>アカウントをお持ちでない方はこちらから</p>
                     </div>
-                    <div class="content__register">
+                    <div class="content__link">
                         <a href="{{ route('register') }}">会員登録</a>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                     <div class="content__text">
                         <p>パスワードをお忘れの方はこちら</p>
                     </div>
-                    <div class="content__register">
+                    <div class="content__link">
                         <a href="{{ route('password.request') }}">パスワードの再設定</a>
                     </div>
                 </div>

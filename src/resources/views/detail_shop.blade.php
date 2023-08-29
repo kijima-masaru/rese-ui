@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('shops.index') }}">店舗一覧</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('user_stripe.index') }}">決済ページ</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -42,7 +45,7 @@
                     <a href="{{ route('shops.index') }}">⇦ 店舗一覧に戻る</a>
                 </div>
                 <div class="detail__img">
-                    <img src="{{ asset('storage/' . $shop->img . '.jpeg') }}" alt="{{ $shop->name }} Image">
+                    <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
                 </div>
                 <div class="detail__name">
                     <h1>{{ $shop->name }}</h1>

@@ -1,54 +1,108 @@
-/* デフォルトスタイル */
-.shops {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    background: rgb(238, 238, 238);
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
 }
 
+/* 画面の最大幅 */
+main {
+    max-width: 1230px;
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
+}
+
+/* メインコンテンツ */
+.main {
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* ショップ検索フォーム */
 .shop__search {
     text-align: center;
-    padding: 10px;
+    padding: 20px 0;
+    /* 上下の余白を追加 */
 }
 
+/* ショップカード */
 .shop__card {
-    width: 250px;
-    height: auto;
-    display: inline-block;
-    margin: 20px;
+    width: calc(33.33% - 20px);
+    /* カードの幅を3列に均等に分割 */
+    margin: 20px 5px;
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid #ccc;
-    padding: 15px;
-    background: #fff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
 }
 
+/* ショップ画像 */
 .card__img img {
     max-width: 100%;
     height: auto;
+}
+
+/* ショップ名 */
+.shop__name h2 {
+    color: white;
+    margin: 10px 0;
+    padding: 10px;
 }
 
 .shop__view {
     display: flex;
 }
 
-.view__area {
-    padding-right: 10px;
+.view__content p {
+    padding: 5px;
+    color: white;
 }
 
-.card__button {
+/* ショップ詳細リンク */
+.button__detail a {
+    display: block;
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
     text-align: center;
+    padding: 10px 0;
+    text-decoration: none;
 }
 
-/* スマートフォン向けスタイル（768px以下） */
-@media (max-width: 768px) {
-    .shop__card {
-        width: 100%;
-        /* 幅を100%に設定して幅いっぱいに表示 */
-        margin: 10px;
-        /* マージンを上下に設定して余白を調整 */
-    }
+.button__detail a:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
 
-    .view__area {
-        padding-right: 0;
-    }
+/* お気に入りボタン */
+.button__favorite button {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button__favorite button:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
+
+/* ログインリンク */
+.button__favorite a {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
 }

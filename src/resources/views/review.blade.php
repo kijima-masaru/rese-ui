@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('shops.index') }}">店舗一覧</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('user_stripe.index') }}">決済ページ</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf

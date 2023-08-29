@@ -21,14 +21,14 @@ class Kernel extends ConsoleKernel
         // 予約当日の朝にリマインダーを送信する処理を実装
         $today = now()->format('Y-m-d');
         $reservations = DB::table('reserves')
-            ->whereDate('time', $today)
-            ->where('status', 'scheduled') // 予約の状態に応じて調整
+            ->whereDate('day', $today)
+            ->where('status', 'before') // 'before' の予約のみを対象にする
             ->get();
 
         foreach ($reservations as $reservation) {
-            dispatch(new ReminderJob($reservation));
+            dispatch(new ReminderJob($reservation->user_id));
         }
-    })->dailyAt('08:00');
+    })->dailyAt('09:00');
     }
 
     /**

@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('owner.reserve') }}">予約情報の確認</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('owner_stripe.index') }}">決済ページ</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -42,8 +45,10 @@
             </div>
             <div class="reserve__table">
                 @foreach ($shops as $shop)
-                    <h2>{{ $shop->name }}</h2>
-
+                <div class="table__content">
+                    <div class="teble__head">
+                        <h2>{{ $shop->name }}</h2>
+                    </div>
                     <table class="table">
                         <thead>
                             <tr>
@@ -77,6 +82,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
                 @endforeach
             </div>
         </div>

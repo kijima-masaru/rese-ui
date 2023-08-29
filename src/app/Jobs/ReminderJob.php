@@ -15,16 +15,16 @@ class ReminderJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $reserve;
+    protected $userId;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($reserve)
+    public function __construct($userId)
     {
-        $this->reserve = $reserve;
+        $this->userId = $userId;
     }
 
     /**
@@ -34,9 +34,9 @@ class ReminderJob implements ShouldQueue
      */
     public function handle()
     {
-        $userEmail = $this->reserve->user->email;
+        $userEmail = DB::table('users')->where('id', $this->userId)->value('email');
 
         // リマインダーメールを送信
-        Mail::to($userEmail)->send(new ReservationReminderMail($this->reserve));
+        Mail::to($userEmail)->send(new ReservationReminderMail());
     }
 }

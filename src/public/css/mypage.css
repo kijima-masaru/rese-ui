@@ -1,9 +1,20 @@
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
+}
+
 /* デフォルトスタイル */
 .mypage {
     margin: 0 auto;
     padding: 30px 15px;
     max-width: 1230px;
-    background: rgb(238, 238, 238);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .mypage__head {
@@ -27,13 +38,13 @@
 
 .reserve__wrapper,
 .favorite__wrapper {
-    width: 500px;
+    width: calc(33.33% - 20px);
+    /* カードの幅を3列に均等に分割 */
+    margin: 20px 5px;
+    background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid #ccc;
-    margin-bottom: 20px;
-    padding: 15px;
-    margin-left: 50px;
-    background: #ffffff;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    display: inline-block;
 }
 
 .reserve__img img,
@@ -48,20 +59,140 @@
     text-align: center;
 }
 
-/* スマートフォン向けスタイル（768px以下） */
-@media screen and (max-width: 768px) {
-    .mypage__content {
-        flex-direction: column;
-    }
+/* 新しいHTMLコードのスタイル */
+.new-reserve__flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* 要素を均等に配置 */
+    align-items: center;
+    /* 垂直方向に中央揃え */
+    margin-top: 10px;
+}
 
-    .mypage__reserve,
-    .mypage__favorite {
-        width: 100%;
-    }
+.new-reserve__detail,
+.new-reserve__edit,
+.new-reserve__button,
+.new-reserve__review,
+.new-reserve__qrcode {
+    flex: 1;
+    /* 幅を均等に分割 */
+    margin: 10px;
+    /* 要素間の間隔 */
+    text-align: center;
+}
 
-    .reserve__wrapper,
-    .favorite__wrapper {
-        width: 100%;
-        margin-left: 0;
-    }
+.new-reserve__detail a,
+.new-reserve__edit a,
+.new-reserve__review a {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.new-reserve__detail a:hover,
+.new-reserve__edit a:hover,
+.new-reserve__review a:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
+
+.new-reserve__button button {
+    background-color: #ff0000;
+    /* 赤色のボタン */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.new-reserve__button button:hover {
+    background-color: #cc0000;
+    /* ホバー時の色 */
+}
+
+/* favorite__wrapper内の要素のスタイル調整 */
+.favorite__img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.favorite__detail {
+    margin-bottom: 10px;
+}
+
+.favorite__detail a {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.favorite__detail a:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
+
+.favorite__wrapper form {
+    margin-top: 10px;
+}
+
+.favorite__wrapper button {
+    background-color: #ff0000;
+    /* 赤色のボタン */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.favorite__wrapper button:hover {
+    background-color: #cc0000;
+    /* ホバー時の色 */
+}
+
+/* reserve__wrapper内の要素のスタイル調整 */
+.reserve__img img {
+    max-width: 100%;
+    height: auto;
+}
+
+.reserve__edit a {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+    padding: 5px 10px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+}
+
+.reserve__edit a:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
+
+.reserve__wrapper form {
+    margin-top: 10px;
+}
+
+.reserve__wrapper button {
+    background-color: #ff0000;
+    /* 赤色のボタン */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.reserve__wrapper button:hover {
+    background-color: #cc0000;
+    /* ホバー時の色 */
 }

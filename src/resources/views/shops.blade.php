@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('shops.index') }}">店舗一覧</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('user_stripe.index') }}">決済ページ</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -40,7 +43,7 @@
             <div class="main">
                 <div class="shop__search">
                     <form action="{{ route('shops.search') }}" method="GET">
-                        <input type="text" name="area" placeholder="エリアを入力">
+                        <input class="search__input" type="text" name="area" placeholder="エリアを入力">
                         <input type="text" name="genre" placeholder="ジャンルを入力">
                         <input type="text" name="name" placeholder="店名を入力">
                         <button type="submit">検索</button>
@@ -49,29 +52,17 @@
                 @foreach ($shops as $shop)
                 <div class="shop__card">
                     <div class="card__img">
-                        @if ($shop->img === 'ramen')
-                            <img src="{{ asset('storage/ramen.jpeg') }}" alt="Ramen Shop Image">
-                        @elseif ($shop->img === 'sushi')
-                            <img src="{{ asset('storage/sushi.jpeg') }}" alt="Sushi Shop Image">
-                        @elseif ($shop->img === 'italian')
-                            <img src="{{ asset('storage/italian.jpeg') }}" alt="Italian Shop Image">
-                        @elseif ($shop->img === 'izakaya')
-                            <img src="{{ asset('storage/izakaya.jpeg') }}" alt="Izakaya Shop Image">
-                        @elseif ($shop->img === 'yakiniku')
-                            <img src="{{ asset('storage/yakiniku.jpeg') }}" alt="Yakiniku Shop Image">
-                        @else
-                            <img src="{{ asset('storage/default.jpeg') }}" alt="Default Shop Image">
-                        @endif
+                        <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
                     </div>
                     <div class="card__content">
                         <div class="shop__name">
                             <h2>{{ $shop->name }}</h2>
                         </div>
                         <div class="shop__view">
-                            <div class="view__area">
+                            <div class="view__content">
                                 <p>#{{ $shop->area }}</p>
                             </div>
-                            <div class="view__genre">
+                            <div class="view__content">
                                 <p>#{{ $shop->genre }}</p>
                             </div>
                         </div>

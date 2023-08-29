@@ -62,7 +62,7 @@
                     <div class="content__text">
                         <p>アカウントをお持ちの方はこちらから</p>
                     </div>
-                    <div class="content__register">
+                    <div class="content__link">
                         <a href="{{ route('login') }}">ログイン</a>
                     </div>
                 </div>
