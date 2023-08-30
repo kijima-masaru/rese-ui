@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
-    @php
-        use SimpleSoftwareIO\QrCode\Facades\QrCode;
-    @endphp
 </head>
 
 
@@ -89,7 +86,7 @@
                                             @endif
                                             <!-- QRコードを表示するリンク -->
                                             <div class="reserve__qrcode">
-                                                {!! QrCode::size(100)->generate("予約時間: {$reserve->time}, 人数: {$reserve->people}, ユーザー名: {$userName}, メールアドレス: {$userEmail}, ショップ名: {$shopName}") !!}
+                                                <img src="{!! URL::temporarySignedRoute('generate-qr-code', now()->addHours(1), ['reservationId' => $reserve->id]) !!}" alt="QR Code">
                                             </div>
                                         </div>
                                     </div>
