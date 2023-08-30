@@ -11,49 +11,17 @@ class StripeController extends Controller
 {
     public function index()
     {
-        if (request()->is('mypage/payment')) {
-            // /mypage/paymentにアクセスされた場合
-            return view('user_stripe');
-        } elseif (request()->is('owner/payment')) {
-            // /owner/chargeにアクセスされた場合
-            return view('owner_stripe');
-        }
+        return view('payment');
     }
 
-    public function createPayment(Request $request)
-    {
-        // StripeのAPIキーを設定
-        Stripe::setApiKey(config('services.stripe.secret'));
+    public function pay(Request $request){
+        Stripe::setApiKey('pk_test_51NjMYZHuosYE03blXTaFQPxuno5yZsJcyjw9F4x8jXwK7SgnWJHOD52SGcoRnLG8CJQPsPkchciE4EI5EjliMojw00o8XjGnDm');//シークレットキー
+        $charge = Charge::create(array(
+            'amount' => 100,
+            'currency' => 'jpy',
+            'source'=> request()->stripeToken,
+        ));
 
-        // Stripe.jsから受け取ったトークンを取得
-        $token = $request->input('stripeToken');
-
-        // 金額を取得
-        $amount = $request->input('amount');
-
-        // Stripeで支払いを作成
-        try {
-            $charge = Charge::create([
-                'amount' => $amount * 100, // 金額をセント単位に変換
-                'currency' => 'JPY',
-                'source' => $token,
-            ]);
-
-            // 支払い成功後の処理を追加
-            return redirect()->back()->with('success', '支払いが成功しました');
-        } catch (\Exception $e) {
-            // エラーハンドリング - エラーメッセージを表示など
-            return redirect()->back()->with('error', '支払いに失敗しました: ' . $e->getMessage());
-        }
-    }
-
-    public function createCharge(Request $request)
-    {
-        // オーナーが指定した金額を取得
-        $amount = $request->input('amount');
-
-        // 支払いを受ける処理を実行
-
-        return redirect()->back()->with('success', '支払いを受け付けました');
+        return back();
     }
 }

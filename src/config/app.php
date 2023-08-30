@@ -176,6 +176,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
 
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Stripe\Stripe::class,
+
     ],
 
     /*
@@ -231,6 +234,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+        'Stripe' => Stripe\Stripe::class,
 
     ],
 

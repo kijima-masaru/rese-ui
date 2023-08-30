@@ -27,6 +27,11 @@ class ComposerStaticInita9da707df4d303cdbcaae2c7293925a3
         array (
             'voku\\' => 5,
         ),
+        'c' => 
+        array (
+            'chillerlan\\Settings\\' => 20,
+            'chillerlan\\QRCode\\' => 18,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php83\\' => 23,
@@ -99,6 +104,14 @@ class ComposerStaticInita9da707df4d303cdbcaae2c7293925a3
         'voku\\' => 
         array (
             0 => __DIR__ . '/..' . '/voku/portable-ascii/src/voku',
+        ),
+        'chillerlan\\Settings\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chillerlan/php-settings-container/src',
+        ),
+        'chillerlan\\QRCode\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/chillerlan/php-qrcode/src',
         ),
         'Symfony\\Polyfill\\Php83\\' => 
         array (

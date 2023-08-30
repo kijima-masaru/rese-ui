@@ -14,6 +14,7 @@ use App\Http\Controllers\FavoritesController; //お気に入り機能用コン�
 use App\Http\Controllers\ReviewController; //レビュー機能用コントローラ
 use App\Http\Controllers\VerificationController; //認証メール再送信用コントローラ
 use App\Http\Controllers\StripeController; //stripe決済機能用コントローラ
+use App\Http\Controllers\ThanksController; //お支払い完了ページ用コントローラ
 use App\Http\Controllers\QRCodeController; //QRコード用コントローラ
 
 
@@ -49,9 +50,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::put('/update-status/{id}', [Owner_ReserveController::class, 'updateStatus'])->name('update.status');
     // 店舗予約確認ページのお知らせメール送信ルート
     Route::post('/send-notification-email/{id}', [Owner_ReserveController::class, 'sendNotificationEmail'])->name('send.notification.email');
-    // stripeでの決済機能のルート
-    Route::get('/owner/payment', [StripeController::class, 'index'])->name('owner_stripe.index');
-    Route::post('/owner/charge', [StripeController::class, 'createCharge'])->name('charge');
 
 
     // 一般利用者ページ用ルート
@@ -85,9 +83,9 @@ Route::middleware('auth', 'verified')->group(function () {
     // レビューの保存
     Route::post('/review/{reserve}', [ReviewController::class, 'store'])->name('review.store');
     // stripeでの決済機能のルート
-    Route::get('/mypage/payment', [StripeController::class, 'index'])->name('user_stripe.index');
-    Route::post('/user/payment', [StripeController::class, 'createPayment'])->name('payment');
-    Route::get('/generate-qr-code/{reservationId}', [QRCodeController::class, 'generateQRCode'])->name('generate-qr-code');
+    Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
+    Route::post('/pay', [StripeController::class, 'pay']);
+    Route::get('/thanks', [ThanksController::class, 'index'])->name('thanks');
 
 });
 
