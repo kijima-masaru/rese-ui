@@ -15,13 +15,13 @@ class StripeController extends Controller
     }
 
     public function pay(Request $request){
-        Stripe::setApiKey('pk_test_51NjMYZHuosYE03blXTaFQPxuno5yZsJcyjw9F4x8jXwK7SgnWJHOD52SGcoRnLG8CJQPsPkchciE4EI5EjliMojw00o8XjGnDm');//シークレットキー
+        Stripe::setApiKey('sk_test_51NjMYZHuosYE03bl4HVIfgB3xpYUhte3Oe1gjMAj4Al7qFFohmIIWvIdNj5kSP8AR5M96L5njVGjNO8YIxg3mmoO00kgEWRpDz');//シークレットキー
         $charge = Charge::create(array(
             'amount' => 100,
             'currency' => 'jpy',
             'source'=> request()->stripeToken,
         ));
 
-        return back();
+        return view('thanks');
     }
 }

@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
-    @php
-        use SimpleSoftwareIO\QrCode\Facades\QrCode;
-    @endphp
 </head>
 
 
@@ -89,6 +86,7 @@
                                             @endif
                                             <!-- QRコードを表示するリンク -->
                                             <div class="reserve__qrcode">
+                                                {!! QrCode::size(100)->generate(Request::url()); !!}
                                             </div>
                                         </div>
                                     </div>

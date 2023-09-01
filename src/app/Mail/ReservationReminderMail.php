@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Models\Reserve; // Reserveモデルをインポート
 
 class ReservationReminderMail extends Mailable
 {
@@ -19,7 +20,7 @@ class ReservationReminderMail extends Mailable
      *
      * @return void
      */
-    public function __construct($reservation)
+    public function __construct(Reserve $reservation)
     {
         $this->reservation = $reservation;
     }

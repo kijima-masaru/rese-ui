@@ -17,19 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-        // 予約当日の朝にリマインダーを送信する処理を実装
-        $today = now()->format('Y-m-d');
-        $reservations = DB::table('reserves')
-            ->whereDate('day', $today)
-            ->where('status', 'before') // 'before' の予約のみを対象にする
-            ->get();
-
-        foreach ($reservations as $reservation) {
-            dispatch(new ReminderJob($reservation->user_id));
-        }
-    })->dailyAt('09:00');
+    $schedule->command('reservation:send-email')->dailyAt('08:00');
     }
+
 
     /**
      * Register the commands for the application.
