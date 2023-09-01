@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>決済ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/user_stripe.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/payment.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
     <script src="https://js.stripe.com/v3/"></script>
 </head>
@@ -41,7 +41,13 @@
         </div>
         <!-- ページ本体 -->
         <div class="payment">
-            <div class="stripe__form">
+            <div class="payment__head">
+                <h1>こちらは決済ページです。</h1>
+            </div>
+            <div class="payment__text">
+                <h2>「決済する」ボタンを押してフォームを表示させ、必要な情報を入力してください。</h2>
+            </div>
+            <div class="payment__form">
                 <form action="{{ asset('pay') }}" method="POST">
                     {{ csrf_field() }}
                 <script

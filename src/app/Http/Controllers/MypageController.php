@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop; // ログインユーザーのお気に入り情報取得
 use App\Models\Reserve; // ログインユーザーの予約情報取得
+use SimpleSoftwareIO\QrCode\Facades\QrCode; // QRコードの生成ライブラリを使用
 
 class MypageController extends Controller
 {
@@ -20,6 +21,17 @@ class MypageController extends Controller
 
             $favoriteShops = auth()->user()->favorites;
 
-        return view('mypage', compact('reserves', 'favoriteShops'));
+            // QRコードに埋め込むデータを生成
+        $qrCodeData = [];
+        foreach ($reserves as $reserve) {
+            $qrCodeData[] = [
+                'user_name' => $user->name,
+                'shop_name' => $reserve->shop->name,
+                'reserve_time' => $reserve->time,
+                'reserve_people' => $reserve->people,
+            ];
+        }
+
+        return view('mypage', compact('reserves', 'favoriteShops', 'qrCodeData'));
     }
 }
