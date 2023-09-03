@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController; //管理者ページ表示用コントローラ
 use App\Http\Controllers\OwnerController; //店舗代表者ページ表示用コントローラ
 use App\Http\Controllers\Owner_ReserveController; //店舗予約確認ページ表示用コントローラ
+use App\Http\Controllers\Owner_QRController;
+use App\Http\Controllers\ShowController; //QRコード予約検索ページ表示用コントローラ
 use App\Http\Controllers\ShopsController; //店舗一覧ページ表示・検索機能用コントローラ
 use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コントローラ
 use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
@@ -15,7 +17,6 @@ use App\Http\Controllers\ReviewController; //レビュー機能用コントロ�
 use App\Http\Controllers\VerificationController; //認証メール再送信用コントローラ
 use App\Http\Controllers\StripeController; //stripe決済機能用コントローラ
 use App\Http\Controllers\ThanksController; //お支払い完了ページ用コントローラ
-use App\Http\Controllers\QRCodeController; //QRコード用コントローラ
 
 
 // ログインが必要なルートグループ
@@ -50,6 +51,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::put('/update-status/{id}', [Owner_ReserveController::class, 'updateStatus'])->name('update.status');
     // 店舗予約確認ページのお知らせメール送信ルート
     Route::post('/send-notification-email/{id}', [Owner_ReserveController::class, 'sendNotificationEmail'])->name('send.notification.email');
+    // 店舗予約確認ページのQRコード読み込み機能用ルート
+    Route::get('/owner/qrcode', [Owner_QRController::class, 'index'])->name('owner.qrcode');
 
 
     // 一般利用者ページ用ルート
@@ -86,6 +89,9 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
     Route::post('/pay', [StripeController::class, 'pay']);
     Route::get('/thanks', [ThanksController::class, 'index'])->name('thanks');
+    Route::get('/reservations/{reserve}', [ShowController::class, 'show'])->name('reservation.show');
+
+
 
 });
 

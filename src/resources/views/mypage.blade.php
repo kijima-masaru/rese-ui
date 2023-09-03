@@ -86,7 +86,7 @@
                                             @endif
                                             <!-- QRコードを表示するリンク -->
                                             <div class="reserve__qrcode">
-                                                {!! QrCode::size(100)->generate(json_encode($qrCodeData[$loop->index])); !!}
+                                                {!! QrCode::size(100)->generate($reserve->id); !!}
                                             </div>
                                         </div>
                                     </div>

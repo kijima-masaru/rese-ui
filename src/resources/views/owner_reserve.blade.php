@@ -27,7 +27,7 @@
                         <a href="{{ route('owner.reserve') }}">予約情報の確認</a>
                     </div>
                     <div class="header__url">
-                        <a href="{{ route('owner_stripe.index') }}">決済ページ</a>
+                        <a href="{{ route('owner.qrcode') }}">QRコードで予約検索</a>
                     </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
@@ -42,6 +42,8 @@
         <div class="owner__reserve">
             <div class="reserve__head">
                 <h1>店舗の予約情報が確認できます。</h1>
+            </div>
+            <div class="qr__form">
             </div>
             <div class="reserve__table">
                 @foreach ($shops as $shop)
@@ -88,3 +90,4 @@
         </div>
     </main>
 </body>
+</html>

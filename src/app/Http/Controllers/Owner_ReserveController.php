@@ -57,4 +57,5 @@ class Owner_ReserveController extends Controller
             return redirect()->route('owner.reserve')->with('error', 'お知らせメールの送信に失敗しました。');
         }
     }
+
 }
