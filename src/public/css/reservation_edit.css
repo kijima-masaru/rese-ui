@@ -9,6 +9,7 @@ body {
     /* 白色のテキスト色 */
 }
 
+/* 画面の最大幅 */
 main {
     max-width: 1230px;
     margin: 0 auto;
@@ -17,39 +18,78 @@ main {
     margin-top: 60px;
 }
 
-/* デスクトップ用スタイル */
 .edit {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.edit__head {
     text-align: center;
 }
 
+/* 予約内容変更フォームを横並びに配置 */
 .edit__form {
-    width: 250px;
-    height: auto;
+    width: calc(20% - 40px);
+    /* 20%の幅で横並びに配置（マージンを考慮） */
+    margin-right: 20px;
+    /* フォーム間の横の間隔 */
+    margin-bottom: 20px;
     display: inline-block;
-    margin: 20px;
-    border: 1px solid #ccc;
-    padding: 15px;
+    vertical-align: top;
+    /* 上揃え */
+    box-sizing: border-box;
+    /* ボーダーボックスモデル */
     background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* 最後のフォームに右マージンを適用しない */
+.edit__form:last-child {
+    margin-right: 0;
+}
+
+/* 画像 */
 .form__img img {
     max-width: 100%;
-    height: auto;
+    max-height: auto;
 }
 
+/* 店舗名 */
+.form__name {
+    margin-top: 10px;
+}
+
+/* フォーム要素 */
+.form__group {
+    margin-bottom: 15px;
+}
+
+.form__group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form__group input[type="date"],
+.form__group input[type="time"],
+.form__group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 半透明の白色背景 */
+    color: #fff;
+}
+
+/* ボタン */
 .form__button {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-.form__button button {
+.form__button button[type="submit"] {
     background-color: #007bff;
+    /* 鮮やかな青色 */
     color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.form__button button[type="submit"]:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
 }
