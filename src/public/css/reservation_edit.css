@@ -9,6 +9,14 @@ body {
     /* 白色のテキスト色 */
 }
 
+main {
+    max-width: 1230px;
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
+    margin-top: 60px;
+}
+
 /* デスクトップ用スタイル */
 .edit {
     margin: 0 auto;

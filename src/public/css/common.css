@@ -8,6 +8,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    /* 固定位置 */
+    top: 0;
+    /* 画面上端に固定 */
+    width: 1190px;
+    /* 画面幅いっぱいに広げる */
+    z-index: 1000;
+    /* 必要に応じてz-indexを調整 */
 }
 
 /* ヘッダーのロゴ */

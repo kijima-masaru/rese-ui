@@ -15,12 +15,9 @@ main {
     margin: 0 auto;
     /* 中央揃え */
     padding: 20px;
-}
-
-/* メインコンテンツ */
-.main {
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-top: 60px;
 }
 
 /* ショップ検索フォーム */
