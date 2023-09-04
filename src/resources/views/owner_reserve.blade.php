@@ -58,6 +58,8 @@
                                 <th>日付：時間</th>
                                 <th>人数</th>
                                 <th>予約状況</th>
+                                <th>お知らせメール</th>
+                                <th>ご来店後対応</th>
                             </tr>
                         </thead>
                         <tbody>

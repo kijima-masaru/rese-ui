@@ -17,32 +17,6 @@ main {
     padding: 20px;
 }
 
-/* 共通ヘッダー */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header__right {
-    display: flex;
-}
-
-.header__content {
-    display: flex;
-    margin-right: 10px;
-}
-
-.header__url a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 10px;
-}
-
-.header__logout .logout__form {
-    margin: 0;
-}
-
 /* 予約完了ページ */
 .done {
     margin: 0 auto;
@@ -57,18 +31,15 @@ main {
 
 .done__head {
     text-align: center;
-    font-size: 36px;
     margin-bottom: 20px;
 }
 
 .done__content {
     text-align: center;
-    font-size: 24px;
     margin-bottom: 20px;
 }
 
 .done__text {
     text-align: center;
-    font-size: 18px;
     margin-top: 20px;
 }

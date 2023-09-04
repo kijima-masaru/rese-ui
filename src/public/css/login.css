@@ -17,11 +17,6 @@ main {
     padding: 20px;
 }
 
-/* 共通ヘッダー */
-.header {
-    text-align: center;
-}
-
 /* ログインヘッドライン */
 .login__head {
     text-align: center;

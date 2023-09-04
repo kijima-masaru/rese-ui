@@ -45,7 +45,7 @@
                 <h1>こちらは決済ページです。</h1>
             </div>
             <div class="payment__text">
-                <h2>「決済する」ボタンを押してフォームを表示させ、必要な情報を入力してください。</h2>
+                <p>「決済する」ボタンを押してフォームを表示させ、必要な情報を入力してください。</p>
             </div>
             <div class="payment__form">
                 <form action="{{ asset('pay') }}" method="POST">

@@ -1,5 +1,3 @@
-<!-- reset-password.blade.php -->
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -43,7 +41,9 @@
 
                                 <div class="form-group row">
                                     <label for="email" class="col-md-4 col-form-label text-md-right">
-                                        <p>ご登録したメールアドレスを入力してください。パスワード再設定メールを送信します。</p>
+                                        <div class="form__text">
+                                            <p>ご登録したメールアドレスを入力してください。パスワード再設定メールを送信します。</p>
+                                        </div>
                                     </label>
 
                                     <div class="col-md-6">
@@ -76,7 +76,7 @@
                     <div class="content__text">
                         <p>ログインはこちらから</p>
                     </div>
-                    <div class="content__register">
+                    <div class="content__url">
                         <a href="{{ route('login') }}">ログイン</a>
                     </div>
                 </div>

@@ -13,34 +13,55 @@
 
 <body>
     <main>
+        <!-- 共通ヘッダー -->
+        <div class="common">
+            <div class="header">
+                <h1>Rese</h1>
+            </div>
+            <div class="header__right">
+                <div class="header__content">
+                    <div class="header__url">
+                        <a href="{{ route('owner.index') }}">店舗情報の作成・更新</a>
+                    </div>
+                    <div class="header__url">
+                        <a href="{{ route('owner.reserve') }}">予約情報の確認</a>
+                    </div>
+                    <div class="header__url">
+                        <a href="{{ route('owner.qrcode') }}">QRコードで予約検索</a>
+                    </div>
+                    <div class="header__logout">
+                        <form class="logout__form" action="/logout" method="post">
+                            @csrf
+                            <button class="logout__button">ログアウト</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="show">
             <div class="container">
-    <h1>予約詳細</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>予約ID</th>
-                <th>予約日時</th>
-                <th>人数</th>
-                <th>ステータス</th>
-                <th>ユーザー名</th>
-                <th>店舗名</th>
-                <!-- 他の予約情報を表示するヘッダーを追加 -->
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ $reserve->id }}</td>
-                <td>{{ $reserve->time }}</td>
-                <td>{{ $reserve->people }}人</td>
-                <td>{{ $reserve->status }}</td>
-                <td>{{ $reserve->user->name }}</td> <!-- ユーザー名を表示 -->
-                <td>{{ $reserve->shop->name }}</td> <!-- 店舗名を表示 -->
-                <!-- 他の予約情報を表示するセルを追加 -->
-            </tr>
-        </tbody>
-    </table>
-</div>
+                <h1>QRコードから予約情報を取得しました。</h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ユーザー名</th>
+                            <th>店舗名</th>
+                            <th>予約ID</th>
+                            <th>予約日時</th>
+                            <th>人数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $reserve->user->name }}</td>
+                            <td>{{ $reserve->shop->name }}</td>
+                            <td>{{ $reserve->id }}</td>
+                            <td>{{ $reserve->time }}</td>
+                            <td>{{ $reserve->people }}人</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 </body>

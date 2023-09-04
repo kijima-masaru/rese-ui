@@ -1,0 +1,62 @@
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
+}
+
+/* 画面の最大幅 */
+main {
+    max-width: 1230px;
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
+}
+
+.qrcode__head {
+    text-align: center;
+}
+
+/* QRコードを表示する領域 */
+.reserve__qrcode {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* カメラ画面 */
+#qrcode-scanner {
+    position: relative;
+}
+
+#qrcode-scanner video {
+    width: 100%;
+    max-width: 100%;
+}
+
+#start-scan {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#start-scan:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
+}
+
+/* QRコード読み込み結果を表示する領域 */
+#qrcode-result {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 半透明の白色背景 */
+    color: #fff;
+    text-align: center;
+}

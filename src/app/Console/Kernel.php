@@ -4,28 +4,21 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\Jobs\ReminderJob; //タスクスケジューラー用のインポート
-use Illuminate\Support\Facades\DB; //タスクスケジューラー用のインポート
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * Define the application's command schedule.
-     *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
-     * @return void
-     */
+    protected $commands = [
+        // 他のコマンド
+        \App\Console\Commands\SendReservationEmails::class,
+    ];
+
     protected function schedule(Schedule $schedule)
     {
-    $schedule->command('reservation:send-email')->dailyAt('08:00');
+        // 予約リマインダーを毎日9:00に送信
+        $schedule->command('email:send-reservation-reminders')
+                ->dailyAt('09:00');
     }
 
-
-    /**
-     * Register the commands for the application.
-     *
-     * @return void
-     */
     protected function commands()
     {
         $this->load(__DIR__.'/Commands');
@@ -33,3 +26,4 @@ class Kernel extends ConsoleKernel
         require base_path('routes/console.php');
     }
 }
+

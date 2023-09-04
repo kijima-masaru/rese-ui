@@ -1,94 +1,63 @@
-/* 共通のスタイル */
+/* 共通ヘッダー */
 .common {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    height: auto;
-    /* 高さを自動調整 */
-    max-height: 300px;
-    /* 最大高さを設定 */
+    background-color: #232323;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
+    padding: 10px 0;
     display: flex;
-    flex-wrap: wrap;
-    /* コンテンツを折り返す */
-    align-items: center;
-    /* 垂直方向の中央寄せ */
-}
-
-/* ヘッダーコンテナ */
-.common__header {
-    display: flex;
-    flex-wrap: wrap;
-    /* コンテンツを折り返す */
     justify-content: space-between;
-    /* コンテンツを左右に配置 */
+    align-items: center;
 }
 
-/* ヘッダーコンテンツ */
-.header {
+/* ヘッダーのロゴ */
+.header h1 {
+    margin: 0;
     padding: 10px;
-    flex: 1 1 auto;
-    /* コンテンツを均等に広げる */
+    font-size: 24px;
 }
 
+/* ヘッダーの右側要素 */
 .header__right {
-    margin-top: 15px;
+    display: flex;
+    align-items: center;
 }
 
+/* ヘッダー内のコンテンツ */
 .header__content {
     display: flex;
-    flex-wrap: wrap;
-    /* コンテンツを折り返す */
-    justify-content: space-between;
-    /* コンテンツを左右に配置 */
     align-items: center;
-    /* 垂直方向の中央寄せ */
 }
 
-.header__url,
-.header__logout {
-    padding: 10px;
-    font-size: 17px;
+/* ヘッダー内のURLリンク */
+.header__url {
+    margin-left: 20px;
 }
 
-@media screen and (max-width: 480px) {
-    .common {
-        padding: 20px 10px;
-        /* パディングを調整 */
-        max-height: 200px;
-        /* 最大高さを調整 */
-    }
-
-    .header__right {
-        margin-left: 0;
-        /* マージンをリセット */
-    }
-
-    .header__content {
-        padding: 5px;
-        /* パディングを調整 */
-    }
+.header__url a {
+    color: #fff;
+    text-decoration: none;
 }
 
-@media screen and (min-width: 481px) and (max-width: 768px) {
-    .header__right {
-        margin-left: 300px;
-        /* マージンを調整 */
-    }
-
-    .header__content {
-        padding: 15px;
-        /* パディングを調整 */
-    }
+.header__url a:hover {
+    text-decoration: underline;
 }
 
-@media screen and (min-width: 769px) {
-    .header__right {
-        margin-left: 600px;
-        /* マージンをリセット */
-    }
+/* ログアウトボタン */
+.logout__form {
+    margin-left: 20px;
+}
 
-    .header__content {
-        padding: 20px;
-        /* パディングをリセット */
-    }
+.logout__button {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.logout__button:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
 }

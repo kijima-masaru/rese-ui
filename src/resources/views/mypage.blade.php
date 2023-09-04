@@ -69,7 +69,7 @@
                                         <div class="reserve__flex">
                                             @if($reserve->status !== 'after') <!-- 予約が"after"でない場合に表示 -->
                                                 <div class="reserve__edit">
-                                                    <a href="{{ route('reservation.edit') }}">予約内容の変更</a>
+                                                    <a href="{{ route('reservation.edit') }}">予約内容変更</a>
                                                 </div>
                                                 <div class="reserve__button">
                                                     <form action="{{ route('reservations.destroy', $reserve) }}" method="post">
@@ -81,12 +81,12 @@
                                             @endif
                                             @if($reserve->status === 'after') <!-- 予約が"after"の場合に表示 -->
                                                 <div class="reserve__review">
-                                                    <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビューを投稿</a>
+                                                    <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビュー投稿</a>
                                                 </div>
                                             @endif
                                             <!-- QRコードを表示するリンク -->
                                             <div class="reserve__qrcode">
-                                                {!! QrCode::size(100)->generate($reserve->id); !!}
+                                                {!! QrCode::size(70)->generate($reserve->id); !!}
                                             </div>
                                         </div>
                                     </div>

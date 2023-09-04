@@ -1,90 +1,56 @@
-/*---------- ページ全体 ----------*/
-.mail {
-    margin: 0 auto;
-    padding: 30px 15px;
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
+}
+
+/* 画面の最大幅 */
+main {
     max-width: 1230px;
-    max-height: auto;
-    background: rgb(238, 238, 238);
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
 }
 
-/*---------- メール案内 ----------*/
-.mail__text {
+/* 認証メールヘッドライン */
+.mail__head {
     text-align: center;
-    padding: 5px;
+    margin-bottom: 20px;
 }
 
+/* メールテキスト */
+.mail__text h1,
+.mail__text h2 {
+    margin-bottom: 10px;
+}
+
+/* 赤いテキスト */
 .mail__red {
-    text-align: center;
-    padding: 10px;
-    color: red;
+    color: #ff5555;
+    /* 赤色 */
+    margin-top: 20px;
 }
 
-/*---------- アナウンス ----------*/
-.register__form-content {
-    text-align: center;
-}
-
-.content_text {
-    color: rgb(147, 147, 147);
-}
-
-/*---------- メール再送信 ----------*/
+/* ボタン */
 .form__button {
     text-align: center;
-    padding: 10px;
 }
 
 .button__submit {
-    padding: 10px;
-    width: 400px;
-    height: 50px;
-    border: none;
-    border-radius: 3px;
-    background: rgb(68, 68, 255);
+    background-color: #007bff;
+    /* 鮮やかな青色 */
     color: #fff;
+    padding: 10px 20px;
+    border: none;
     cursor: pointer;
 }
 
-/*---------- ログインページのリンク ----------*/
-.content_register {
-    color: rgb(63, 63, 255);
-}
-
-/*---------- スマートフォン用のスタイル ----------*/
-@media (max-width: 768px) {
-
-    /* 768px以下の画面幅に適用されるスタイルをここに追加 */
-    /* 例えば、フォントサイズを変更したり、余白を調整したりできます */
-    .mail {
-        padding: 20px 10px;
-    }
-
-    .mail__text {
-        font-size: 16px;
-    }
-
-    .mail__red {
-        font-size: 18px;
-    }
-
-    .register__form-content {
-        font-size: 16px;
-    }
-
-    .content_text {
-        font-size: 14px;
-    }
-
-    .form__button {
-        padding: 5px;
-    }
-
-    .button__submit {
-        width: 100%;
-        font-size: 18px;
-    }
-
-    .content_register {
-        font-size: 18px;
-    }
+.button__submit:hover {
+    background-color: #0056b3;
+    /* ホバー時の色 */
 }
