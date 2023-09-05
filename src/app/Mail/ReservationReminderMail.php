@@ -1,4 +1,4 @@
-<?php // 現在使用していない
+<?php
 
 namespace App\Mail;
 

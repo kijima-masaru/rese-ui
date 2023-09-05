@@ -3,41 +3,29 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\Reserve; // Reserve モデルをインポート
+use App\Models\Reserve;
+use App\Mail\ReservationReminderMail;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ReservationReminder; // リマインダーメールのメールクラスをインポート
 
 class SendReservationReminder extends Command
 {
     protected $signature = 'reservation:reminder';
     protected $description = 'Send reservation reminders';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
-        $reservations = Reserve::where('status', 'before')
-            ->whereDate('day', now())
-            ->get();
+        $reservations = Reserve::whereDate('day', now())->where('status', 'before')->get();
 
         foreach ($reservations as $reservation) {
-            $user = User::find($reservation->user_id);
-            $email = $user->email;
+            // メールを送信するコードを記述
+            Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
         }
 
-        Mail::to($email)->send(new ReservationReminderMail($reservation));
+        $this->info('Reservation reminders sent successfully.');
     }
 }

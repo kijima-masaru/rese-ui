@@ -1,4 +1,4 @@
-<?php
+<?php //使っていない
 
 namespace App\Console\Commands;
 
