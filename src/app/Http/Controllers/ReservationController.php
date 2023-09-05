@@ -7,10 +7,11 @@ use App\Models\Shop;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Http\Requests\ReserveRequest;
 
 class ReservationController extends Controller
 {
-    public function store(Request $request, Shop $shop)
+    public function store(ReserveRequest $request, Shop $shop)
     {
         $user = Auth::user();
 

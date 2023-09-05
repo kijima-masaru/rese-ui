@@ -2,6 +2,7 @@
 
 use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
+use App\Http\Requests\RegisterRequest;
 
 return [
 
@@ -143,5 +144,4 @@ return [
             // 'window' => 0,
         ]),
     ],
-
 ];

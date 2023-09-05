@@ -41,9 +41,6 @@
         <!-- ページ本体 -->
         <div class="detail">
             <div class="detail__shop">
-                <div class="back__button">
-                    <a href="{{ route('shops.index') }}">⇦ 店舗一覧に戻る</a>
-                </div>
                 <div class="detail__img">
                     <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
                 </div>
@@ -71,14 +68,23 @@
                     <div class="reserve__form">
                         <label for="day">日付:</label>
                         <input type="date" name="day" required><br>
+                        @error('day')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="reserve__form">
                         <label for="time">時間:</label>
                         <input type="time" name="time" required><br>
+                        @error('time')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="reserve__form">
                         <label for="people">人数:</label>
                     <input type="number" name="people" required><br>
+                    @error('people')
+                        <p class="error">{{ $message }}</p>
+                    @enderror
                     </div>
                     <div class="reserve__button">
                         <button type="submit">予約する</button>

@@ -23,6 +23,8 @@ use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 use Laravel\Fortify\Contracts\ResetsUserPasswords;
 use Laravel\Fortify\Contracts\LoginResponse; //ログイン後のリダイレクト先をカスタマイズ
 
+
+
 class FortifyServiceProvider extends ServiceProvider
 {
     /**
