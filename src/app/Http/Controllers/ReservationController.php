@@ -1,4 +1,4 @@
-<?php //予約機能用コントローラ
+<?php //店舗詳細ページの予約機能・マイページの予約削除機能用コントローラ
 
 namespace App\Http\Controllers;
 
@@ -7,11 +7,10 @@ use App\Models\Shop;
 use App\Models\Reserve;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use App\Http\Requests\ReserveRequest;
 
 class ReservationController extends Controller
 {
-    public function store(ReserveRequest $request, Shop $shop)
+    public function store(Request $request, Shop $shop)
     {
         $user = Auth::user();
 

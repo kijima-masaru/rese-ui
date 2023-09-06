@@ -18,8 +18,6 @@ use App\Http\Controllers\VerificationController; //認証メール再送信用�
 use App\Http\Controllers\StripeController; //stripe決済機能用コントローラ
 use App\Http\Controllers\ThanksController; //お支払い完了ページ用コントローラ
 
-use App\Http\Requests\RegisterRequest; // バリデーションクラスのインポート
-
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
 

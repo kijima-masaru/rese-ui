@@ -1,4 +1,4 @@
-<?php //お気に入り機能用コントローラ
+<?php //店舗一覧ページ・マイページのお気に入り機能用コントローラ
 
 namespace App\Http\Controllers;
 
