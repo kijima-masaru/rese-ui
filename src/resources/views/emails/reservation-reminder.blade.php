@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
     <title>予約リマインダー</title>
 </head>

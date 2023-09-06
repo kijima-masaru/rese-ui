@@ -14,7 +14,8 @@ class StripeController extends Controller
         return view('payment');
     }
 
-    public function pay(Request $request){
+    public function pay(Request $request)
+    {
         Stripe::setApiKey('sk_test_51NjMYZHuosYE03bl4HVIfgB3xpYUhte3Oe1gjMAj4Al7qFFohmIIWvIdNj5kSP8AR5M96L5njVGjNO8YIxg3mmoO00kgEWRpDz');//シークレットキー
         $charge = Charge::create(array(
             'amount' => 100,

@@ -23,7 +23,6 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // 管理者ページ用ルート
 
-    // 管理者ページを表示するためのルート(管理者がログインするとリダイレクトされる)
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     // 管理者ページでのユーザー情報の取得・表示するためのルート
     Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
@@ -52,6 +51,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/send-notification-email/{id}', [Owner_ReserveController::class, 'sendNotificationEmail'])->name('send.notification.email');
     // 店舗予約確認ページのQRコード読み込み機能用ルート
     Route::get('/owner/qrcode', [Owner_QRController::class, 'index'])->name('owner.qrcode');
+    // 個人予約情報ページの表示
+    Route::get('/reservations/{reserve}', [ShowController::class, 'show'])->name('reservation.show');
 
 
     // 一般利用者ページ用ルート
@@ -66,7 +67,6 @@ Route::middleware('auth', 'verified')->group(function () {
 
     // 予約機能のルート
     Route::post('/reservations/{shop}', [ReservationController::class, 'store'])->name('reservations.store');
-    Route::view('/reservation/done', 'done')->name('reservation.done');
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
 
     Route::get('/edit', [EditController::class, 'index'])->name('reservation.edit');
@@ -88,7 +88,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
     Route::post('/pay', [StripeController::class, 'pay']);
     Route::get('/thanks', [ThanksController::class, 'index'])->name('thanks');
-    Route::get('/reservations/{reserve}', [ShowController::class, 'show'])->name('reservation.show');
 
 
 

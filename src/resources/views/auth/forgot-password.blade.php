@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>パスワード再設定ページ</title>
+    <title>パスワード再設定用メール送信ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/forgot-password.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
