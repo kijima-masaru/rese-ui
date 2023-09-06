@@ -32,6 +32,11 @@
         <!-- ページ本体 -->
         <div class="admin">
             <div class="container">
+                @if (session('success'))
+                    <div class="alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <h1>ユーザー一覧</h1>
                 <table class="table">
                     <thead>

@@ -66,3 +66,16 @@
 .logout__button:hover {
     background-color: #0056b3;
 }
+
+/* 成功メッセージ */
+.alert-success {
+    background-color: #6ba26b;
+    /* 薄緑色 */
+    color: #fff;
+    /* 白色のテキスト */
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    /* メッセージの下に余白を追加 */
+}

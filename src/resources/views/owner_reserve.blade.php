@@ -40,6 +40,16 @@
         </div>
         <!-- ページ本体 -->
         <div class="owner__reserve">
+            @if(session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert-success">
+                    {{ session('error') }}
+                </div>
+            @endif
             <div class="reserve__head">
                 <h1>店舗の予約情報が確認できます。</h1>
             </div>
@@ -64,25 +74,27 @@
                         </thead>
                         <tbody>
                             @foreach ($reservations[$shop->id] as $reservation)
-                                <tr>
-                                    <td>{{ $reservation->user->name }}</td>
-                                    <td>{{ $reservation->time }}</td>
-                                    <td>{{ $reservation->people }}人</td>
-                                    <td>{{ $reservation->status }}</td>
-                                    <td>
-                                        <form action="{{ route('send.notification.email', ['id' => $reservation->id]) }}" method="POST">
-                                            @csrf
-                                            <button type="submit" class="btn btn-success">お知らせメールを送信</button>
-                                        </form>
-                                    </td>
-                                    <td>
-                                        <form action="{{ route('update.status', ['id' => $reservation->id]) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            <button type="submit" class="btn btn-primary">お客様のご来店後にこちらを押してください</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                @if ($reservation->status === 'before')
+                                    <tr>
+                                        <td>{{ $reservation->user->name }}</td>
+                                        <td>{{ $reservation->time }}</td>
+                                        <td>{{ $reservation->people }}人</td>
+                                        <td>{{ $reservation->status }}</td>
+                                        <td>
+                                            <form action="{{ route('send.notification.email', ['id' => $reservation->id]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success">お知らせメールを送信</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form action="{{ route('update.status', ['id' => $reservation->id]) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn btn-primary">お客様のご来店後にこちらを押してください</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endif
                             @endforeach
                         </tbody>
                     </table>

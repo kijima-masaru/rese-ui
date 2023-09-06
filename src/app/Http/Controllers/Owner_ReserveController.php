@@ -38,8 +38,9 @@ class Owner_ReserveController extends Controller
         $reservation->status = 'after'; $reservation->save();
 
         // 変更が完了したらリダイレクト
-        return redirect()->route('owner.reserve');
+        return redirect()->route('owner.reserve')->with('success', '予約状況を更新しました。');
     }
+
     public function sendNotificationEmail($id)
     {
         try {
