@@ -40,9 +40,15 @@
 
         <!-- ページ本体 -->
         <div class="edit">
+            @if (session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="edit__head">
                 <h1>予約内容を変更する</h1>
             </div>
+            <div class="edit__cards">
             @foreach ($reservations as $reservation)
                 @if ($reservation->status === 'before') <!-- 予約が "before" の場合のみ表示 -->
                     <div class="edit__form">
@@ -74,6 +80,7 @@
                     </div>
                 @endif
             @endforeach
+            </div>
         </div>
     </main>
 </body>

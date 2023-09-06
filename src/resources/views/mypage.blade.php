@@ -41,6 +41,11 @@
         </div>
         <!-- ページ本体 -->
         <div class="mypage">
+            @if (session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="mypage__head">
                 <h1>{{ auth()->user()->name }}さんのマイページです。</h1>
             </div>

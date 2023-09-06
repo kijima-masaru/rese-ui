@@ -41,4 +41,3 @@ class ShopsController extends Controller
         return view('shops', ['shops' => $shops]);
     }
 }
-

@@ -40,6 +40,6 @@ class ReviewController extends Controller
         // 関連するReserveのstatusを更新
         $reserve->update(['status' => 'reviewed']);
 
-        return redirect()->route('mypage')->with('success', 'レビューが正常に保存されました。');
+        return redirect()->route('mypage')->with('success', 'レビューを投稿しました。');
     }
 }
