@@ -68,6 +68,7 @@ Route::middleware('auth', 'verified')->group(function () {
     // 予約機能のルート
     Route::post('/reservations/{shop}', [ReservationController::class, 'store'])->name('reservations.store');
     Route::delete('/reservations/{reservation}', [ReservationController::class, 'destroy'])->name('reservations.destroy');
+    Route::view('/reservation/done', 'done')->name('reservation.done');
 
     Route::get('/edit', [EditController::class, 'index'])->name('reservation.edit');
     Route::post('/update-reservation', [EditController::class, 'update'])->name('update_reservation');

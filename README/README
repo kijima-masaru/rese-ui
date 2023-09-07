@@ -1,23 +1,194 @@
 README
-## 勤怠管理アプリ
+## 飲食店予約サービスアプリ
 
-< --- トップ画面の画像 --- >
+## アプリケーションURL README/img/pageディレクトリ内に各ページの画像あり
+ログインページの画像/login.blade.php
+・http://localhost/login
 
+会員登録ページの画像/register.blade.php
+・http://localhost/register
 
-## アプリケーションURL
+認証メール確認ページの画像/verify-email.blade.php
+・http://localhost/emailverify
 
+パスワード再設定用メール送信ページの画像/forgot-password.blade.php
+・http://localhost/forgot-password
+
+パスワード再設定ページの画像/reset-password.blade.php
+・http://localhost/forgot-password/~
+
+管理者ページの画像/admin.blade.php
+・http://localhost/admin
+
+店舗情報作成・更新ページの画像/owner.blade.php
+・http://localhost/owner
+
+店舗予約情報確認ページの画像/owner_reserve.blade.php
+・http://localhost/owner_reserve
+
+QRコード読み込みページの画像/owner_qrcode.blade.php
+・http://localhost/owner/qrcode
+
+個人予約情報確認ページの画像/show.blade
+・http://localhost/reservations/{reserve}
+
+店舗一覧ページの画像/shops.blade.php
+・http://localhost/
+
+店舗詳細ページの画像/detail_shop.blade.php
+・http://localhost/shops/{shop}
+
+予約完了ページの画像/done.blade.php
+・http://localhost/done
+
+マイページの画像/mypage.blade.php
+・http://localhost/mypage
+
+予約情報変更ページの画像/reservation_edit.blade.php
+・http://localhost/edit
+
+レビューページの画像/review.blade.php
+・http://localhost/
+
+決済ページの画像/payment.blade.php
+・http://localhost/review/{reserve}
+
+お支払い完了ページの画像/thanks.blade.php
+・http://localhost/thanks
 
 ## 他のリポジトリ
 
 ## 機能一覧
 
+※fortifyを使用したログイン、新規登録、パスワード再設定機能を実装しています。
+●ログインページ
+・登録しているメールアドレスとパスワードを使用してログインすることができます。
+・アカウントのrole(管理者・店舗代表者・利用者)によってログイン後のリダイレクト先が違います。
+●会員登録ページ
+・名前、メールアドレス、パスワードを使用して会員登録することができます。メールアドレスは登録されているものは使用できません。
+・登録したメールアドレス宛てに認証メールが送信されます。送られたメールから認証を行わないと会員登録は完了しません。
+●パスワード再設定用メール送信ページ
+・登録したメールアドレスを入力し、パスワードを再設定するためのメールを送信できます。送られたメールからパスワード再設定ページに移動することができます。
+●パスワード再設定ページ
+・登録したメールアドレスと新しいパスワードを入力することでパスワードを再設定できます。
+
+●管理者ページ
+・roleが管理者のユーザーがログインするとリダイレクトします。
+・登録されているユーザーのroleを管理者・店舗代表者・利用者の3種類に変更できます。
+
+●店舗情報作成・更新ページ
+・roleが店舗代表者のユーザーがログインするとリダイレクトされます。
+・新しく店舗情報の作成ができます。作成した店舗情報はDBのreservesテーブルに保存されます。また、アップロードした画像はストレージに保存されます。
+・登録済みの店舗情報を更新することができます。DBのreservesテーブルやストレージの画像も更新されます。
+●店舗予約情報確認ページ
+・登録している店舗の予約を確認することができます。(reservesテーブルのstatusカラムの値がbeforeのもののみ表示されます。)
+・お知らせメールボタンからお知らせメールを送信できます。お知らせメールの内容は、reservation_notification.blade.phpで編集できます。
+・お客様がご来店された際にご来店後対応ボタンを押すことで、お客様がレビューを投稿できるようになります。(reservesテーブルのstatusカラムの値をbeforeからafterに変更している。)
+●QRコード読み込みページ
+・QRコードを読み込むことで特定の予約情報を閲覧できる個人予約情報確認ページにリダイレクトされます。
+●個人予約情報確認ページ
+・QRコード読み込みページで読み込んだ個人予約情報を閲覧できます。
+
+●店舗一覧ページ
+・roleが利用者のユーザーがログインするとリダイレクトされます。
+・店舗が一覧で表示されています。
+・エリア、ジャンル、店名で一致する店舗を検索することができます。
+・各店舗の「詳しく見る」ボタンを押すことで、店舗詳細ページに移動できます。
+・「お気に入り追加」「お気に入り解除」ボタンを押すことで、お気に入り登録・解除が行えます。
+●店舗詳細ページ
+・店舗の詳細を確認することができます。
+・日付、時間、人数を選択して予約することができます。
+●マイページ
+・自身の予約情報とお気に入り店舗を確認することができます。
+・「予約内容変更」ボタンを押すことで、予約内容変更ページにリダイレクトできます。(reservesテーブルのstatusカラムがbeforeの場合のみ表示されます。)
+・「予約削除」ボタンを押すことで、予約をキャンセルすることができます。(reservesテーブルのstatusカラムがbeforeの場合のみ表示されます。)
+・「レビュー投稿」ボタンを押すことでレビューページにリダイレクトできます。(reservesテーブルのstatusカラムがafterの場合のみ表示されます。)
+・予約情報をQRコード化しています。(店舗代表者はQRコード読み込みページで読み込むことで、閲覧することができます。)
+・お気に入り登録済みの店舗の店舗詳細ページにリダイレクトできます。またお気に入り解除ができます。
+●予約情報変更ページ
+・予約した情報(日付、時間、人数)を再度選択して、予約情報を変更することができます。
+●レビューページ
+・1~5の5段階評価とコメントを入力してレビューを投稿することができます。
+●決済ページ
+・stripeを使用した決済を行うことができます。
+・「決済をする」ボタンを押すことで決済フォームが表示されます。フォームにメールアドレス、クレジットカード情報を入力して支払いを行うことができます。
+
+●その他の機能
+・ヘッダーから該当ページへの移動、ログアウトを行うことができます。ヘッダーは画面上部に固定されているため、スクロールしても常に画面上に表示されます。
+・タスクスケジューラーを使用して、予約日当日の朝9:00に登録したメールアドレス宛てにリマインダーメールが送信されます。
+
 ## 使用技術
 Laravel8.83.8（php,mysql,html,css）
 
-## テーブル設計
+## テーブル設計 README/img/tableディレクトリ内に画像あり
+●usersテーブル：会員登録したユーザーの情報用のテーブル
+●shopsテーブル：店舗情報用のテーブル
+●reservesテーブル：予約情報用のテーブル
+●favoritesテーブル：お気に入り登録用のテーブル
+●reviewsテーブル：レビュー内容用のテーブル
 
 ## ER図
 
 ## 環境構築
 
+##開発環境の.envファイル
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=base64:2AJhmn7ow8rKejSk3b2X6S6owlW75HWgtEixMusNCqU=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+LOG_CHANNEL=stack
+LOG_DEPRECATIONS_CHANNEL=null
+LOG_LEVEL=debug
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+
+BROADCAST_DRIVER=log
+CACHE_DRIVER=file
+FILESYSTEM_DRIVER=local
+QUEUE_CONNECTION=database
+SESSION_DRIVER=file
+SESSION_LIFETIME=120
+
+MEMCACHED_HOST=127.0.0.1
+
+REDIS_HOST=127.0.0.1
+REDIS_PASSWORD=null
+REDIS_PORT=6379
+
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=7fa10b88345cf7
+MAIL_PASSWORD=8f43bbe353c2ea
+
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=us-east-1
+AWS_BUCKET=
+AWS_USE_PATH_STYLE_ENDPOINT=false
+
+PUSHER_APP_ID=
+PUSHER_APP_KEY=
+PUSHER_APP_SECRET=
+PUSHER_APP_CLUSTER=mt1
+
+MIX_PUSHER_APP_KEY="${PUSHER_APP_KEY}"
+MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
+
+STRIPE_KEY=pk_test_51NjMYZHuosYE03blXTaFQPxuno5yZsJcyjw9F4x8jXwK7SgnWJHOD52SGcoRnLG8CJQPsPkchciE4EI5EjliMojw00o8XjGnDm
+STRIPE_SECRET=sk_test_51NjMYZHuosYE03bl4HVIfgB3xpYUhte3Oe1gjMAj4Al7qFFohmIIWvIdNj5kSP8AR5M96L5njVGjNO8YIxg3mmoO00kgEWRpDz
+
+##本番環境の.envファイル
+
+
+##本番環境導入の手順
+
 ## その他
+
