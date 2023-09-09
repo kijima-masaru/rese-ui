@@ -81,7 +81,7 @@
                     </div>
                     <div class="reserve__form">
                         <label for="people">人数:</label>
-                    <input type="number" name="people" required><br>
+                    <input type="number" name="people" required min="1"><br>
                     @error('people')
                         <p class="error">{{ $message }}</p>
                     @enderror

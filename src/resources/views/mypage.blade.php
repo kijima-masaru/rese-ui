@@ -98,7 +98,9 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>予約情報はありません。</p>
+                            <div class="mypage__text">
+                                <p>予約情報はありません。</p>
+                            </div>
                         @endif
                     </div>
                 </div>
@@ -131,7 +133,9 @@
                                 </div>
                             @endforeach
                         @else
-                            <p>お気に入り店舗はありません。</p>
+                            <div class="mypage__text">
+                                <p>お気に入り店舗はありません。</p>
+                            </div>
                         @endif
                     </div>
                 </div>
