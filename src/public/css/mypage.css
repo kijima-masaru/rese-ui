@@ -18,131 +18,117 @@ main {
     margin-top: 60px;
 }
 
-/* デフォルトスタイル */
 .mypage {
-    margin: 0 auto;
-    padding: 30px 15px;
-    max-width: 1230px;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.mypage__head {
     text-align: center;
 }
 
-.mypage__reserve,
-.mypage__favorite {
-    text-align: center;
+.mypage__head h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-.reserve__box,
-.favorite__box {
-    text-align: center;
+.mypage__content {
     display: flex;
-    /* 高さを均等にするために flex を使用 */
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* カードを均等に配置 */
+    flex-direction: column;
+    align-items: center;
 }
 
-.reserve__wrapper,
-.favorite__wrapper {
-    width: calc(20% - 20px);
-    /* カードの幅を5列に均等に分割 */
-    margin: 20px 5px;
+/* ご予約状況 */
+.mypage__reserve {
+    margin-top: 20px;
+}
+
+.reserve__box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.reserve__wrapper {
+    width: calc(33.33% - 20px);
+    /* 33.33%の幅で均等に配置（マージンを考慮） */
+    margin-bottom: 20px;
+    box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid #ccc;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    flex-basis: calc(33.33% - 20px);
+    margin-right: 20px;
 }
 
-.reserve__info,
-.favorite__shop {
-    flex: 1;
-    /* 高さを均等に分配 */
-    display: flex;
-    flex-direction: column;
+/* 最後の予約ボックスに右マージンを適用しない */
+.reserve__wrapper:last-child {
+    margin-right: 0;
 }
 
-.reserve__img img,
-.favorite__img img {
+.reserve__img img {
     max-width: 100%;
-    height: auto;
+    max-height: auto;
 }
 
-.favorite__text {
-    padding-bottom: 15px;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
-/* 新しいHTMLコードのスタイル */
-.new-reserve__flex {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    /* 要素を均等に配置 */
-    align-items: center;
-    /* 垂直方向に中央揃え */
+.reserve__name h2 {
+    font-size: 18px;
     margin-top: 10px;
 }
 
-.new-reserve__detail,
-.new-reserve__edit,
-.new-reserve__button,
-.new-reserve__review,
-.new-reserve__qrcode {
-    flex: 1;
-    /* 幅を均等に分割 */
-    margin: 10px;
-    /* 要素間の間隔 */
-    text-align: center;
+.reserve__info p {
+    margin: 5px 0;
 }
 
-.new-reserve__detail a,
-.new-reserve__edit a,
-.new-reserve__review a {
+.reserve__edit a,
+.reserve__button button {
     background-color: #007bff;
     /* 鮮やかな青色 */
     color: #fff;
     padding: 5px 10px;
-    text-decoration: none;
     border: none;
+    text-decoration: none;
     cursor: pointer;
+    margin: 5px;
 }
 
-.new-reserve__detail a:hover,
-.new-reserve__edit a:hover,
-.new-reserve__review a:hover {
+.reserve__edit a:hover,
+.reserve__button button:hover {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
 
-.new-reserve__button button {
-    background-color: #ff0000;
-    /* 赤色のボタン */
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
+/* お気に入り店舗 */
+.mypage__favorite {
+    margin-top: 40px;
 }
 
-.new-reserve__button button:hover {
-    background-color: #cc0000;
-    /* ホバー時の色 */
+.favorite__box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-/* favorite__wrapper内の要素のスタイル調整 */
+.favorite__wrapper {
+    width: calc(33.33% - 20px);
+    /* 33.33%の幅で均等に配置（マージンを考慮） */
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.1);
+    flex-basis: calc(33.33% - 20px);
+    margin-right: 20px;
+}
+
+/* 最後のお気に入りボックスに右マージンを適用しない */
+.favorite__wrapper:last-child {
+    margin-right: 0;
+}
+
 .favorite__img img {
     max-width: 100%;
-    height: auto;
+    max-height: auto;
 }
 
-.favorite__detail {
-    margin-bottom: 10px;
+.favorite__shop h2 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.favorite__text p {
+    margin: 5px 0;
 }
 
 .favorite__detail a {
@@ -150,9 +136,10 @@ main {
     /* 鮮やかな青色 */
     color: #fff;
     padding: 5px 10px;
-    text-decoration: none;
     border: none;
+    text-decoration: none;
     cursor: pointer;
+    margin: 5px;
 }
 
 .favorite__detail a:hover {
@@ -160,80 +147,19 @@ main {
     /* ホバー時の色 */
 }
 
-.favorite__wrapper form {
-    margin-top: 10px;
-}
-
-.favorite__wrapper button {
-    background-color: #ff0000;
-    /* 赤色のボタン */
+/* アラートメッセージ */
+.alert-success {
+    background-color: #4caf50;
     color: #fff;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.favorite__wrapper button:hover {
-    background-color: #cc0000;
-    /* ホバー時の色 */
-}
-
-/* reserve__wrapper内の要素のスタイル調整 */
-.reserve__img img {
-    max-width: 100%;
-    height: auto;
-}
-
-.reserve__edit a {
-    background-color: #007bff;
-    /* 鮮やかな青色 */
-    color: #fff;
-    padding: 5px 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-
-.reserve__edit a:hover {
-    background-color: #0056b3;
-    /* ホバー時の色 */
-}
-
-.reserve__wrapper form {
-    margin-top: 10px;
-}
-
-.reserve__wrapper button {
-    background-color: #ff0000;
-    /* 赤色のボタン */
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-}
-
-.reserve__wrapper button:hover {
-    background-color: #cc0000;
-    /* ホバー時の色 */
-}
-
-.reserve__review a {
-    background-color: #007bff;
-    /* 鮮やかな青色 */
-    color: #fff;
-    padding: 5px 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-}
-
-.reserve__review a:hover {
-    background-color: #0056b3;
-    /* ホバー時の色 */
-}
-
-.reserve__qrcode {
+    text-align: center;
     padding: 10px;
+    margin-top: 20px;
+}
+
+/* QRコード */
+.reserve__qrcode img {
+    max-width: 100%;
+    max-height: auto;
 }
 
 .mypage__text {
