@@ -18,14 +18,19 @@ class SendReservationReminder extends Command
     }
 
     public function handle()
-    {
-        $reservations = Reserve::whereDate('day', now())->where('status', 'before')->get();
+{
+    $reservations = Reserve::whereDate('day', now())->where('status', 'before')->get();
 
-        foreach ($reservations as $reservation) {
-            // メールを送信するコードを記述
-            Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
-        }
+    // デバッグログを出力
+    foreach ($reservations as $reservation) {
+        $this->info('Processing reservation ID: ' . $reservation->id);
 
-        $this->info('Reservation reminders sent successfully.');
+        // メールを送信するコードを記述
+        $this->info('Sending email to: ' . $reservation->user->email);
+        Mail::to($reservation->user->email)->send(new ReservationReminderMail($reservation));
     }
+
+    $this->info('Reservation reminders sent successfully.');
+}
+
 }
