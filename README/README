@@ -106,6 +106,8 @@ QRコード読み込みページの画像/owner_qrcode.blade.php
 ・ヘッダーから該当ページへの移動、ログアウトを行うことができます。ヘッダーは画面上部に固定されているため、スクロールしても常に画面上に表示されます。
 ・タスクスケジューラーを使用して、予約日当日の朝9:00に登録したメールアドレス宛てにリマインダーメールが送信されます。
 
+・Ownerコントローラはローカルストレージ用とS3用で記述が異なるため、開発環境と本番環境において使い分けてください。
+
 ## 使用技術
 Laravel8.83.8（php,mysql,html,css）
 
@@ -178,6 +180,28 @@ STRIPE_SECRET=sk_test_51NjMYZHuosYE03bl4HVIfgB3xpYUhte3Oe1gjMAj4Al7qFFohmIIWvIdN
 
 
 ##本番環境導入の手順
+
+●EC2とのリモート接続
+$ mkdir ~/.ssh #.sshディレクトリの作成
+$ mv Downloads/キー.pem .ssh/ #mvコマンドで「キー.pem」を.sshディレクトリに移動
+$ cd .ssh/ #.sshディレクトリに移動
+.ssh $ ls #キー.pemが.sshディレクトリに存在するか確認
+.ssh $ chomd 400 キー.pem #キーファイルのパーミッションを変更
+.ssh $ ssh -i "キー.pem" ec2-user@ec2-54-178-37-178.ap-northeast-1.compute.amazonaws.com #ログイン(AWS接続画面のコードをコピペする。ログインすると以下のように表示される。初回の場合はセキュリティ警告が出るため、yesと答える。)
+
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/
+
+●nginxのセットアップ(ec2インスタンス上でコマンドを実行)
+
 
 ## その他
 
