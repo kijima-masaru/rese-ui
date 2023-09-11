@@ -33,7 +33,6 @@ class EditController extends Controller
         $reservation->people = $people;
         $reservation->save();
 
-        // Redirect back with success message
         return redirect()->back()->with('success', '予約情報が更新されました。');
     }
 }

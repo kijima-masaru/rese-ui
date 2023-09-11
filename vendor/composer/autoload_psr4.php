@@ -7,8 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'voku\\' => array($vendorDir . '/voku/portable-ascii/src/voku'),
-    'chillerlan\\Settings\\' => array($vendorDir . '/chillerlan/php-settings-container/src'),
-    'chillerlan\\QRCode\\' => array($vendorDir . '/chillerlan/php-qrcode/src'),
     'Symfony\\Polyfill\\Php83\\' => array($vendorDir . '/symfony/polyfill-php83'),
     'Symfony\\Polyfill\\Php80\\' => array($vendorDir . '/symfony/polyfill-php80'),
     'Symfony\\Polyfill\\Php72\\' => array($vendorDir . '/symfony/polyfill-php72'),
@@ -30,6 +28,8 @@ return array(
     'SimpleSoftwareIO\\QrCode\\' => array($vendorDir . '/simplesoftwareio/simple-qrcode/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src', $vendorDir . '/psr/http-factory/src'),
+    'Psr\\Http\\Client\\' => array($vendorDir . '/psr/http-client/src'),
     'Psr\\EventDispatcher\\' => array($vendorDir . '/psr/event-dispatcher/src'),
     'Psr\\Container\\' => array($vendorDir . '/psr/container/src'),
     'PragmaRX\\Google2FA\\' => array($vendorDir . '/pragmarx/google2fa/src'),
@@ -37,6 +37,7 @@ return array(
     'Livewire\\' => array($vendorDir . '/livewire/livewire/src'),
     'League\\MimeTypeDetection\\' => array($vendorDir . '/league/mime-type-detection/src'),
     'Laravel\\Fortify\\' => array($vendorDir . '/laravel/fortify/src'),
+    'JmesPath\\' => array($vendorDir . '/mtdowling/jmespath.php/src'),
     'Illuminate\\Validation\\' => array($vendorDir . '/illuminate/validation'),
     'Illuminate\\Translation\\' => array($vendorDir . '/illuminate/translation'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/collections', $vendorDir . '/illuminate/conditionable', $vendorDir . '/illuminate/macroable', $vendorDir . '/illuminate/support'),
@@ -44,6 +45,9 @@ return array(
     'Illuminate\\Database\\' => array($vendorDir . '/illuminate/database'),
     'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
     'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
+    'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
+    'GuzzleHttp\\Promise\\' => array($vendorDir . '/guzzlehttp/promises/src'),
+    'GuzzleHttp\\' => array($vendorDir . '/guzzlehttp/guzzle/src'),
     'Egulias\\EmailValidator\\' => array($vendorDir . '/egulias/email-validator/src'),
     'Doctrine\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib/Doctrine/Inflector'),
     'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/src'),
@@ -51,4 +55,5 @@ return array(
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
     'Brick\\Math\\' => array($vendorDir . '/brick/math/src'),
     'BaconQrCode\\' => array($vendorDir . '/bacon/bacon-qr-code/src'),
+    'Aws\\' => array($vendorDir . '/aws/aws-sdk-php/src'),
 );

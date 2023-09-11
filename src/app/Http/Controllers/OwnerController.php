@@ -20,7 +20,10 @@ class OwnerController extends Controller
     public function store(Request $request)
     {
         // 画像をアップロード
+        // ローカルストレージ用
         $imgPath = $request->file('img')->store('img');
+        // S3用
+        //$imgPath = $request->file('img')->store('img', 's3');
 
         // 新しい店舗情報を作成して保存
         $shop = new Shop();
@@ -36,7 +39,6 @@ class OwnerController extends Controller
         $shop->save();
 
         // リダイレクトまたは適切な応答を返す
-        // 例えば、成功時には店舗一覧ページにリダイレクトすることができます
         return redirect()->route('owner.index')->with('success', '店舗情報を作成しました！');
     }
 
@@ -93,11 +95,17 @@ class OwnerController extends Controller
         }
 
         // 新しい画像をアップロード
+        // ローカルストレージ用
         $newImgPath = $request->file('img')->store('img');
+        // S3用
+        //$newImgPath = $request->file('img')->store('img', 's3');
 
         // 古い画像を削除
         if ($shop->img) {
+            // ローカルストレージ用
             Storage::delete($shop->img);
+            // S3用
+            //Storage::disk('s3')->delete($shop->img);
         }
 
         // 画像のパスを更新
