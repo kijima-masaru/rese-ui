@@ -431,7 +431,47 @@ APP_DEBUG=true
 APP_URL=http://localhost
 
 ●DBの接続設定
+※.env
+#各RDSの設定内容を入力
+DB_CONNECTION=mysql
+DB_HOST=database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com
+DB_PORT=3306
+DB_DATABASE=database-1
+DB_USERNAME=admin
+DB_PASSWORD=masaru9090 #マスターパスワード
 
+※/config/database.php
+
+#env()で囲んである箇所は.envの内容を読み込むようになっていますが、第二引数に直接書き込んでも大丈夫です。
+#RDSに登録したDBの内容はコンソールのRDS画面でDBを選択すれば確認ができます。
+
+'default' => env('DB_CONNECTION', 'mysql'),
+
+'mysql' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST', 'database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com'),
+            'port' => env('DB_PORT', '3306'),
+            'database' => env('DB_DATABASE', 'database-1'),
+            'username' => env('DB_USERNAME', 'admin'),
+            'password' => env('DB_PASSWORD', 'masaru9090'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
+[root@src]$ php artisan migrate #作成
+$ mysql -h database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com -P 3306 -u admin -p #mysqlログインして作成できているか確認
+
+●アプリ起動確認
+# nginxを再起動後パブリックIPv4DNSからアクセスし、アプリの画面が表示されるかブラウザで確認
 
 ## その他
 
