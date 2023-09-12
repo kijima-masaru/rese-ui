@@ -202,12 +202,235 @@ $ sudo systemctl enable nginx #nginx自動起動化
 $ sudo systemctl start nginx.service #起動
 $ sudo systemctl status nginx.service #起動確認(runningになっているか確認)
 
-●RDSの接続
+●RDSの接続(ec2インスタンス上でコマンドを実行)
 $ sudo yum update -y #パッケージのアップデート
 $ sudo yum -y install mysql git httpd curl #MySQL、Git、Apache、cURLをインストール
 $ sudo systemctl start nginx.service #nginx起動
 $ sudo systemctl status nginx.service #nginx起動確認
-$ mysql -h database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com -P 3306 -u admin -p #mysqlにログイン(パスワードはmasaru9090)
+$ mysql -h database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com -P 3306 -u admin -p #mysqlにログインできれば成功(パスワードはmasaru9090)
+
+●Laravelの起動(ec2インスタンス上でコマンドを実行)
+#設定するユーザー名とEmailアドレスは自身のGithubアカウントに登録しているデータを入力してください。
+$ git config --global user.name "ユーザー名" #gitのユーザー名を設定
+$ git config --global user.email メールアドレス #gitのEmailアドレスを設定(メールアドレスにダブルクォーテーションはいりません。)
+$ sudo amazon-linux-extras install -y php7.4 #amazon-linux-extrasコマンドを利用してPHPをインストール
+$ curl -sS https://getcomposer.org/installer | php #Composerをインストール
+$ sudo mv composer.phar /usr/local/bin/composer #パスを通す
+$ cd /var/www #Laravelのプロジェクトを/var/wwwディレクトリ以下に配置
+[www]$ sudo chown ec2-user:ec2-user /var/www #/var/wwwディレクトリの所有者とグループを変更
+[www]$ git clone https://github.com/kijima-masaru/rese-ui.git #デプロイしたいLaravelのプロジェクトをclone(今回は飲食店予約サービスアプリのプロジェクト)
+[www]$ sudo yum install -y php-xml #Composerのパッケージをインストールするために必要なライブラリをインストール
+[www]$ sudo yum install php php-devel php-opcache php-mbstring php-xml #必要な拡張機能をインストール
+[www]$ sudo systemctl start php-fpm.service #php-fpmの起動
+[www]$ sudo systemctl enable php-fpm.service #php-fpmを自動で起動するように設定
+[www]$ systemctl status php-fpm.service #起動しているか確認
+
+●php-fpmの設定
+$ sudo su - #viモードはrootユーザーでないとファイルに書き込みができないので、書き込みをするときはec2ユーザーからrootユーザーにスイッチ
+[root]$ cd /etc/php-fpm.d/
+[root]$ sudo cp www.conf www.conf_bk_yyyyMMdd #念の為バックアップ
+[root]$ vi www.conf
+#viで開いたら、「i」で挿入モードにして以下の箇所を変更。変更したら「etc」で通常モードにして「:wq」で保存して終了。
+
+### 24行目あたり ###
+# 変更前
+user = apache
+# 変更後
+user = nginx
+
+### 26行目あたり ###
+# 変更前
+group = apache
+# 変更後
+group = nginx
+
+### 48行目あたり ###
+# 変更前
+;listen.owner = nobody
+# 変更後
+listen.owner = nginx
+
+### 49行目あたり ###
+# 変更前
+;listen.group = nobody
+# 変更後
+listen.group = nginx
+
+### 50行目あたり ###
+# 変更前
+;listen.mode = 0660
+# 変更後
+listen.mode = 0660
+
+●nginxの設定
+[root]$ ls -l /etc | grep nginx #nginx関係のファイルの位置を確認(おそらく/etc下にあります。)
+[root]$ vi /etc/nginx/nginx.conf #nginx.confの編集(書き方を間違えるとnginxが起動しなくなります。今回は以下の記述を使用しました。)
+
+user nginx;
+worker_processes auto;
+error_log /var/log/nginx/error.log;
+pid /run/nginx.pid;
+
+# Load dynamic modules. See /usr/share/doc/nginx/README.dynamic.
+include /usr/share/nginx/modules/*.conf;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile            on;
+    tcp_nopush          on;
+    tcp_nodelay         on;
+    keepalive_timeout   65;
+    types_hash_max_size 4096;
+
+    include             /etc/nginx/mime.types;
+    default_type        application/octet-stream;
+
+    # Load modular configuration files from the /etc/nginx/conf.d directory.
+    # See http://nginx.org/en/docs/ngx_core_module.html#include
+    # for more information.
+    include /etc/nginx/conf.d/*.conf;
+
+    server {
+        listen       80;
+        listen       [::]:80;
+        server_name  _;
+        root         /var/www/laravel-zaikokanri/backend/public;
+
+        add_header X-Frame-Options "SAMEORIGIN";
+        add_header X-Content-Type-Options "nosniff";
+
+        index index.php;
+
+        charset utf-8;
+
+        location / {
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ~ \.php$ {
+            fastcgi_pass   unix:/run/php-fpm/www.sock;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+
+        location ~ /\.(?!well-known).* {
+            deny all;
+        }
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        error_page 404 /404.html;
+            location = /404.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+}
+
+[root]$ sudo systemctl start nginx.service #nginx起動
+[root]$ sudo systemctl status nginx.service #起動状態確認
+
+●.envファイルの作成とAPP_KEYの生成
+[root@www]$ cd rese-ui
+
+※composerのインストール
+[root@rese-ui]$ https://getcomposer.org/download/ のコマンド4つを実行してcomposerをインストール
+[root@rese-ui]$ sudo mv composer.phar /usr/local/bin/composer #composerの実行ファイルを移動
+[root@rese-ui]$ php /usr/local/bin/composer #composerの実行ファイルを実行
+[root@rese-ui]$ echo "export PATH=~/.config/composer/vendor/bin:$PATH" >> ~/.bash_profile
+[root@rese-ui]$ source ~/.bash_profile #パスを通す
+[root@rese-ui]$ composer #コマンドにパスが通ったことを確認(下記のようになります。)
+
+   ______
+  / ____/___  ____ ___  ____  ____  ________  _____
+ / /   / __ \/ __ `__ \/ __ \/ __ \/ ___/ _ \/ ___/
+/ /___/ /_/ / / / / / / /_/ / /_/ (__  )  __/ /
+\____/\____/_/ /_/ /_/ .___/\____/____/\___/_/
+                    /_/
+Composer version 2.6.2 2023-09-03 14:09:15
+
+Usage:
+  command [options] [arguments]
+
+Options:
+  -h, --help                     Display help for the given command. When no command is given display help for the list command
+  -q, --quiet                    Do not output any message
+  -V, --version                  Display this application version
+      --ansi|--no-ansi           Force (or disable --no-ansi) ANSI output
+  -n, --no-interaction           Do not ask any interactive question
+      --profile                  Display timing and memory usage information
+      --no-plugins               Whether to disable plugins.
+      --no-scripts               Skips the execution of all scripts defined in composer.json file.
+  -d, --working-dir=WORKING-DIR  If specified, use the given directory as working directory.
+      --no-cache                 Prevent use of the cache
+  -v|vv|vvv, --verbose           Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Available commands:
+  about                Shows a short information about Composer
+  archive              Creates an archive of this composer package
+  audit                Checks for security vulnerability advisories for installed packages
+  browse               [home] Opens the package's repository URL or homepage in your browser
+  bump                 Increases the lower limit of your composer.json requirements to the currently installed versions
+  check-platform-reqs  Check that platform requirements are satisfied
+  clear-cache          [clearcache|cc] Clears composer's internal package cache
+  completion           Dump the shell completion script
+  config               Sets config options
+  create-project       Creates new project from a package into given directory
+  depends              [why] Shows which packages cause the given package to be installed
+  diagnose             Diagnoses the system to identify common errors
+  dump-autoload        [dumpautoload] Dumps the autoloader
+  exec                 Executes a vendored binary/script
+  fund                 Discover how to help fund the maintenance of your dependencies
+  global               Allows running commands in the global composer dir ($COMPOSER_HOME)
+  help                 Display help for a command
+  init                 Creates a basic composer.json file in current directory
+  install              [i] Installs the project dependencies from the composer.lock file if present, or falls back on the composer.json
+  licenses             Shows information about licenses of dependencies
+  list                 List commands
+  outdated             Shows a list of installed packages that have updates available, including their latest version
+  prohibits            [why-not] Shows which packages prevent the given package from being installed
+  reinstall            Uninstalls and reinstalls the given package names
+  remove               [rm] Removes a package from the require or require-dev
+  require              [r] Adds required packages to your composer.json and installs them
+  run-script           [run] Runs the scripts defined in composer.json
+  search               Searches for packages
+  self-update          [selfupdate] Updates composer.phar to the latest version
+  show                 [info] Shows information about packages
+  status               Shows a list of locally modified packages
+  suggests             Shows package suggestions
+  update               [u|upgrade] Updates your dependencies to the latest version according to composer.json, and updates the composer.lock file
+  validate             Validates a composer.json and composer.lock
+
+[root@rese-ui]$ cd src
+[root@src]$ touch .env.example
+[root@src]$ cp .env.example .env #作成
+
+※.env.exampleが存在しない場合は、
+$ touch .env.example で作成し、githubの.envからコピーしてください。キーの部分は消してください。
+
+[root@src]$ php artisan key:generate #キーの生成(エラーが出る場合は、composer installを実行)
+[root@src]$ cat .env #.envファイルの中を見てキーが設定されているか確認
+
+APP_NAME=Laravel
+APP_ENV=local
+APP_KEY=??????????????????????????= #ここ
+APP_DEBUG=true
+APP_URL=http://localhost
+
+●DBの接続設定
 
 
 ## その他
