@@ -182,7 +182,7 @@ APP_NAME=Laravel
 APP_ENV=local
 APP_KEY=下記で作成
 APP_DEBUG=true
-APP_URL=http://localhost
+APP_URL=http://18.183.254.50/
 
 LOG_CHANNEL=stack
 LOG_DEPRECATIONS_CHANNEL=null
