@@ -8,19 +8,13 @@ use App\Actions\Fortify\UpdateUserPassword;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\VerifyEmail;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
-use Laravel\Fortify\Contracts\ResetsUserPasswords;
 use Laravel\Fortify\Contracts\LoginResponse; //ログイン後のリダイレクト先をカスタマイズ
 
 
