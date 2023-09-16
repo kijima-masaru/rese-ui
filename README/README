@@ -41,6 +41,7 @@ QRコード読み込みページの画像/owner_qrcode.blade.php
 ・http://localhost/thanks
 
 ## 他のリポジトリ
+github URL:https://github.com/kijima-masaru/rese-ui.git
 
 ## 機能一覧
 
@@ -179,7 +180,7 @@ STRIPE_SECRET=sk_test_51NjMYZHuosYE03bl4HVIfgB3xpYUhte3Oe1gjMAj4Al7qFFohmIIWvIdN
 ##本番環境の.envファイル
 APP_NAME=Laravel
 APP_ENV=local
-APP_KEY=base64:jsYncpb7iJ28qxRLo/CB5yk4biBoYC/C5ws9BKkX5Ho=
+APP_KEY=下記で作成
 APP_DEBUG=true
 APP_URL=http://localhost
 
@@ -538,7 +539,3 @@ AWS_BUCKET=rese-ui-s3
 [root@src]$ php artisan cache:clear #.envの修正内容を反映させる為にキャッシュをクリア
 
 ・ここまで設定したら、ログイン画面からログインして各機能の動作確認をしてください。
-
-
-## その他
-
