@@ -73,6 +73,12 @@ main {
     margin: 5px 0;
 }
 
+.reserve__edit,
+.reserve__button {
+    padding: 5px;
+    margin: 5px;
+}
+
 .reserve__edit a,
 .reserve__button button {
     background-color: #007bff;

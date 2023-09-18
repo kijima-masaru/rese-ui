@@ -32,11 +32,9 @@
                 @endif
             </div>
             <div class="login__form">
-
                 <!--ログインフォーム-->
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
-
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -46,7 +44,6 @@
                         </ul>
                     </div>
                     @endif
-
                     <div class="login__form-main">
                         <div class="form__input">
                             <input type="email" name="email" placeholder="メールアドレス"/>
@@ -59,7 +56,6 @@
                         </div>
                     </div>
                 </form>
-
                 <!--会員登録ページへのアクセス-->
                 <div class="login__form-content">
                     <div class="content__text">
@@ -69,7 +65,6 @@
                         <a href="{{ route('register') }}">会員登録</a>
                     </div>
                 </div>
-
                 <!--パスワード再設定ページへのアクセス-->
                 <div class="login__form-content">
                     <div class="content__text">
@@ -83,9 +78,4 @@
         </div>
     </main>
 </body>
-
 </html>
-
-
-
-<!--ページURL：http://localhost/login-->

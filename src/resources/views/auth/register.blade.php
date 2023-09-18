@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>新規登録ページ</title>
+    <title>会員登録ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -19,13 +19,11 @@
                 <h1>Rese</h1>
             </div>
         </div>
-
         <div class="register">
             <div class="register__head">
                 <h1>会員登録</h1>
             </div>
             <div class="register__form">
-
                 <!--新規登録フォーム-->
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
@@ -56,7 +54,6 @@
                         </div>
                     </div>
                 </form>
-
                 <!--ログインページへのアクセス-->
                 <div class="register__form-content">
                     <div class="content__text">
@@ -70,6 +67,4 @@
         </div>
     </main>
 </body>
-
-
-<!--ページURL：http://localhost/register-->
+</html>

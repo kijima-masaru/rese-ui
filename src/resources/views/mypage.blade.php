@@ -85,7 +85,7 @@
                                                 </div>
                                             @endif
                                             @if($reserve->status === 'after') <!-- 予約が"after"の場合に表示 -->
-                                                <div class="reserve__review">
+                                                <div class="reserve__edit">
                                                     <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビュー投稿</a>
                                                 </div>
                                             @endif
@@ -143,3 +143,4 @@
         </div>
     </main>
 </body>
+</html>

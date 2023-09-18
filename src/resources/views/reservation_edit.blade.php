@@ -37,7 +37,6 @@
                 </div>
             </div>
         </div>
-
         <!-- ページ本体 -->
         <div class="edit">
             @if (session('success'))

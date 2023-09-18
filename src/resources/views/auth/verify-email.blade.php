@@ -15,11 +15,10 @@
     <main>
         <!--共通ヘッダー-->
         <div class="common">
-            <div class="header__Atte">
-                <h1>Atte</h1>
+            <div class="header">
+                <h1>Rese</h1>
             </div>
         </div>
-
         <div class="mail">
             <!--認証メール案内-->
             <div class="mail__head">
@@ -33,7 +32,6 @@
                     <p>※メールにて会員登録を完了させないとログインできません。</p>
                 </div>
             </div>
-
             <!--認証メール再送信-->
             <div class="mail__button">
                 <div class="form__button">
@@ -46,3 +44,4 @@
         </div>
     </main>
 </body>
+</html>
