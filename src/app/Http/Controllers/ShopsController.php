@@ -9,9 +9,10 @@ class ShopsController extends Controller
 {
     public function index()
     {
-        $shops = Shop::all(); // すべての店舗情報を取得
+        // shopsテーブルからすべての店舗情報を取得し、areasとgenresを関連付けて取得
+        $shops = Shop::with('area', 'genre')->get();
 
-        return view('shops', ['shops' => $shops]); // ビューにデータを渡す
+        return view('shops', ['shops' => $shops]);
     }
 
     // 店舗一覧ページの検索機能
@@ -21,14 +22,18 @@ class ShopsController extends Controller
         $genre = $request->input('genre');
         $name = $request->input('name');
 
-        $query = Shop::query();
+        $query = Shop::query()->with('area', 'genre'); // areasとgenresを事前に関連付けて取得
 
         if ($area) {
-            $query->where('area', $area);
+            $query->whereHas('area', function ($query) use ($area) {
+                $query->where('area', $area);
+            });
         }
 
         if ($genre) {
-            $query->where('genre', $genre);
+            $query->whereHas('genre', function ($query) use ($genre) {
+                $query->where('genre', $genre);
+            });
         }
 
         if ($name) {
