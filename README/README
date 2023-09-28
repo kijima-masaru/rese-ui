@@ -531,8 +531,8 @@ $ mysql -h database-1.c9k9ndmu64fu.ap-northeast-1.rds.amazonaws.com -P 3306 -u a
 
 ●S3の設定
 ※.env
-AWS_ACCESS_KEY_ID=AKIAVDDMZEVJY3T5HNM3
-AWS_SECRET_ACCESS_KEY=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
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
 AWS_DEFAULT_REGION=ap-northeast-1
 AWS_BUCKET=rese-ui-s3
 

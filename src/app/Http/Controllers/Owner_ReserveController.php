@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Reserve;
 use App\Models\Shop;
 // お知らせメール送信のためのインポート
