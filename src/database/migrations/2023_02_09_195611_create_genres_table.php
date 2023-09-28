@@ -13,12 +13,10 @@ class CreateShopsTable extends Migration
      */
     public function up()
     {
-        Schema::create('shops', function (Blueprint $table) {
+        Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('overview');
-            $table->string('img');
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->string('genre');
+            $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateShopsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('shops');
+        Schema::dropIfExists('genres');
     }
 }

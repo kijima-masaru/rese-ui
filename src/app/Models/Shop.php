@@ -10,7 +10,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'area', 'genre', 'overview', 'img'];
+    protected $fillable = ['name', 'overview', 'img'];
 
     public function isFavoritedBy(User $user): bool
     {
