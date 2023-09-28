@@ -49,10 +49,10 @@
                 </div>
                 <div class="detail__content">
                     <div class="detail__area">
-                        <p>#{{ $shop->area->area }}</p>
+                        <p>#{{ $shop->area->area }}</p> <!-- areasテーブルからの表示 -->
                     </div>
                     <div class="detail__genre">
-                        <p>#{{ $shop->genre->genre }}</p>
+                        <p>#{{ $shop->genre->genre }}</p> <!-- genresテーブルからの表示 -->
                     </div>
                 </div>
                 <div class="detail__overview">
@@ -81,10 +81,10 @@
                     </div>
                     <div class="reserve__form">
                         <label for="people">人数:</label>
-                    <input type="number" name="people" required min="1"><br>
-                    @error('people')
-                        <p class="error">{{ $message }}</p>
-                    @enderror
+                        <input type="number" name="people" required min="1"><br>
+                        @error('people')
+                            <p class="error">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="reserve__button">
                         <button type="submit">予約する</button>

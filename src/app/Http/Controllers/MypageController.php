@@ -15,10 +15,9 @@ class MypageController extends Controller
         // "reviewed" ステータスの予約を表示しないように、whereNotInを使用して条件を追加します
         $reserves = Reserve::where('user_id', $user->id)
             ->whereNotIn('status', ['reviewed'])
-            ->with('shop.area', 'shop.genre') // エリア情報とジャンル情報をロード
             ->get(); // リレーションを使用して予約データを取得
 
-            $favoriteShops = $user->favorites->load('area', 'genre'); // エリア情報とジャンル情報をロード
+            $favoriteShops = auth()->user()->favorites;
 
         return view('mypage', compact('reserves', 'favoriteShops'));
     }
