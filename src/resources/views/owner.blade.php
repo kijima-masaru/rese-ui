@@ -73,7 +73,7 @@
                         </div>
                         <div class="form-group">
                             <label for="img">画像：</label>
-                            <input type="file" name="img">
+                            <input type="file" name="img" accept="image/*">
                         </div>
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         <div class="new__button">
