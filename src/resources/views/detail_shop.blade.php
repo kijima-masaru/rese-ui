@@ -67,7 +67,7 @@
                     @csrf
                     <div class="reserve__form">
                         <label for="day">日付:</label>
-                        <input type="date" name="day" required><br>
+                        <input type="date" name="day" required min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"><br>
                         @error('day')
                             <p class="error">{{ $message }}</p>
                         @enderror
