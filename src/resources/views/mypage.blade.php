@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 </head>
 
-
 <body>
     <main>
         <!-- 共通ヘッダー -->
@@ -118,8 +117,8 @@
                                         </div>
                                         <h2>{{ $favoriteShop->name }}</h2>
                                         <div class="favorite__text">
-                                            <p>エリア: {{ $favoriteShop->area }}</p>
-                                            <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                            <p>エリア: {{ $favoriteShop->area->area }}</p> <!-- areasテーブルからの表示 -->
+                                            <p>ジャンル: {{ $favoriteShop->genre->genre }}</p> <!-- genresテーブルからの表示 -->
                                         </div>
                                         <div class="favorite__detail">
                                             <a href="{{ route('shop.detail', ['shop' => $favoriteShop]) }}">詳細を見る</a>
