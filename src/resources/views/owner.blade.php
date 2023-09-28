@@ -124,7 +124,7 @@
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="new-img">新しい画像：</label>
-                                        <input type="file" name="img" id="new-img">
+                                        <input type="file" name="img" id="new-img" accept="image/*">
                                     </div>
                                     <div class="edit-image-button">
                                         <button type="submit" class="btn btn-primary">画像を更新する</button>
