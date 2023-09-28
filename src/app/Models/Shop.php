@@ -27,4 +27,16 @@ class Shop extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    // Areaモデルとのリレーションシップ
+    public function area()
+    {
+        return $this->hasOne(Area::class);
+    }
+
+    // Genreモデルとのリレーションシップ
+    public function genre()
+    {
+        return $this->hasOne(Genre::class);
+    }
 }

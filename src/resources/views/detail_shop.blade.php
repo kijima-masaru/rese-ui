@@ -49,10 +49,10 @@
                 </div>
                 <div class="detail__content">
                     <div class="detail__area">
-                        <p>#{{ $shop->area }}</p>
+                        <p>#{{ $shop->area->area }}</p>
                     </div>
                     <div class="detail__genre">
-                        <p>#{{ $shop->genre }}</p>
+                        <p>#{{ $shop->genre->genre }}</p>
                     </div>
                 </div>
                 <div class="detail__overview">
