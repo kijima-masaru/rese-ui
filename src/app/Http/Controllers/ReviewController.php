@@ -60,7 +60,7 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->route('mypage')->with('success', 'レビューを投稿しました。');
+        return redirect()->back()->with('success', 'レビューを投稿しました。');
     }
 
     private function updateReview(Review $review, Request $request)
@@ -83,6 +83,20 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->route('mypage')->with('success', 'レビューを更新しました。');
+        return redirect()->back()->with('success', 'レビューを更新しました。');
     }
+
+    public function destroy(Shop $shop, Review $review)
+    {
+        // レビューの所有権を確認
+        if ($review->user_id !== auth()->id()) {
+            return redirect()->back()->with('error', '権限がありません。');
+        }
+
+        // レビューを削除
+        $review->delete();
+
+        return redirect()->back()->with('success', 'レビューを削除しました。');
+    }
+
 }

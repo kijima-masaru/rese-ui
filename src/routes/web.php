@@ -85,6 +85,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/review/{shop}', [ReviewController::class, 'create'])->name('review.create');
     // レビューの保存
     Route::post('/review/{shop}', [ReviewController::class, 'store'])->name('review.store');
+    // レビューの削除
+    Route::delete('/review/{shop}/{review}', [ReviewController::class, 'destroy'])->name('review.destroy');
     // stripeでの決済機能のルート
     Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
     Route::post('/pay', [StripeController::class, 'pay']);

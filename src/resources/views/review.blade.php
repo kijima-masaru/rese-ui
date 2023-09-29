@@ -39,6 +39,11 @@
             </div>
         </div>
         <!-- ページ本体 -->
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <!-- レビュー内容投稿フォーム -->
         <div class="review">
             <div class="review__head">
@@ -55,8 +60,7 @@
                     @csrf
                     <div class="form__group">
                         <label for="rating">1~5段階評価:</label>
-                        <input type="number" name="rating" min="1" max="5" required
-                    value="{{ old('rating', isset($review) ? $review->rating : '') }}">
+                        <input type="number" name="rating" min="1" max="5" required value="{{ old('rating', isset($review) ? $review->rating : '') }}">
                     </div>
                     <div class="form__group">
                         <label for="comment">口コミ:</label>
@@ -74,8 +78,19 @@
                         @endif
                     </div>
                 </form>
+                <!-- レビュー削除フォーム -->
+                @if(isset($review))
+                    <form method="POST" action="{{ route('review.destroy', ['shop' => $shop->id, 'review' => $review->id]) }}">
+                        @csrf
+                        @method('DELETE')
+                        <div class="form__button">
+                            <button type="submit">レビューを削除</button>
+                        </div>
+                    </form>
+                @endif
             </div>
         </div>
     </main>
 </body>
+
 </html>
