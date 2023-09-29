@@ -83,11 +83,6 @@
                                                     </form>
                                                 </div>
                                             @endif
-                                            @if($reserve->status === 'after') <!-- 予約が"after"の場合に表示 -->
-                                                <div class="reserve__edit">
-                                                    <a href="{{ route('review.create', ['reserve' => $reserve]) }}">レビュー投稿</a>
-                                                </div>
-                                            @endif
                                             <!-- QRコードを表示するリンク -->
                                             <div class="reserve__qrcode">
                                                 {!! QrCode::size(70)->generate($reserve->id); !!}
