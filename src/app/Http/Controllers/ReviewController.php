@@ -2,43 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reserve;
 use App\Models\Review;
+use App\Models\Shop;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
-    public function create(Reserve $reserve)
-    {
-        // レビューフォームを表示するためのビューを返す
-        return view('review', compact('reserve'));
+    public function create(Shop $shop)
+{
+    // レビューフォームを表示するためのビューを返す
+    return view('review', ['shop' => $shop]);
+}
+
+public function store(Request $request, Shop $shop)
+{
+    // レビューを保存するロジック
+    $request->validate([
+        'rating' => 'required|integer|min:1|max:5',
+        'comment' => 'nullable|string',
+        'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
+    //dd($shop); // デバッグ情報を表示
+
+    $review = new Review([
+        'rating' => $request->input('rating'),
+        'comment' => $request->input('comment'),
+        'user_id' => auth()->id(), // ログインユーザーのIDを設定
+        'shop_id' => $shop->id, // 店舗のIDを設定
+        'status' => 'reviewed',
+    ]);
+
+    // 画像がアップロードされているかを確認
+    if ($request->hasFile('img')) {
+        $imgPath = $request->file('img')->store('review_imgs');
+        $review->img = $imgPath;
     }
 
-    public function store(Request $request, Reserve $reserve)
-    {
-        // レビューを保存する前に予約のステータスを確認
-        if ($reserve->status !== 'after') {
-            return redirect()->route('home')->with('error', '予約が終了していないため、レビューを投稿できません。');
-        }
+    // レビューを保存する他の必要なロジックを実装
 
-        // レビューを保存するロジック
-        $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string',
-        ]);
+    $review->save();
 
-        $review = new Review([
-            'rating' => $request->input('rating'),
-            'comment' => $request->input('comment'),
-        ]);
-
-        $review->user_id = $reserve->user_id;
-        $review->shop_id = $reserve->shop_id;
-        $review->reserve_id = $reserve->id;
-        $review->save();
-
-        // 関連するReserveのstatusを更新
-        $reserve->update(['status' => 'reviewed']);
-
-        return redirect()->route('mypage')->with('success', 'レビューを投稿しました。');
+    return redirect()->route('mypage')->with('success', 'レビューを投稿しました。');
     }
 }

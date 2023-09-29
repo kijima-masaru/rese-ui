@@ -58,6 +58,9 @@
                 <div class="detail__overview">
                     <p>{{ $shop->overview }}</p>
                 </div>
+                <div class="detail__review">
+                    <a href="{{ route('review.create', ['shop' => $shop->id]) }}">口コミを書く</a>
+                </div>
             </div>
             <div class="detail__reserve">
                 <div class="reserve__head">

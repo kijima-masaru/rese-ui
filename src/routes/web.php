@@ -82,9 +82,9 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::post('/favorites/{shop}', [FavoritesController::class, 'add'])->name('favorites.add');
     Route::delete('/favorites/{shop}', [FavoritesController::class, 'remove'])->name('favorites.remove');
     // レビューのフォーム表示
-    Route::get('/review/{reserve}', [ReviewController::class, 'create'])->name('review.create');
+    Route::get('/review/{shop}', [ReviewController::class, 'create'])->name('review.create');
     // レビューの保存
-    Route::post('/review/{reserve}', [ReviewController::class, 'store'])->name('review.store');
+    Route::post('/review/{shop}', [ReviewController::class, 'store'])->name('review.store');
     // stripeでの決済機能のルート
     Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
     Route::post('/pay', [StripeController::class, 'pay']);

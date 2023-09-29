@@ -43,25 +43,28 @@
             <div class="review__head">
                 <h1>店舗の口コミを投稿できます。</h1>
             </div>
-                @if ($reserve && $reserve->status === 'after')
-                <div class="review__form">
-                    <form method="POST" action="{{ route('review.store', $reserve) }}">
-                        @csrf
-                        <div class="form__group">
-                            <label for="rating">1~5段階評価:</label>
-                            <input type="number" name="rating" min="1" max="5" required>
-                        </div>
-                        <div class="form__group">
-                            <label for="comment">口コミ:</label>
-                            <textarea name="comment" rows="4" cols="50"></textarea>
-                        </div>
-                        <div class="form__button">
-                            <button type="submit">口コミを投稿</button>
-                        </div>
-                    </form>
-                </div>
-                @endif
+            <div class="review__form">
+                <form method="POST" action="{{ route('review.store', ['shop' => $shop->id]) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form__group">
+                        <label for="rating">1~5段階評価:</label>
+                        <input type="number" name="rating" min="1" max="5" required>
+                    </div>
+                    <div class="form__group">
+                        <label for="comment">口コミ:</label>
+                        <textarea name="comment" rows="4" cols="50"></textarea>
+                    </div>
+                    <div class="form__group">
+                        <label for="img">画像をアップロード:</label>
+                        <input type="file" name="img">
+                    </div>
+                    <div class="form__button">
+                        <button type="submit">口コミを投稿</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 </body>
+
 </html>
