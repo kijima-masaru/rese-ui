@@ -55,11 +55,12 @@
                     @csrf
                     <div class="form__group">
                         <label for="rating">1~5段階評価:</label>
-                        <input type="number" name="rating" min="1" max="5" required>
+                        <input type="number" name="rating" min="1" max="5" required
+                    value="{{ old('rating', isset($review) ? $review->rating : '') }}">
                     </div>
                     <div class="form__group">
                         <label for="comment">口コミ:</label>
-                        <textarea name="comment" rows="4" cols="50"></textarea>
+                        <textarea name="comment" rows="4" cols="50">{{ old('comment', isset($review) ? $review->comment : '') }}</textarea>
                     </div>
                     <div class="form__group">
                         <label for="img">画像をアップロード:</label>
