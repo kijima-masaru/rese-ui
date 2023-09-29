@@ -39,9 +39,16 @@
             </div>
         </div>
         <!-- ページ本体 -->
+        <!-- レビュー内容投稿フォーム -->
         <div class="review">
             <div class="review__head">
-                <h1>店舗の口コミを投稿できます。</h1>
+                <h1>
+                    @if(isset($review))
+                        店舗の口コミを更新できます。
+                    @else
+                        店舗の口コミを投稿できます。
+                    @endif
+                </h1>
             </div>
             <div class="review__form">
                 <form method="POST" action="{{ route('review.store', ['shop' => $shop->id]) }}" enctype="multipart/form-data">
@@ -59,12 +66,15 @@
                         <input type="file" name="img">
                     </div>
                     <div class="form__button">
-                        <button type="submit">口コミを投稿</button>
+                        @if(isset($review))
+                            <button type="submit">レビューを更新</button>
+                        @else
+                            <button type="submit">レビューを投稿</button>
+                        @endif
                     </div>
                 </form>
             </div>
         </div>
     </main>
 </body>
-
 </html>
