@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 
 class ShopsController extends Controller
 {
@@ -11,7 +13,11 @@ class ShopsController extends Controller
     {
         $shops = Shop::all(); // すべての店舗情報を取得
 
-        return view('shops', ['shops' => $shops]); // ビューにデータを渡す
+        // エリアとジャンルを取得
+        $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+        $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+
+        return view('shops', compact('shops', 'areaData', 'genreData')); // ビューにデータを渡す
     }
 
     // 店舗一覧ページの検索機能
@@ -23,20 +29,33 @@ class ShopsController extends Controller
 
         $query = Shop::query();
 
-        if ($area) {
-            $query->where('area', $area);
-        }
-
-        if ($genre) {
-            $query->where('genre', $genre);
-        }
-
         if ($name) {
             $query->where('name', 'LIKE', "%$name%");
         }
 
+        // エリアとジャンルの条件を指定
+        if ($area) {
+            $query->whereIn('id', function ($query) use ($area) {
+                $query->select('shop_id')
+                    ->from('areas')
+                    ->where('area', $area);
+            });
+        }
+
+        if ($genre) {
+            $query->whereIn('id', function ($query) use ($genre) {
+                $query->select('shop_id')
+                    ->from('genres')
+                    ->where('genre', $genre);
+            });
+        }
+
         $shops = $query->get();
 
-        return view('shops', ['shops' => $shops]);
+        // エリアとジャンルを取得
+        $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+        $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+
+        return view('shops', compact('shops', 'areaData', 'genreData'));
     }
 }
