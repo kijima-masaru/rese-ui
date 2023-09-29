@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>レビューページ</title>
+    <title>口コミ投稿ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/review.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
@@ -41,7 +41,7 @@
         <!-- ページ本体 -->
         <div class="review">
             <div class="review__head">
-                <h1>ご利用した店舗のレビューができます。</h1>
+                <h1>店舗の口コミを投稿できます。</h1>
             </div>
                 @if ($reserve && $reserve->status === 'after')
                 <div class="review__form">
@@ -52,11 +52,11 @@
                             <input type="number" name="rating" min="1" max="5" required>
                         </div>
                         <div class="form__group">
-                            <label for="comment">コメント:</label>
+                            <label for="comment">口コミ:</label>
                             <textarea name="comment" rows="4" cols="50"></textarea>
                         </div>
                         <div class="form__button">
-                            <button type="submit">レビューを投稿</button>
+                            <button type="submit">口コミを投稿</button>
                         </div>
                     </form>
                 </div>
