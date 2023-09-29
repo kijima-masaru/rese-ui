@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Shop; // ログインユーザーのお気に入り情報取得
 use App\Models\Reserve; // ログインユーザーの予約情報取得
+use App\Models\Area;
+use App\Models\Genre;
 
 class MypageController extends Controller
 {
@@ -18,9 +20,20 @@ class MypageController extends Controller
             ->whereNotIn('status', ['reviewed'])
             ->get(); // リレーションを使用して予約データを取得
 
-            $favoriteShops = auth()->user()->favorites;
+        $favoriteShops = auth()->user()->favorites;
 
-        return view('mypage', compact('reserves', 'favoriteShops'));
+        // お気に入り店舗のエリアとジャンルを取得
+        $favoriteShopDetails = [];
+        foreach ($favoriteShops as $favoriteShop) {
+            $area = Area::where('shop_id', $favoriteShop->id)->value('area');
+            $genre = Genre::where('shop_id', $favoriteShop->id)->value('genre');
+            $favoriteShopDetails[] = [
+                'shop' => $favoriteShop,
+                'area' => $area,
+                'genre' => $genre,
+            ];
+        }
+
+        return view('mypage', compact('reserves', 'favoriteShopDetails')); // 'favoriteShopDetails'をビューに渡す
     }
-
 }

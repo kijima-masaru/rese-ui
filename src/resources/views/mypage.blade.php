@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 </head>
 
-
 <body>
     <main>
         <!-- 共通ヘッダー -->
@@ -109,22 +108,22 @@
                         <h1>お気に入り店舗</h1>
                     </div>
                     <div class="favorite__box">
-                        @if($favoriteShops->count() > 0)
-                            @foreach($favoriteShops as $favoriteShop)
+                        @if($favoriteShopDetails)
+                            @foreach($favoriteShopDetails as $favoriteShopDetail)
                                 <div class="favorite__wrapper">
                                     <div class="favorite__shop">
                                         <div class="favorite__img">
-                                            <img src="{{ asset('storage/' . $favoriteShop->img) }}" alt="Shop Image">
+                                            <img src="{{ asset('storage/' . $favoriteShopDetail['shop']->img) }}" alt="Shop Image">
                                         </div>
-                                        <h2>{{ $favoriteShop->name }}</h2>
+                                        <h2>{{ $favoriteShopDetail['shop']->name }}</h2>
                                         <div class="favorite__text">
-                                            <p>エリア: {{ $favoriteShop->area }}</p>
-                                            <p>ジャンル: {{ $favoriteShop->genre }}</p>
+                                            <p>エリア: {{ $favoriteShopDetail['area'] }}</p>
+                                            <p>ジャンル: {{ $favoriteShopDetail['genre'] }}</p>
                                         </div>
                                         <div class="favorite__detail">
-                                            <a href="{{ route('shop.detail', ['shop' => $favoriteShop]) }}">詳細を見る</a>
+                                            <a href="{{ route('shop.detail', ['shop' => $favoriteShopDetail['shop']]) }}">詳細を見る</a>
                                         </div>
-                                        <form action="{{ route('favorites.remove', ['shop' => $favoriteShop]) }}" method="POST">
+                                        <form action="{{ route('favorites.remove', ['shop' => $favoriteShopDetail['shop']]) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit">お気に入り解除</button>
