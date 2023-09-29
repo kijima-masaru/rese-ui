@@ -95,6 +95,25 @@
                 </form>
             </div>
         </div>
+        <!-- レビュー表示 -->
+        <div class="detail__reviews">
+            <h2>店舗の口コミ</h2>
+            @if($reviews->count() > 0)
+                <ul>
+                    @foreach($reviews as $review)
+                        <li>
+                            <p>評価: {{ $review->rating }}/5</p>
+                            <p>コメント: {{ $review->comment }}</p>
+                            @if($review->img)
+                                <img src="{{ asset('storage/' . $review->img) }}" alt="Review Image">
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p>まだ口コミがありません。</p>
+            @endif
+        </div>
     </main>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
