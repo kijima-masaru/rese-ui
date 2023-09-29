@@ -31,12 +31,12 @@ class Shop extends Model
     // Areaモデルとのリレーションシップ
     public function area()
     {
-        return $this->hasOne(Area::class);
+        return $this->belongsTo(Area::class);
     }
 
     // Genreモデルとのリレーションシップ
     public function genre()
     {
-        return $this->hasOne(Genre::class);
+        return $this->belongsTo(Genre::class);
     }
 }

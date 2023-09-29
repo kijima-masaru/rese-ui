@@ -73,9 +73,9 @@
                         </div>
                         <div class="form-group">
                             <label for="img">画像：</label>
-                            <input type="file" name="img" accept="image/*">
+                            <input type="file" name="img">
                         </div>
-                        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+                            <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         <div class="new__button">
                             <button type="submit" class="btn btn-primary">店舗情報を作成する</button>
                         </div>
@@ -102,11 +102,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="area">エリア：</label>
-                                    <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area->area) }}" required>
+                                    <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="genre">ジャンル：</label>
-                                    <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre->genre) }}" required>
+                                    <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="overview">概要：</label>
@@ -124,7 +124,7 @@
                                     @method('PUT')
                                     <div class="form-group">
                                         <label for="new-img">新しい画像：</label>
-                                        <input type="file" name="img" id="new-img" accept="image/*">
+                                        <input type="file" name="img" id="new-img">
                                     </div>
                                     <div class="edit-image-button">
                                         <button type="submit" class="btn btn-primary">画像を更新する</button>
@@ -138,5 +138,4 @@
         </div>
     </main>
 </body>
-
 </html>

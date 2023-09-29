@@ -16,7 +16,7 @@ class CreateGenresTable extends Migration
         Schema::create('genres', function (Blueprint $table) {
             $table->id();
             $table->string('genre');
-            $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
+            $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete()->default(0);
             $table->timestamps();
         });
     }

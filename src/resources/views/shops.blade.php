@@ -60,10 +60,10 @@
                         </div>
                         <div class="shop__view">
                             <div class="view__content">
-                                <p>#{{ $shop->area->area }}</p> <!-- areasテーブルからの表示 -->
+                                <p>#{{ $shop->area }}</p>
                             </div>
                             <div class="view__content">
-                                <p>#{{ $shop->genre->genre }}</p> <!-- genresテーブルからの表示 -->
+                                <p>#{{ $shop->genre }}</p>
                             </div>
                         </div>
                     </div>

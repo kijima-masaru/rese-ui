@@ -14,6 +14,6 @@ class Genre extends Model
     // 外部キーであるshop_idの設定
     public function shop()
     {
-        return $this->belongsTo(Shop::class, 'shop_id');
+        return $this->hasMany(Shop::class);
     }
 }

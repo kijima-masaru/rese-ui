@@ -49,10 +49,10 @@
                 </div>
                 <div class="detail__content">
                     <div class="detail__area">
-                        <p>#{{ $shop->area->area }}</p> <!-- areasテーブルからの表示 -->
+                        <p>#{{ $shop->area }}</p>
                     </div>
                     <div class="detail__genre">
-                        <p>#{{ $shop->genre->genre }}</p> <!-- genresテーブルからの表示 -->
+                        <p>#{{ $shop->genre }}</p>
                     </div>
                 </div>
                 <div class="detail__overview">
@@ -67,7 +67,7 @@
                     @csrf
                     <div class="reserve__form">
                         <label for="day">日付:</label>
-                        <input type="date" name="day" required min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}"><br>
+                        <input type="date" name="day" required><br>
                         @error('day')
                             <p class="error">{{ $message }}</p>
                         @enderror
@@ -81,10 +81,10 @@
                     </div>
                     <div class="reserve__form">
                         <label for="people">人数:</label>
-                        <input type="number" name="people" required min="1"><br>
-                        @error('people')
-                            <p class="error">{{ $message }}</p>
-                        @enderror
+                    <input type="number" name="people" required min="1"><br>
+                    @error('people')
+                        <p class="error">{{ $message }}</p>
+                    @enderror
                     </div>
                     <div class="reserve__button">
                         <button type="submit">予約する</button>
