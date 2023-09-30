@@ -1,23 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController; //管理者ページ用コントローラ
-use App\Http\Controllers\Admin_ReviewController; //管理者レビュー閲覧ページ用コントローラ
-use App\Http\Controllers\OwnerController; //店舗代表者ページ用コントローラ
-use App\Http\Controllers\Owner_ReserveController; //店舗予約確認ページ用コントローラ
-use App\Http\Controllers\Owner_QRController; //QRコード読み込みページ用のコントローラ
-use App\Http\Controllers\ShowController; //個人予約情報ページ用コントローラ
-use App\Http\Controllers\ShopsController; //店舗一覧ページ表示・検索機能用コントローラ
-use App\Http\Controllers\DetailController; //店舗詳細ページ表示用コントローラ
-use App\Http\Controllers\ReservationController; //店舗詳細ページ予約機能用コントローラ
-use App\Http\Controllers\EditController; //予約内容変更ページ表示・機能用コントローラ
-use App\Http\Controllers\MypageController; //マイページ表示用コントローラ
-use App\Http\Controllers\DoneController; //予約完了ページ表示用コントローラ
-use App\Http\Controllers\FavoritesController; //お気に入り機能用コントローラ
-use App\Http\Controllers\ReviewController; //レビュー機能用コントローラ
-use App\Http\Controllers\VerificationController; //認証メール再送信用コントローラ
-use App\Http\Controllers\StripeController; //stripe決済機能用コントローラ
-use App\Http\Controllers\ThanksController; //お支払い完了ページ用コントローラ
+use App\Http\Controllers\AdminController; // 管理者ページ用コントローラ
+use App\Http\Controllers\Admin_ReviewController; // 管理者レビュー閲覧ページ用コントローラ
+use App\Http\Controllers\OwnerController; // 店舗代表者ページ用コントローラ
+use App\Http\Controllers\Owner_ReserveController; // 店舗予約確認ページ用コントローラ
+use App\Http\Controllers\Owner_QRController; // QRコード読み込みページ用のコントローラ
+use App\Http\Controllers\ShowController; // 個人予約情報ページ用コントローラ
+use App\Http\Controllers\ShopsController; // 店舗一覧ページ表示・検索機能用コントローラ
+use App\Http\Controllers\DetailController; // 店舗詳細ページ表示用コントローラ
+use App\Http\Controllers\ReservationController; // 店舗詳細ページ予約機能用コントローラ
+use App\Http\Controllers\EditController; // 予約内容変更ページ表示・機能用コントローラ
+use App\Http\Controllers\MypageController; // マイページ表示用コントローラ
+use App\Http\Controllers\DoneController; // 予約完了ページ表示用コントローラ
+use App\Http\Controllers\FavoritesController; // お気に入り機能用コントローラ
+use App\Http\Controllers\ReviewController; // レビュー機能用コントローラ
+use App\Http\Controllers\VerificationController; // 認証メール再送信用コントローラ
+use App\Http\Controllers\StripeController; // stripe決済機能用コントローラ
+use App\Http\Controllers\ThanksController; // お支払い完了ページ用コントローラ
 
 // ログインが必要なルートグループ
 Route::middleware('auth', 'verified')->group(function () {
@@ -59,13 +59,18 @@ Route::middleware('auth', 'verified')->group(function () {
     // 個人予約情報ページの表示
     Route::get('/reservations/{reserve}', [ShowController::class, 'show'])->name('reservation.show');
 
-
     // 一般利用者ページ用ルート
 
     // 店舗一覧ページの表示(利用者がログインするとリダイレクトされる)
     Route::get('/', [ShopsController::class, 'index'])->name('shops.index');
     // 店舗一覧ページの検索機能
     Route::get('/shops/search', [ShopsController::class, 'search'])->name('shops.search');
+    // ランダムにソート
+    Route::get('/shops/random', [ShopsController::class, 'random'])->name('shops.random');
+    // 評価が高い順にソート
+    Route::get('/shops/high-rated', [ShopsController::class, 'highRated'])->name('shops.high-rated');
+    // 評価が低い順にソート
+    Route::get('/shops/low-rated', [ShopsController::class, 'lowRated'])->name('shops.low-rated');
 
     // 店舗詳細ページの表示
     Route::get('/shops/{shop}', [DetailController::class, 'index'])->name('shop.detail');
@@ -77,7 +82,6 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::get('/edit', [EditController::class, 'index'])->name('reservation.edit');
     Route::post('/update-reservation', [EditController::class, 'update'])->name('update_reservation');
-
 
     // マイページの表示
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
@@ -96,9 +100,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/payment', [StripeController::class, 'index'])->name('user_stripe.index');
     Route::post('/pay', [StripeController::class, 'pay']);
     Route::get('/thanks', [ThanksController::class, 'index'])->name('thanks');
-
-
-
 });
 
 // メール再送信のルーティング

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Area;
 use App\Models\Genre;
+use Illuminate\Support\Facades\DB;
 
 class ShopsController extends Controller
 {
@@ -58,4 +59,47 @@ class ShopsController extends Controller
 
         return view('shops', compact('shops', 'areaData', 'genreData'));
     }
+
+    // ランダムにソートするメソッド
+    public function random()
+{
+    $shops = Shop::inRandomOrder()->get();
+    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+
+    return view('shops', compact('shops', 'areaData', 'genreData'));
+}
+
+
+
+// 評価が高い順にソートするメソッド
+public function highRated()
+{
+    $shops = Shop::select('shops.*')
+        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->groupBy('shops.id')
+        ->orderByRaw('AVG(reviews.rating) DESC')
+        ->get();
+
+    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+
+    return view('shops', compact('shops', 'areaData', 'genreData'));
+}
+
+// 評価が低い順にソートするメソッド
+public function lowRated()
+{
+    $shops = Shop::select('shops.*')
+        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->groupBy('shops.id')
+        ->orderByRaw('AVG(reviews.rating) ASC')
+        ->get();
+
+    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+
+    return view('shops', compact('shops', 'areaData', 'genreData'));
+}
+
 }

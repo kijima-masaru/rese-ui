@@ -49,6 +49,11 @@
                         <button type="submit">検索</button>
                     </form>
                 </div>
+                <div class="sort-buttons">
+                    <a href="{{ route('shops.random') }}" class="btn btn-primary">ランダムにソート</a>
+                    <a href="{{ route('shops.high-rated') }}" class="btn btn-primary">評価が高い順にソート</a>
+                    <a href="{{ route('shops.low-rated') }}" class="btn btn-primary">評価が低い順にソート</a>
+                </div>
                 @foreach ($shops as $key => $shop)
                 <div class="shop__card">
                     <div class="card__img">
