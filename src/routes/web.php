@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController; //管理者ページ用コントローラ
+use App\Http\Controllers\Admin_ReviewController; //管理者レビュー閲覧ページ用コントローラ
 use App\Http\Controllers\OwnerController; //店舗代表者ページ用コントローラ
 use App\Http\Controllers\Owner_ReserveController; //店舗予約確認ページ用コントローラ
 use App\Http\Controllers\Owner_QRController; //QRコード読み込みページ用のコントローラ
@@ -28,6 +29,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
     // 管理者ページでのユーザーのrole変更するためのルート
     Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
+    // 管理者レビュー閲覧ページの表示
+    Route::get('/admin/reviews', [Admin_ReviewController::class, 'index'])->name('admin.reviews.index');
+    // レビュー削除
+    Route::delete('/admin/reviews/{review}', [Admin_ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
 
     // 店舗代表者ページ用ルート
 

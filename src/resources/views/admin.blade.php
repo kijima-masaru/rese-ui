@@ -20,6 +20,12 @@
             </div>
             <div class="header__right">
                 <div class="header__content">
+                    <div class="header__url">
+                        <a href="{{ route('admin.index') }}">管理者ページ</a>
+                    </div>
+                    <div class="header__url">
+                        <a href="{{ route('admin.reviews.index') }}">口コミ一覧</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
