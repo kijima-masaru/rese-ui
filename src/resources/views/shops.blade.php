@@ -54,7 +54,7 @@
                     <a href="{{ route('shops.high-rated') }}" class="btn btn-primary">評価が高い順にソート</a>
                     <a href="{{ route('shops.low-rated') }}" class="btn btn-primary">評価が低い順にソート</a>
                 </div>
-                @foreach ($shops as $key => $shop)
+                @foreach ($shops as $shop)
                 <div class="shop__card">
                     <div class="card__img">
                         <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">
@@ -65,10 +65,10 @@
                         </div>
                         <div class="shop__view">
                             <div class="view__content">
-                                <p>#{{ $areaData[$key]->area }}</p>
+                                <p>#{{ $areaDataMap[$shop->id]->area }}</p>
                             </div>
                             <div class="view__content">
-                                <p>#{{ $genreData[$key]->genre }}</p>
+                                <p>#{{ $genreDataMap[$shop->id]->genre }}</p>
                             </div>
                         </div>
                     </div>

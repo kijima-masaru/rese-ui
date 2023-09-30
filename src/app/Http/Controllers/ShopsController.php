@@ -61,15 +61,28 @@ class ShopsController extends Controller
     }
 
     // ランダムにソートするメソッド
-    public function random()
+public function random()
 {
     $shops = Shop::inRandomOrder()->get();
-    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+    $shopIds = $shops->pluck('id');
 
-    return view('shops', compact('shops', 'areaData', 'genreData'));
+    $areaData = Area::whereIn('shop_id', $shopIds)->get();
+    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
+
+    // エリアとジャンル情報を店舗と対応させる
+    $areaDataMap = [];
+    $genreDataMap = [];
+
+    foreach ($areaData as $area) {
+        $areaDataMap[$area->shop_id] = $area;
+    }
+
+    foreach ($genreData as $genre) {
+        $genreDataMap[$genre->shop_id] = $genre;
+    }
+
+    return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
 }
-
 
 
 // 評価が高い順にソートするメソッド
@@ -81,8 +94,9 @@ public function highRated()
         ->orderByRaw('AVG(reviews.rating) DESC')
         ->get();
 
-    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+    $shopIds = $shops->pluck('id');
+    $areaData = Area::whereIn('shop_id', $shopIds)->get();
+    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
 
     return view('shops', compact('shops', 'areaData', 'genreData'));
 }
@@ -96,10 +110,12 @@ public function lowRated()
         ->orderByRaw('AVG(reviews.rating) ASC')
         ->get();
 
-    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+    $shopIds = $shops->pluck('id');
+    $areaData = Area::whereIn('shop_id', $shopIds)->get();
+    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
 
     return view('shops', compact('shops', 'areaData', 'genreData'));
 }
+
 
 }
