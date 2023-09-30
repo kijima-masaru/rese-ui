@@ -11,15 +11,28 @@ use Illuminate\Support\Facades\DB;
 class ShopsController extends Controller
 {
     public function index()
-    {
-        $shops = Shop::all(); // すべての店舗情報を取得
+{
+    $shops = Shop::all(); // すべての店舗情報を取得
 
-        // エリアとジャンルを取得
-        $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-        $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+    // エリアとジャンルを取得
+    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
 
-        return view('shops', compact('shops', 'areaData', 'genreData')); // ビューにデータを渡す
+    // エリアとジャンル情報を店舗と対応させる
+    $areaDataMap = [];
+    $genreDataMap = [];
+
+    foreach ($areaData as $area) {
+        $areaDataMap[$area->shop_id] = $area;
     }
+
+    foreach ($genreData as $genre) {
+        $genreDataMap[$genre->shop_id] = $genre;
+    }
+
+    return view('shops', compact('shops', 'areaDataMap', 'genreDataMap')); // ビューにデータを渡す
+}
+
 
     // 店舗一覧ページの検索機能
     public function search(Request $request)
@@ -61,11 +74,39 @@ class ShopsController extends Controller
     }
 
     // ランダムにソートするメソッド
-public function random()
-{
-    $shops = Shop::inRandomOrder()->get();
-    $shopIds = $shops->pluck('id');
+    public function random()
+    {
+        $shops = Shop::inRandomOrder()->get();
+        $shopIds = $shops->pluck('id');
 
+        $areaData = Area::whereIn('shop_id', $shopIds)->get();
+        $genreData = Genre::whereIn('shop_id', $shopIds)->get();
+
+        // エリアとジャンル情報を店舗と対応させる
+        $areaDataMap = [];
+        $genreDataMap = [];
+
+        foreach ($areaData as $area) {
+            $areaDataMap[$area->shop_id] = $area;
+        }
+
+        foreach ($genreData as $genre) {
+            $genreDataMap[$genre->shop_id] = $genre;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
+    }
+
+    // 評価が高い順にソートするメソッド
+public function highRated()
+{
+    $shops = Shop::select('shops.*')
+        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+        ->groupBy('shops.id')
+        ->orderByRaw('AVG(reviews.rating) DESC')
+        ->get();
+
+    $shopIds = $shops->pluck('id');
     $areaData = Area::whereIn('shop_id', $shopIds)->get();
     $genreData = Genre::whereIn('shop_id', $shopIds)->get();
 
@@ -85,22 +126,6 @@ public function random()
 }
 
 
-// 評価が高い順にソートするメソッド
-public function highRated()
-{
-    $shops = Shop::select('shops.*')
-        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-        ->groupBy('shops.id')
-        ->orderByRaw('AVG(reviews.rating) DESC')
-        ->get();
-
-    $shopIds = $shops->pluck('id');
-    $areaData = Area::whereIn('shop_id', $shopIds)->get();
-    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
-
-    return view('shops', compact('shops', 'areaData', 'genreData'));
-}
-
 // 評価が低い順にソートするメソッド
 public function lowRated()
 {
@@ -116,6 +141,5 @@ public function lowRated()
 
     return view('shops', compact('shops', 'areaData', 'genreData'));
 }
-
 
 }
