@@ -68,7 +68,7 @@
                     </div>
                     <div class="form__group">
                         <label for="img">画像をアップロード:</label>
-                        <input type="file" name="img">
+                        <input type="file" name="img" accept="image/*">
                     </div>
                     <div class="form__button">
                         @if(isset($review))

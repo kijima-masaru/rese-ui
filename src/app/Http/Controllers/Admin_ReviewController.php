@@ -1,4 +1,4 @@
-<?php //レビュー管理ページ表示用コントローラ
+<?php // 管理者口コミ閲覧・削除ページ用コントローラ
 
 namespace App\Http\Controllers;
 
