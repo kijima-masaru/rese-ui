@@ -98,48 +98,58 @@ class ShopsController extends Controller
     }
 
     // 評価が高い順にソートするメソッド
-public function highRated()
-{
-    $shops = Shop::select('shops.*')
-        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-        ->groupBy('shops.id')
-        ->orderByRaw('AVG(reviews.rating) DESC')
-        ->get();
+    public function highRated()
+    {
+        $shops = Shop::select('shops.*')
+            ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+            ->groupBy('shops.id')
+            ->orderByRaw('AVG(reviews.rating) DESC')
+            ->get();
 
-    $shopIds = $shops->pluck('id');
-    $areaData = Area::whereIn('shop_id', $shopIds)->get();
-    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
+        $shopIds = $shops->pluck('id');
+        $areaData = Area::whereIn('shop_id', $shopIds)->get();
+        $genreData = Genre::whereIn('shop_id', $shopIds)->get();
 
-    // エリアとジャンル情報を店舗と対応させる
-    $areaDataMap = [];
-    $genreDataMap = [];
+        // エリアとジャンル情報を店舗と対応させる
+        $areaDataMap = [];
+        $genreDataMap = [];
 
-    foreach ($areaData as $area) {
-        $areaDataMap[$area->shop_id] = $area;
+        foreach ($areaData as $area) {
+            $areaDataMap[$area->shop_id] = $area;
+        }
+
+        foreach ($genreData as $genre) {
+            $genreDataMap[$genre->shop_id] = $genre;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
     }
 
-    foreach ($genreData as $genre) {
-        $genreDataMap[$genre->shop_id] = $genre;
+    // 評価が低い順にソートするメソッド
+    public function lowRated()
+    {
+        $shops = Shop::select('shops.*')
+            ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+            ->groupBy('shops.id')
+            ->orderByRaw('AVG(reviews.rating) ASC')
+            ->get();
+
+        $shopIds = $shops->pluck('id');
+        $areaData = Area::whereIn('shop_id', $shopIds)->get();
+        $genreData = Genre::whereIn('shop_id', $shopIds)->get();
+
+        // エリアとジャンル情報を店舗と対応させる
+        $areaDataMap = [];
+        $genreDataMap = [];
+
+        foreach ($areaData as $area) {
+            $areaDataMap[$area->shop_id] = $area;
+        }
+
+        foreach ($genreData as $genre) {
+            $genreDataMap[$genre->shop_id] = $genre;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
     }
-
-    return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
-}
-
-
-// 評価が低い順にソートするメソッド
-public function lowRated()
-{
-    $shops = Shop::select('shops.*')
-        ->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
-        ->groupBy('shops.id')
-        ->orderByRaw('AVG(reviews.rating) ASC')
-        ->get();
-
-    $shopIds = $shops->pluck('id');
-    $areaData = Area::whereIn('shop_id', $shopIds)->get();
-    $genreData = Genre::whereIn('shop_id', $shopIds)->get();
-
-    return view('shops', compact('shops', 'areaData', 'genreData'));
-}
-
 }
