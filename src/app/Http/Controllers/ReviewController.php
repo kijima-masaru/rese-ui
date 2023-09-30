@@ -39,16 +39,16 @@ class ReviewController extends Controller
     {
         // レビューを保存するロジック
         $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'rating' => 'required|integer|between:1,5', // 1から5の評価
+            'comment' => 'nullable|string|max:400', // 最大400文字の自由記述
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像アップロード
         ]);
 
         $review = new Review([
             'rating' => $request->input('rating'),
             'comment' => $request->input('comment'),
-            'user_id' => auth()->id(), // ログインユーザーのIDを設定
-            'shop_id' => $shop->id, // 店舗のIDを設定
+            'user_id' => auth()->id(),
+            'shop_id' => $shop->id,
             'status' => 'reviewed',
         ]);
 
@@ -67,9 +67,9 @@ class ReviewController extends Controller
     {
         // レビューを更新するロジック
         $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'nullable|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'rating' => 'required|integer|between:1,5', // 1から5の評価
+            'comment' => 'nullable|string|max:400', // 最大400文字の自由記述
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像アップロード
         ]);
 
         $review->rating = $request->input('rating');
@@ -98,5 +98,5 @@ class ReviewController extends Controller
 
         return redirect()->back()->with('success', 'レビューを削除しました。');
     }
-
 }
+
