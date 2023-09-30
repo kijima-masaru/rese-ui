@@ -49,7 +49,7 @@ class ReviewController extends Controller
             'comment' => $request->input('comment'),
             'user_id' => auth()->id(),
             'shop_id' => $shop->id,
-            'status' => 'reviewed',
+            'img' => null, // 画像がアップロードされていない場合、nullをセット
         ]);
 
         // 画像がアップロードされているかを確認

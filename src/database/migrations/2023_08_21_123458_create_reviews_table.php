@@ -17,8 +17,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->string('rating')->nullable();
             $table->string('comment')->nullable();
-            $table->string('img');
-            $table->string('status')->default('before');
+            $table->string('img')->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('shop_id')->constrained('shops')->cascadeOnDelete();
             $table->timestamps();
