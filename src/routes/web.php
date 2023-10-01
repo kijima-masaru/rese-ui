@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController; // 管理者ページ用コントローラ
 use App\Http\Controllers\Admin_ReviewController; // 管理者レビュー閲覧ページ用コントローラ
+use App\Http\Controllers\Admin_ShopController; // 管理者店舗情報作成ページ用コントローラ
 use App\Http\Controllers\OwnerController; // 店舗代表者ページ用コントローラ
 use App\Http\Controllers\Owner_ReserveController; // 店舗予約確認ページ用コントローラ
 use App\Http\Controllers\Owner_QRController; // QRコード読み込みページ用のコントローラ
@@ -33,6 +34,10 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/admin/reviews', [Admin_ReviewController::class, 'index'])->name('admin.reviews.index');
     // レビュー削除
     Route::delete('/admin/reviews/{review}', [Admin_ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
+    // 管理者店舗情報作成ページを表示するためのルート
+    Route::get('/admin/shop', [Admin_ShopController::class, 'index'])->name('admin.shop.index');
+    // 店舗情報の作成するためのルート
+    Route::post('/admin/store', [Admin_ShopController::class, 'store'])->name('admin.shop.store');
 
     // 店舗代表者ページ用ルート
 
