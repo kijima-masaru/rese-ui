@@ -71,11 +71,11 @@ class Admin_ShopController extends Controller
         // アップロードされたCSVファイルを取得
         $csvFile = $request->file('csv_file');
 
-        // CSVファイルを一時的に保存
-        $csvPath = $csvFile->storeAs('csv', uniqid('import_', true) . '.' . $csvFile->getClientOriginalExtension());
+        // CSVファイルの一時的な保存先パスを生成
+        $csvPath = $csvFile->storeAs('public/csv', uniqid('import_', true) . '.' . $csvFile->getClientOriginalExtension());
 
         // CSVファイルの各行を処理
-        $csvData = file_get_contents(storage_path('app/' . $csvPath));
+        $csvData = file_get_contents(storage_path('app/public/' . $csvPath));
         $lines = explode(PHP_EOL, $csvData);
 
         foreach ($lines as $line) {
@@ -96,7 +96,7 @@ class Admin_ShopController extends Controller
             $imgFile = file_get_contents($imgPath);
             $imgExtension = pathinfo($imgPath, PATHINFO_EXTENSION);
             $imgFileName = uniqid('img_', true) . '.' . $imgExtension;
-            Storage::disk('public')->put($imgFileName, $imgFile);
+            Storage::disk('public')->put('img/' . $imgFileName, $imgFile);
 
             // 店舗情報をデータベースに追加
             $shop = new Shop();
