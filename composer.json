@@ -5,6 +5,7 @@
         "simplesoftwareio/simple-qrcode": "^4.2",
         "stripe/stripe-php": "^12.0",
         "bacon/bacon-qr-code": "^2.0",
-        "aws/aws-sdk-php": "^3.281"
+        "aws/aws-sdk-php": "^3.281",
+        "guzzlehttp/guzzle": "^7.8"
     }
 }

@@ -9,7 +9,7 @@
         "aws/aws-sdk-php": "^3.226",
         "bacon/bacon-qr-code": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "guzzlehttp/guzzle": "^7.4",
         "laravel/fortify": "*",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
