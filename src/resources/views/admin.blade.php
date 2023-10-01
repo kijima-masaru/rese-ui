@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('admin.reviews.index') }}">口コミ一覧</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('admin.shop.index') }}">店舗情報の作成</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf

@@ -26,6 +26,9 @@
                     <div class="header__url">
                         <a href="{{ route('admin.reviews.index') }}">口コミ一覧</a>
                     </div>
+                    <div class="header__url">
+                        <a href="{{ route('admin.shop.index') }}">店舗情報の作成</a>
+                    </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">
                             @csrf
@@ -75,6 +78,18 @@
                             <input type="hidden" name="user_id" value="{{ Auth::id() }}">
                         <div class="new__button">
                             <button type="submit" class="btn btn-primary">店舗情報を作成する</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="new__form">
+                    <form method="POST" action="{{ route('admin.import') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="form-group">
+                            <label for="csv_file">CSVファイルをアップロード：</label>
+                            <input type="file" name="csv_file" accept=".csv" required>
+                        </div>
+                        <div class="new__button">
+                            <button type="submit" class="btn btn-primary">CSVをインポート</button>
                         </div>
                     </form>
                 </div>
