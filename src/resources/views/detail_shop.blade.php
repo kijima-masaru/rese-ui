@@ -59,7 +59,7 @@
                     <p>{{ $shop->overview }}</p>
                 </div>
                 <div class="detail__review">
-                    <a href="{{ route('review.create', ['shop' => $shop->id]) }}">口コミを書く</a>
+                    <a href="{{ route('review.create', ['shop' => $shop->id]) }}">口コミを書く・更新する</a>
                 </div>
             </div>
             <div class="detail__reserve">
@@ -95,14 +95,14 @@
                 </form>
             </div>
         </div>
-        <!-- レビュー表示 -->
+        <!-- 口コミ表示 -->
         <div class="detail__reviews">
             <h2>店舗の口コミ</h2>
             @if($reviews->count() > 0)
                 <ul>
                     @foreach($reviews as $review)
                         <li>
-                            <p>評価: {{ $review->rating }}/5</p>
+                            <p>評価: ★{{ $review->rating }}</p>
                             <p>コメント: {{ $review->comment }}</p>
                             @if($review->img)
                                 <img src="{{ asset('storage/' . $review->img) }}" alt="Review Image">

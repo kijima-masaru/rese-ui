@@ -130,3 +130,42 @@ main {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
+
+/* レビュー表示 */
+.detail__reviews {
+    text-align: center;
+    /* 中央揃え */
+}
+
+.detail__reviews h2 {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+.detail__reviews ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail__reviews li {
+    height: 300px;
+    /* カードの高さを100pxに設定 */
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.1);
+    /* 半透明の白色背景 */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* 高さを超えたコンテンツを隠す */
+}
+
+.detail__reviews p {
+    margin: 0;
+}
+
+.detail__reviews img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+}
