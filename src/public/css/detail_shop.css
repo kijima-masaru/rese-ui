@@ -75,6 +75,11 @@ main {
     /* 中央揃え */
 }
 
+.detail__review a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .detail__reserve {
     width: 500px;
     height: auto;
