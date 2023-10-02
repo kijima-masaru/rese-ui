@@ -21,7 +21,7 @@
             <div class="header__right">
                 <div class="header__content">
                     <div class="header__url">
-                        <a href="{{ route('admin.index') }}">管理者ページ</a>
+                        <a href="{{ route('admin.index') }}">ユーザー管理</a>
                     </div>
                     <div class="header__url">
                         <a href="{{ route('admin.reviews.index') }}">口コミ一覧</a>
