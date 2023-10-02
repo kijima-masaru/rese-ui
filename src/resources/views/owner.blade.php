@@ -100,13 +100,19 @@
                                     <label for="name">店舗名：</label>
                                     <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $shop->name) }}" required>
                                 </div>
+                                @php
+                                    $area = App\Models\Area::where('shop_id', $shop->id)->first();
+                                @endphp
                                 <div class="form-group">
                                     <label for="area">エリア：</label>
-                                    <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $shop->area) }}" required>
+                                    <input type="text" name="area" id="area" class="form-control" value="{{ old('area', $area->area) }}" required>
                                 </div>
+                                @php
+                                    $genre = App\Models\Genre::where('shop_id', $shop->id)->first();
+                                @endphp
                                 <div class="form-group">
                                     <label for="genre">ジャンル：</label>
-                                    <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $shop->genre) }}" required>
+                                    <input type="text" name="genre" id="genre" class="form-control" value="{{ old('genre', $genre->genre) }}" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="overview">概要：</label>
