@@ -42,16 +42,6 @@
             <!-- ページ本体 -->
             <div class="main">
                 <div class="main__head">
-                    <div class="sort-buttons">
-                        <label for="sort-select">店舗の順番を変える</label>
-                        <select id="sort-select" onchange="location = this.value;">
-                            <option>選択する</option>
-                            <option value="{{ route('shops.index') }}">デフォルト</option>
-                            <option value="{{ route('shops.random') }}">ランダム</option>
-                            <option value="{{ route('shops.high-rated') }}">評価が高い順</option>
-                            <option value="{{ route('shops.low-rated') }}">評価が低い順</option>
-                        </select>
-                    </div>
                     <div class="shop__search">
                         <form action="{{ route('shops.search') }}" method="GET">
                             <input class="search__input" type="text" name="area" placeholder="エリアを入力">
@@ -59,6 +49,16 @@
                             <input class="search__input" type="text" name="name" placeholder="店名を入力">
                             <button type="submit">検索</button>
                         </form>
+                    </div>
+                    <div class="sort-buttons">
+                        <label for="sort-select">店舗の順番を変える：</label>
+                        <select id="sort-select" onchange="location = this.value;">
+                            <option>選択する</option>
+                            <option value="{{ route('shops.index') }}">デフォルト</option>
+                            <option value="{{ route('shops.random') }}">ランダム</option>
+                            <option value="{{ route('shops.high-rated') }}">評価が高い順</option>
+                            <option value="{{ route('shops.low-rated') }}">評価が低い順</option>
+                        </select>
                     </div>
                 </div>
                 @foreach ($shops as $shop)

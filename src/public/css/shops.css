@@ -24,7 +24,11 @@ main {
 .shop__search {
     text-align: center;
     padding: 20px 0;
-    /* 上下の余白を追加 */
+}
+
+.sort-buttons {
+    text-align: center;
+    padding: 20px 0;
 }
 
 /* ショップカード */
