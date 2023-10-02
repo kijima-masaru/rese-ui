@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>管理者口コミ閲覧・削除用ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/admin_review.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 </head>
 
@@ -45,7 +45,7 @@
             </div>
         @endif
         <div class="admin__review">
-            <h2>口コミ一覧</h2>
+            <h1>口コミ一覧</h1>
             <table>
                 <thead>
                     <tr>
@@ -53,6 +53,7 @@
                         <th>店舗</th>
                         <th>評価</th>
                         <th>コメント</th>
+                        <th>画像</th>
                         <th>操作</th>
                     </tr>
                 </thead>

@@ -1,0 +1,92 @@
+/* ベースのスタイル */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #333;
+    /* 暗めの背景色 */
+    color: #fff;
+    /* 白色のテキスト色 */
+}
+
+/* 画面の最大幅 */
+main {
+    max-width: 1230px;
+    margin: 0 auto;
+    /* 中央揃え */
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* ページ本体 */
+.admin__review {
+    margin-top: 20px;
+    /* ページ本文との間隔 */
+}
+
+.admin__review h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: rgba(255, 255, 255, 0.1);
+    /* 半透明の白色背景 */
+}
+
+table th,
+table td {
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #007bff;
+    /* 鮮やかな青色 */
+    color: #fff;
+}
+
+/* ユーザー名と店舗名の幅を調整 */
+table th:first-child,
+/* ユーザー名 */
+table th:nth-child(2)
+
+/* 店舗名 */
+    {
+    width: 15%;
+}
+
+table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+    /* 偶数行の背景色 */
+}
+
+table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* ホバー時の色 */
+}
+
+/* 画像 */
+table td img {
+    max-width: 100px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* 削除ボタン */
+table td form button {
+    background-color: #ff0000;
+    /* 赤色 */
+    color: #fff;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+table td form button:hover {
+    background-color: #cc0000;
+    /* ホバー時の色 */
+}
