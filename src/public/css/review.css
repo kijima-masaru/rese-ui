@@ -74,3 +74,7 @@ main {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
+
+.delete__button {
+    padding: 20px;
+}

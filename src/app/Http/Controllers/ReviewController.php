@@ -10,7 +10,7 @@ class ReviewController extends Controller
 {
     public function create(Shop $shop)
     {
-        // レビューがすでに存在するか確認
+        // 口コミがすでに存在するか確認
         $existingReview = Review::where('user_id', auth()->id())
             ->where('shop_id', $shop->id)
             ->first();
@@ -21,23 +21,23 @@ class ReviewController extends Controller
 
     public function store(Request $request, Shop $shop)
     {
-        // レビューがすでに存在するか確認
+        // 口コミがすでに存在するか確認
         $existingReview = Review::where('user_id', auth()->id())
             ->where('shop_id', $shop->id)
             ->first();
 
         if ($existingReview) {
-            // すでにレビューが存在する場合は更新
+            // すでに口コミが存在する場合は更新
             return $this->updateReview($existingReview, $request);
         } else {
-            // レビューが存在しない場合は新規作成
+            // 口コミが存在しない場合は新規作成
             return $this->createReview($request, $shop);
         }
     }
 
     private function createReview(Request $request, Shop $shop)
     {
-        // レビューを保存するロジック
+        // 口コミを保存するロジック
         $request->validate([
             'rating' => 'required|integer|between:1,5', // 1から5の評価
             'comment' => 'nullable|string|max:400', // 最大400文字の自由記述
@@ -60,7 +60,7 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->back()->with('success', 'レビューを投稿しました。');
+        return redirect()->back()->with('success', '口コミを投稿しました。');
     }
 
     private function updateReview(Review $review, Request $request)
@@ -83,7 +83,7 @@ class ReviewController extends Controller
 
         $review->save();
 
-        return redirect()->back()->with('success', 'レビューを更新しました。');
+        return redirect()->back()->with('success', '口コミを更新しました。');
     }
 
     public function destroy(Shop $shop, Review $review)
@@ -96,7 +96,7 @@ class ReviewController extends Controller
         // レビューを削除
         $review->delete();
 
-        return redirect()->back()->with('success', 'レビューを削除しました。');
+        return redirect()->back()->with('success', '口コミを削除しました。');
     }
 }
 

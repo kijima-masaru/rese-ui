@@ -77,22 +77,24 @@
                     </div>
                     <div class="form__button">
                         @if(isset($review))
-                            <button type="submit">レビューを更新</button>
+                            <button type="submit">口コミを更新</button>
                         @else
-                            <button type="submit">レビューを投稿</button>
+                            <button type="submit">口コミを投稿</button>
                         @endif
                     </div>
                 </form>
                 <!-- レビュー削除フォーム -->
-                @if(isset($review))
-                    <form method="POST" action="{{ route('review.destroy', ['shop' => $shop->id, 'review' => $review->id]) }}">
-                        @csrf
-                        @method('DELETE')
-                        <div class="form__button">
-                            <button type="submit">レビューを削除</button>
-                        </div>
-                    </form>
-                @endif
+                <div class="delete__button">
+                    @if(isset($review))
+                        <form method="POST" action="{{ route('review.destroy', ['shop' => $shop->id, 'review' => $review->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <div class="form__button">
+                                <button type="submit">口コミを削除</button>
+                            </div>
+                        </form>
+                    @endif
+                </div>
             </div>
         </div>
     </main>
