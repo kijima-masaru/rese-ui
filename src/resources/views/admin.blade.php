@@ -47,6 +47,10 @@
                     </div>
                 @endif
                 <h1>ユーザー一覧</h1>
+                <form action="{{ route('admin.searchUsers') }}" method="GET" class="search-form">
+                    <input type="text" name="search" placeholder="ユーザー名を検索">
+                    <button type="submit">検索</button>
+                </form>
                 <table class="table">
                     <thead>
                         <tr>

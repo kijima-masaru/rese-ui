@@ -35,4 +35,14 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', '役割が更新されました。');
     }
+
+    public function searchUsers(Request $request)
+    {
+        $searchTerm = $request->input('search');
+
+        // ユーザー名で部分一致検索を実行
+        $users = User::where('name', 'like', '%' . $searchTerm . '%')->get();
+
+        return view('admin', compact('users'));
+    }
 }

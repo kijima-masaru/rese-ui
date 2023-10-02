@@ -30,6 +30,8 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('/admin/users', [AdminController::class, 'userList'])->name('admin.userList');
     // 管理者ページでのユーザーのrole変更するためのルート
     Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
+    // 管理者ページでのユーザー検索機能のルート
+    Route::get('/admin/search', [AdminController::class, 'searchUsers'])->name('admin.searchUsers');
     // 管理者レビュー閲覧ページの表示
     Route::get('/admin/reviews', [Admin_ReviewController::class, 'index'])->name('admin.reviews.index');
     // レビュー削除
