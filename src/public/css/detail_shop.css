@@ -148,7 +148,7 @@ main {
 }
 
 .detail__reviews li {
-    height: 300px;
+    height: auto;
     /* カードの高さを100pxに設定 */
     margin-bottom: 20px;
     padding: 10px;
