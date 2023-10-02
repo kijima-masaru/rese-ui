@@ -39,7 +39,7 @@ class Admin_ShopController extends Controller
         $csvFile = $request->file('csv_file');
 
         // CSVファイルの一時的な保存先パスを生成
-        $csvPath = $csvFile->storeAs('public/csv', uniqid('import_', true) . '.' . $csvFile->getClientOriginalExtension());
+        $csvPath = $csvFile->storeAs('csv', uniqid('import_', true) . '.' . $csvFile->getClientOriginalExtension());
 
         // CSVファイルの各行を処理
         $csvData = file_get_contents(storage_path('app/public/' . $csvPath));
