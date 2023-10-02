@@ -61,34 +61,33 @@ class OwnerController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    // 対象の店舗情報を取得
-    $shop = Shop::findOrFail($id);
+    {
+        // 対象の店舗情報を取得
+        $shop = Shop::findOrFail($id);
 
-    // ユーザーIDが一致することを確認
-    if ($shop->user_id !== Auth::id()) {
-        return abort(403, 'You are not authorized to edit this shop.');
+        // ユーザーIDが一致することを確認
+        if ($shop->user_id !== Auth::id()) {
+            return abort(403, 'You are not authorized to edit this shop.');
+        }
+
+        // フォームデータを店舗情報に適用して保存
+        $shop->name = $request->input('name');
+        $shop->overview = $request->input('overview');
+
+        $shop->save();
+
+        // 関連するエリアを更新
+        $area = Area::where('shop_id', $shop->id)->firstOrFail();
+        $area->area = $request->input('area');
+        $area->save();
+
+        // 関連するジャンルを更新
+        $genre = Genre::where('shop_id', $shop->id)->firstOrFail();
+        $genre->genre = $request->input('genre');
+        $genre->save();
+
+        return redirect()->route('owner.edit', $id)->with('success', '店舗情報を更新しました！');
     }
-
-    // フォームデータを店舗情報に適用して保存
-    $shop->name = $request->input('name');
-    $shop->overview = $request->input('overview');
-
-    $shop->save();
-
-    // 関連するエリアを更新
-    $area = Area::where('shop_id', $shop->id)->firstOrFail();
-    $area->area = $request->input('area');
-    $area->save();
-
-    // 関連するジャンルを更新
-    $genre = Genre::where('shop_id', $shop->id)->firstOrFail();
-    $genre->genre = $request->input('genre');
-    $genre->save();
-
-    return redirect()->route('owner.edit', $id)->with('success', '店舗情報を更新しました！');
-}
-
 
     public function editImage($id)
     {

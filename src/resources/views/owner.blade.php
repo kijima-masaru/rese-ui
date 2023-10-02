@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="owner__edit">
-                <div class="edit__head">
+                <div class="owner__title">
                     <h2>店舗情報の修正</h2>
                 </div>
                 @foreach ($shops as $shop)
