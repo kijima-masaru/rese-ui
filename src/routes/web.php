@@ -32,9 +32,11 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::patch('/admin/update-role/{user}', [AdminController::class, 'updateRole'])->name('admin.updateRole');
     // 管理者ページでのユーザー検索機能のルート
     Route::get('/admin/search', [AdminController::class, 'searchUsers'])->name('admin.searchUsers');
-    // 管理者レビュー閲覧ページの表示
+    // 管理者口コミ一覧ページ表示のルート
     Route::get('/admin/reviews', [Admin_ReviewController::class, 'index'])->name('admin.reviews.index');
-    // レビュー削除
+    // 管理者口コミ一覧ページの口コミ検索機能のルート
+    Route::get('/admin/reviews/search', [Admin_ReviewController::class, 'search'])->name('admin.reviews.search');
+    // 管理者口コミ一覧ページの口コミ削除機能のルート
     Route::delete('/admin/reviews/{review}', [Admin_ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
     // 管理者店舗情報作成ページを表示するためのルート
     Route::get('/admin/shop', [Admin_ShopController::class, 'index'])->name('admin.shop.index');

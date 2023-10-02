@@ -46,6 +46,14 @@
         @endif
         <div class="admin__review">
             <h1>口コミ一覧</h1>
+            <div class="search-form">
+                <form action="{{ route('admin.reviews.search') }}" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="user_name" placeholder="ユーザー名で検索">
+                        <button type="submit">検索</button>
+                    </div>
+                </form>
+            </div>
             <table>
                 <thead>
                     <tr>
