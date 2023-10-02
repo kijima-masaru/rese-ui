@@ -98,6 +98,18 @@
         <!-- 口コミ表示 -->
         <div class="detail__reviews">
             <h2>店舗の口コミ</h2>
+            <!-- 口コミソート用のセレクトボックス -->
+            <div class="detail__sort">
+                <form action="{{ route('shop.detail', ['shop' => $shop]) }}" method="get">
+                    <label for="sort">口コミの並びかえ：</label>
+                    <select name="sort" id="sort" onchange="this.form.submit()">
+                        <option value="default" {{ $sort == 'default' ? 'selected' : '' }}>デフォルト</option>
+                        <option value="random" {{ $sort == 'random' ? 'selected' : '' }}>ランダム</option>
+                        <option value="high-rated" {{ $sort == 'high-rated' ? 'selected' : '' }}>評価が高い順</option>
+                        <option value="low-rated" {{ $sort == 'low-rated' ? 'selected' : '' }}>評価が低い順</option>
+                    </select>
+                </form>
+            </div>
             @if($reviews->count() > 0)
                 <ul>
                     @foreach($reviews as $review)

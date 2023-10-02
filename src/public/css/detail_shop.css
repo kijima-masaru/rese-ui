@@ -147,6 +147,11 @@ main {
     margin-top: 20px;
 }
 
+.detail__sort {
+    text-align: center;
+    padding: 20px 0;
+}
+
 .detail__reviews ul {
     list-style: none;
     padding: 0;
