@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>管理者店舗情報作成ページ</title>
     <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/owner.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/admin_shop.css') }}" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}" />
 </head>
 
@@ -21,7 +21,7 @@
             <div class="header__right">
                 <div class="header__content">
                     <div class="header__url">
-                        <a href="{{ route('admin.index') }}">管理者ページ</a>
+                        <a href="{{ route('admin.index') }}">ユーザー管理</a>
                     </div>
                     <div class="header__url">
                         <a href="{{ route('admin.reviews.index') }}">口コミ一覧</a>
@@ -39,28 +39,24 @@
             </div>
         </div>
         <!-- ページ本体 -->
-        <div class="owner">
+        <div class="admin__shop">
             @if (session('success'))
                 <div class="alert-success">
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="owner__title">
+            <div class="admin__title">
                 <h1>CSVファイルをアップロードして店舗情報を作成できます。</h1>
             </div>
-            <div class="owner__new">
-                <div class="new__head">
-                    <h2>店舗情報の新規作成</h2>
-                </div>
+            <div class="admin__new">
                 <div class="new__form">
                     <form method="POST" action="{{ route('admin.import') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <label for="csv_file">CSVファイルをアップロード：</label>
                             <input type="file" name="csv_file" accept=".csv" required>
                         </div>
                         <div class="new__button">
-                            <button type="submit" class="btn btn-primary">CSVをインポート</button>
+                            <button type="submit" class="btn btn-primary">CSVファイルをインポート</button>
                         </div>
                     </form>
                 </div>
