@@ -49,9 +49,9 @@ class Shop extends Model
     }
 
     // お気に入り登録機能のためのリレーション
-    public function favoritedByUsers(): BelongsToMany
+    public function isFavoritedBy(User $user): bool
     {
-        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+        return $this->favorites->contains('id', $user->id);
     }
 }
 
