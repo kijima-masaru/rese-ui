@@ -55,7 +55,7 @@ class Admin_ShopController extends Controller
                     '1' => 'エリアは「東京都」「大阪府」「福岡県」のいずれかで必須です。',
                     '2' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかで必須です。',
                     '3' => '店舗の概要は400文字以内で必須です。',
-                    '4' => '画像URLはjpeg、jpg、pngの形式で必須です。',
+                    '4' => '画像URLはjpeg、pngの形式で必須です。',
                 ];
 
                 foreach ($validator->errors()->keys() as $key) {
@@ -105,7 +105,7 @@ class Admin_ShopController extends Controller
         Storage::delete($csvPath);
 
         if (!empty($errors)) {
-            return redirect()->route('admin.shop.index')->withErrors(['csv_file' => implode('<br>', $errors)])->withInput();
+            return redirect()->route('admin.shop.index')->withErrors(['csv_file' => implode('、', $errors)])->withInput();
         }
 
         return redirect()->route('admin.shop.index')->with('success', '店舗情報を作成しました');
