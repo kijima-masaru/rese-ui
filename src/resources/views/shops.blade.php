@@ -84,17 +84,19 @@
                             <a href="{{ route('shop.detail', ['shop' => $shop]) }}">詳しく見る</a>
                         </div>
                         <div class="button__favorite">
-                            @if (auth()->check() && $shop->isFavoritedBy(auth()->user()))
-                            <form action="{{ route('favorites.remove', ['shop' => $shop]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit">お気に入り解除</button>
-                            </form>
-                            @elseif (auth()->check())
-                            <form action="{{ route('favorites.add', ['shop' => $shop]) }}" method="POST">
-                                @csrf
-                                <button type="submit">お気に入り追加</button>
-                            </form>
+                            @if (auth()->check())
+                                @if (auth()->user()->favoriteShops->contains($shop))
+                                    <form action="{{ route('favorites.remove', ['shop' => $shop]) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit">お気に入り解除</button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('favorites.add', ['shop' => $shop]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit">お気に入り追加</button>
+                                    </form>
+                            @endif
                             @else
                                 <a href="{{ route('login') }}">ログインしてお気に入り追加</a>
                             @endif
