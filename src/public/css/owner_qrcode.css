@@ -61,3 +61,39 @@ main {
     color: #fff;
     text-align: center;
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    .qrcode__head h1 {
+        font-size: 20px;
+        /* フォントサイズを調整 */
+    }
+
+    .qrcode__head p {
+        font-size: 14px;
+        /* フォントサイズを調整 */
+    }
+
+    /* カメラ画面 */
+    #qrcode-scanner {
+        margin-top: 10px;
+        /* マージンを調整 */
+    }
+
+    #qrcode-scanner button {
+        padding: 5px 10px;
+        /* パディングを減らしてコンパクトに */
+        margin-top: 10px;
+        /* マージンを調整 */
+    }
+
+    /* QRコード読み込み結果を表示する領域 */
+    #qrcode-result {
+        font-size: 14px;
+        /* フォントサイズを調整 */
+        margin-top: 10px;
+        /* マージンを調整 */
+        padding: 5px;
+        /* パディングを減らしてコンパクトに */
+    }
+}

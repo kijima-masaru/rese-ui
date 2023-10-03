@@ -21,13 +21,13 @@
             <div class="header__right">
                 <div class="header__content">
                     <div class="header__url">
-                        <a href="{{ route('owner.index') }}">店舗情報の作成・更新</a>
+                        <a href="{{ route('owner.index') }}">店舗情報管理</a>
                     </div>
                     <div class="header__url">
-                        <a href="{{ route('owner.reserve') }}">予約情報の確認</a>
+                        <a href="{{ route('owner.reserve') }}">予約の確認</a>
                     </div>
                     <div class="header__url">
-                        <a href="{{ route('owner.qrcode') }}">QRコードで予約検索</a>
+                        <a href="{{ route('owner.qrcode') }}">QRコード検索</a>
                     </div>
                     <div class="header__logout">
                         <form class="logout__form" action="/logout" method="post">

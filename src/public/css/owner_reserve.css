@@ -93,7 +93,7 @@ main {
     .reserve__head h1 {
         font-size: 20px;
         /* フォントサイズを調整 */
-        margin-top: 120px;
+        margin-top: 50px;
     }
 
     /* アラートメッセージ */

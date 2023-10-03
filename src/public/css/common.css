@@ -91,3 +91,41 @@
     margin-bottom: 20px;
     /* メッセージの下に余白を追加 */
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    .common {
+        padding: 10px;
+        /* パディングを減らしてコンパクトに */
+    }
+
+    /* ヘッダーのロゴ */
+    .header h1 {
+        font-size: 20px;
+        /* フォントサイズを調整 */
+    }
+
+    /* ヘッダー内のURLリンク */
+    .header__url {
+        margin-left: 10px;
+        /* マージンを減らしてコンパクトに */
+    }
+
+    .header__url a {
+        font-size: 10px;
+        /* フォントサイズを調整 */
+    }
+
+    /* ログアウトボタン */
+    .logout__form {
+        margin-left: 10px;
+        /* マージンを減らしてコンパクトに */
+    }
+
+    .logout__button {
+        padding: 5px 10px;
+        /* パディングを減らしてコンパクトに */
+        font-size: 14px;
+        /* フォントサイズを調整 */
+    }
+}
