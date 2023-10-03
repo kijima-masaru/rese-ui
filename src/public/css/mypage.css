@@ -187,6 +187,8 @@ main {
     .favorite__detail a {
         margin-right: 0;
         margin-top: 10px;
+        font-size: 15px;
+        padding: 15px;
     }
 
     .reserve__delete-button {
