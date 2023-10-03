@@ -65,16 +65,25 @@
                             <span class="star{{ old('rating', isset($review) ? $review->rating : '0') >= 3 ? ' active' : '' }}" data-rating="3">☆</span>
                             <span class="star{{ old('rating', isset($review) ? $review->rating : '0') >= 4 ? ' active' : '' }}" data-rating="4">☆</span>
                             <span class="star{{ old('rating', isset($review) ? $review->rating : '0') >= 5 ? ' active' : '' }}" data-rating="5">☆</span>
+                            @error('rating')
+                                <div class="alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form__group">
                         <label for="comment">口コミ(400字以内):</label>
                         <textarea name="comment" rows="4" cols="50" maxlength="400">{{ old('comment', isset($review) ? $review->comment : '') }}</textarea>
+                        @error('comment')
+                            <div class="alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
                     </div>
                     <div class="form__group">
                         <label for="img">画像をアップロード:</label>
                         <input type="file" name="img" accept="image/*">
-                    </div>
+                        @error('img')
+                            <div class="alert-danger">{{ $message }}</div>
+                        @enderror
                     <div class="form__button">
                         @if(isset($review))
                             <button type="submit">口コミを更新</button>
