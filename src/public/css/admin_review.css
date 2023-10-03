@@ -27,6 +27,7 @@ main {
 .admin__review h1 {
     text-align: center;
     margin-bottom: 20px;
+    margin-top: 30px;
 }
 
 .search-form {
@@ -94,4 +95,48 @@ table td form button {
 table td form button:hover {
     background-color: #cc0000;
     /* ホバー時の色 */
+}
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    main {
+        padding: 10px;
+        /* マージンを減らしてコンパクトに */
+        margin-top: 30px;
+        /* マージンを調整 */
+    }
+
+    .admin__review {
+        margin-top: 10px;
+        /* マージンを調整 */
+    }
+
+    .admin__review h1 {
+        font-size: 24px;
+        /* 見出しのフォントサイズを調整 */
+        margin-top: 100px;
+    }
+
+    .search-form {
+        padding: 10px;
+        /* パディングを調整 */
+    }
+
+    table th,
+    table td {
+        padding: 5px;
+        /* セルのパディングを調整 */
+    }
+
+    /* 画像 */
+    table td img {
+        max-width: 80px;
+        /* 画像の最大幅を調整 */
+    }
+
+    /* 削除ボタン */
+    table td form button {
+        padding: 3px 6px;
+        /* パディングを調整 */
+    }
 }
