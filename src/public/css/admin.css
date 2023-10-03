@@ -23,12 +23,15 @@ main {
     background-color: #444;
     /* より暗めの背景色 */
     padding: 20px;
-    margin-top: 20px;
     border-radius: 5px;
 }
 
 .container {
     text-align: center;
+}
+
+.container h1 {
+    font-size: 20px;
 }
 
 /* テーブルスタイル */

@@ -112,15 +112,16 @@ table td form button:hover {
     }
 
     .admin__review h1 {
-        font-size: 24px;
+        font-size: 20px;
         /* 見出しのフォントサイズを調整 */
         margin-top: 10px;
-        padding-top: 100px;
+        padding-top: 30px;
     }
 
     table th,
     table td {
         padding: 5px;
+        font-size: 10px;
         /* セルのパディングを調整 */
     }
 
