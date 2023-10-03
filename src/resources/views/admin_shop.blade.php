@@ -40,6 +40,9 @@
         </div>
         <!-- ページ本体 -->
         <div class="admin__shop">
+            <div class="admin__title">
+                <h1>CSVファイルをアップロードして店舗情報を作成できます。</h1>
+            </div>
             @if (session('success'))
                 <div class="alert-success">
                     {{ session('success') }}
@@ -47,17 +50,12 @@
             @endif
             <!-- フォームエラーメッセージ -->
             @if ($errors->any())
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <div class="alert-danger">
-                            {{ $error }}
-                        </div>
-                    @endforeach
-                </ul>
+                @foreach ($errors->all() as $error)
+                    <div class="alert-danger">
+                        {{ $error }}
+                    </div>
+                @endforeach
             @endif
-            <div class="admin__title">
-                <h1>CSVファイルをアップロードして店舗情報を作成できます。</h1>
-            </div>
             <div class="admin__new">
                 <div class="new__form">
                     <form method="POST" action="{{ route('admin.import') }}" enctype="multipart/form-data">

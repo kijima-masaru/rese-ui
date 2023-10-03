@@ -51,3 +51,41 @@ main {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    main {
+        padding: 10px;
+        /* マージンを減らしてコンパクトに */
+        margin-top: 30px;
+        /* マージンを調整 */
+    }
+
+    .admin__shop {
+        margin-top: 10px;
+        /* マージンを調整 */
+    }
+
+    .admin__title h1 {
+        font-size: 20px;
+        /* フォントサイズを小さく */
+        margin-bottom: 10px;
+        /* マージンを調整 */
+        margin-top: 100px;
+    }
+
+    .new__form {
+        text-align: center;
+    }
+
+    /* CSVファイルをインポートボタン */
+    .new__button {
+        padding: 10px;
+        /* パディングを減らしてコンパクトに */
+    }
+
+    .new__button button {
+        padding: 5px 10px;
+        /* パディングを減らしてコンパクトに */
+    }
+}
