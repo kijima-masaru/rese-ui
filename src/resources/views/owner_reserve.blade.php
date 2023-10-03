@@ -40,6 +40,9 @@
         </div>
         <!-- ページ本体 -->
         <div class="owner__reserve">
+            <div class="reserve__head">
+                <h1>店舗の予約情報が確認できます。</h1>
+            </div>
             @if(session('success'))
                 <div class="alert-success">
                     {{ session('success') }}
@@ -50,9 +53,6 @@
                     {{ session('error') }}
                 </div>
             @endif
-            <div class="reserve__head">
-                <h1>店舗の予約情報が確認できます。</h1>
-            </div>
             <div class="qr__form">
             </div>
             <div class="reserve__table">

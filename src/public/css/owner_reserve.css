@@ -77,3 +77,57 @@ main {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+
+    /* ページ本体 */
+    main {
+        padding: 10px;
+        /* マージンを減らしてコンパクトに */
+        margin-top: 30px;
+        /* マージンを調整 */
+    }
+
+    /* 予約情報のヘッダー */
+    .reserve__head h1 {
+        font-size: 20px;
+        /* フォントサイズを調整 */
+        margin-top: 120px;
+    }
+
+    /* アラートメッセージ */
+    .alert-success {
+        font-size: 14px;
+        /* フォントサイズを調整 */
+    }
+
+    /* テーブルスタイル */
+    .table__content {
+        margin-bottom: 20px;
+        /* マージンを調整 */
+    }
+
+    /* テーブルヘッダー */
+    .teble__head h2 {
+        font-size: 16px;
+        /* フォントサイズを調整 */
+    }
+
+    /* テーブルセル */
+    .table th,
+    .table td {
+        padding: 5px 8px;
+        /* パディングを調整 */
+    }
+
+    /* ボタンスタイル */
+    .btn {
+        padding: 5px 8px;
+        /* パディングを調整 */
+        margin: 5px 2px;
+        /* マージンを調整 */
+        font-size: 14px;
+        /* フォントサイズを調整 */
+    }
+}
