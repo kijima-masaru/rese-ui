@@ -22,13 +22,13 @@ class MypageController extends Controller
 
         $favoriteShops = auth()->user()->favorites;
 
-        // お気に入り店舗のエリアとジャンルを取得
+        // お気に入り店舗の詳細情報を取得
         $favoriteShopDetails = [];
         foreach ($favoriteShops as $favoriteShop) {
-            $area = Area::where('shop_id', $favoriteShop->id)->value('area');
-            $genre = Genre::where('shop_id', $favoriteShop->id)->value('genre');
+            $area = Area::where('shop_id', $favoriteShop->shop_id)->value('area');
+            $genre = Genre::where('shop_id', $favoriteShop->shop_id)->value('genre');
             $favoriteShopDetails[] = [
-                'shop' => $favoriteShop,
+                'shop' => $favoriteShop->shop, // ->shop を追加
                 'area' => $area,
                 'genre' => $genre,
             ];

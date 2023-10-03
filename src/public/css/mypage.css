@@ -22,8 +22,8 @@ main {
     text-align: center;
 }
 
-.mypage__head h1 {
-    font-size: 24px;
+.mypage__head {
+    text-align: center;
     margin-bottom: 20px;
 }
 
@@ -33,9 +33,15 @@ main {
     align-items: center;
 }
 
+.mypage__text h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
 /* ご予約状況 */
 .mypage__reserve {
-    margin-top: 20px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .reserve__box {
@@ -45,61 +51,66 @@ main {
 }
 
 .reserve__wrapper {
-    width: calc(33.33% - 20px);
-    /* 33.33%の幅で均等に配置（マージンを考慮） */
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    margin: 20px;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.1);
-    flex-basis: calc(33.33% - 20px);
-    margin-right: 20px;
 }
 
-/* 最後の予約ボックスに右マージンを適用しない */
-.reserve__wrapper:last-child {
-    margin-right: 0;
+.reserve__info {
+    text-align: center;
 }
 
 .reserve__img img {
-    max-width: 100%;
-    max-height: auto;
+    max-width: auto;
+    max-height: 100px;
+    margin-bottom: 10px;
 }
 
 .reserve__name h2 {
-    font-size: 18px;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.reserve__day p,
+.reserve__people p {
+    margin-bottom: 5px;
+}
+
+.reserve__flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 10px;
 }
 
-.reserve__info p {
-    margin: 5px 0;
-}
-
-.reserve__edit,
-.reserve__button {
-    padding: 5px;
-    margin: 5px;
-}
-
-.reserve__edit a,
-.reserve__button button {
-    background-color: #007bff;
-    /* 鮮やかな青色 */
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
+.reserve__edit a {
+    color: #007bff;
     text-decoration: none;
-    cursor: pointer;
-    margin: 5px;
+    margin-right: 10px;
 }
 
-.reserve__edit a:hover,
-.reserve__button button:hover {
-    background-color: #0056b3;
+.reserve__delete-button {
+    background-color: #d9534f;
+    /* 赤色 */
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.reserve__delete-button:hover {
+    background-color: #c9302c;
     /* ホバー時の色 */
+}
+
+.reserve__qrcode {
+    margin-left: 10px;
 }
 
 /* お気に入り店舗 */
 .mypage__favorite {
-    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 .favorite__box {
@@ -109,69 +120,77 @@ main {
 }
 
 .favorite__wrapper {
-    width: calc(33.33% - 20px);
-    /* 33.33%の幅で均等に配置（マージンを考慮） */
-    margin-bottom: 20px;
-    box-sizing: border-box;
+    margin: 20px;
+    padding: 20px;
     background-color: rgba(255, 255, 255, 0.1);
-    flex-basis: calc(33.33% - 20px);
-    margin-right: 20px;
 }
 
-/* 最後のお気に入りボックスに右マージンを適用しない */
-.favorite__wrapper:last-child {
-    margin-right: 0;
+.favorite__shop {
+    text-align: center;
 }
 
 .favorite__img img {
-    max-width: 100%;
-    max-height: auto;
+    max-width: auto;
+    max-height: 100px;
+    margin-bottom: 10px;
 }
 
 .favorite__shop h2 {
-    font-size: 18px;
-    margin-top: 10px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 .favorite__text p {
-    margin: 5px 0;
+    margin-bottom: 5px;
 }
 
 .favorite__detail a {
-    background-color: #007bff;
-    /* 鮮やかな青色 */
-    color: #fff;
-    padding: 5px 10px;
-    border: none;
+    color: #007bff;
     text-decoration: none;
-    cursor: pointer;
-    margin: 5px;
+    margin-right: 10px;
 }
 
 .favorite__detail a:hover {
-    background-color: #0056b3;
-    /* ホバー時の色 */
+    text-decoration: underline;
 }
 
-/* アラートメッセージ */
-.alert-success {
-    background-color: #4caf50;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-}
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    .mypage__head h1 {
+        font-size: 20px;
+    }
 
-/* QRコード */
-.reserve__qrcode img {
-    max-width: 100%;
-    max-height: auto;
-}
+    .mypage__text h2 {
+        font-size: 18px;
+    }
 
-.mypage__text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    .mypage__content {
+        align-items: center;
+        /* コンテンツを中央に配置 */
+    }
+
+    .reserve__box,
+    .favorite__box {
+        flex-direction: column;
+        /* コンテンツを縦方向に配置 */
+        align-items: center;
+        /* コンテンツを中央に配置 */
+    }
+
+    .reserve__wrapper,
+    .favorite__wrapper {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .reserve__edit a,
+    .favorite__detail a {
+        margin-right: 0;
+        margin-top: 10px;
+    }
+
+    .reserve__delete-button {
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
 }

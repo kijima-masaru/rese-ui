@@ -51,7 +51,7 @@
             <div class="mypage__content">
                 <div class="mypage__reserve">
                     <div class="mypage__text">
-                        <h1>ご予約状況</h1>
+                        <h2>ご予約状況</h2>
                     </div>
                     <div class="reserve__box">
                         @if($reserves->count() > 0)
@@ -100,7 +100,7 @@
                 </div>
                 <div class="mypage__favorite">
                     <div class="mypage__text">
-                        <h1>お気に入り店舗</h1>
+                        <h2>お気に入り店舗</h2>
                     </div>
                     <div class="favorite__box">
                         @if($favoriteShopDetails)
@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @else
+                            @else
                             <div class="mypage__text">
                                 <p>お気に入り店舗はありません。</p>
                             </div>
