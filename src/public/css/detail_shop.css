@@ -179,3 +179,62 @@ main {
     height: 100%;
     max-width: 100%;
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    /* ページ本体のスタイルを調整 */
+    .detail {
+        max-width: 100%;
+        margin: 0;
+        padding: 15px;
+        display: block;
+        /* <div class="detail__shop">と<div class="detail__reserve">が横並びではなく、縦に配置されるように設定 */
+    }
+
+    /* ショップ詳細カードのスタイルを調整 */
+    .detail__shop,
+    .detail__reserve {
+        width: 100%;
+        /* 幅を100%に設定 */
+        margin-top: 10px;
+        margin-right: 0;
+        padding: 10px;
+    }
+
+    .detail__img img {
+        width: 100%;
+        max-width: none;
+    }
+
+    .detail__name {
+        font-size: 20px;
+    }
+
+    .detail__content {
+        flex-direction: column;
+    }
+
+    .detail__genre {
+        margin-top: 10px;
+    }
+
+    .detail__overview {
+        font-size: 16px;
+    }
+
+    .detail__reserve {
+        width: 100%;
+        /* 幅を100%に設定 */
+        margin-top: 10px;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .reserve__form input {
+        max-width: 100%;
+    }
+
+    .reserve__button button {
+        max-width: 100%;
+    }
+}
