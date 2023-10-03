@@ -107,3 +107,45 @@ main {
     color: #007bff;
     text-decoration: none;
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    main {
+        padding: 10px;
+        /* マージンを減らしてコンパクトに */
+        margin-top: 30px;
+        /* マージンを調整 */
+    }
+
+    .shop__search {
+        text-align: center;
+        padding: 70px 0;
+    }
+
+    .shop__card {
+        width: 100%;
+        /* 1列に表示 */
+        margin: 10px 0;
+        /* マージンを調整 */
+    }
+
+    /* ショップ詳細リンク */
+    .button__detail a {
+        padding: 5px 0;
+        /* パディングを減らしてコンパクトに */
+    }
+
+    /* お気に入りボタン */
+    .button__favorite button {
+        padding: 5px 10px;
+        /* パディングを減らしてコンパクトに */
+        margin-top: 5px;
+        /* マージンを調整 */
+    }
+
+    /* ログインリンク */
+    .button__favorite a {
+        margin-top: 5px;
+        /* マージンを調整 */
+    }
+}
