@@ -47,13 +47,13 @@
             @endif
             <!-- フォームエラーメッセージ -->
             @if ($errors->any())
-                <div class="alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <div class="alert-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                </ul>
             @endif
             <div class="admin__title">
                 <h1>CSVファイルをアップロードして店舗情報を作成できます。</h1>

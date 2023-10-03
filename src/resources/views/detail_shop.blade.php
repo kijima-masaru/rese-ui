@@ -40,6 +40,16 @@
         </div>
         <!-- ページ本体 -->
         <div class="detail">
+            <!-- フォームエラーメッセージ -->
+            @if ($errors->any())
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <div class="alert-danger">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                </ul>
+            @endif
             <div class="detail__shop">
                 <div class="detail__img">
                     <img src="{{ asset('storage/' . $shop->img) }}" alt="Shop Image">

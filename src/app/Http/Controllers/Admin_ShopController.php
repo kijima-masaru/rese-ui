@@ -105,7 +105,7 @@ class Admin_ShopController extends Controller
         Storage::delete($csvPath);
 
         if (!empty($errors)) {
-            return redirect()->route('admin.shop.index')->withErrors(['csv_file' => implode('、', $errors)])->withInput();
+            return redirect()->route('admin.shop.index')->withErrors(['csv_file' => implode(' ', $errors)])->withInput();
         }
 
         return redirect()->route('admin.shop.index')->with('success', '店舗情報を作成しました');

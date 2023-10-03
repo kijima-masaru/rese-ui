@@ -42,6 +42,16 @@
                 {{ session('success') }}
             </div>
         @endif
+        <!-- フォームエラーメッセージ -->
+        @if ($errors->any())
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <div class="alert-danger">
+                        {{ $error }}
+                    </div>
+                @endforeach
+            </ul>
+        @endif
         <!-- レビュー内容投稿フォーム -->
         <div class="review">
             <div class="review__head">
