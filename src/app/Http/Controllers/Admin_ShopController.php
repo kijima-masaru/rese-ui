@@ -3,38 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // Authファサードをインポート
-use App\Models\Shop; // Shopモデルをインポート
-use App\Models\Area; // Areaモデルをインポート
-use App\Models\Genre; // Genreモデルをインポート
-// 以下はCSVのインポートで使用
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CSVImportRequest;
+use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\File;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class Admin_ShopController extends Controller
 {
     public function index()
     {
-        // ログインユーザーが作成した店舗情報を取得
         $shops = Shop::where('user_id', Auth::id())->get();
 
         return view('admin_shop', compact('shops'));
     }
 
-    public function import(Request $request)
+    public function import(CSVImportRequest $request)
     {
-        // バリデーションルールを設定
-        $validator = Validator::make($request->all(), [
-            'csv_file' => 'required|mimes:csv,txt',
-        ]);
-
-        // バリデーションエラーがある場合はエラーメッセージを表示
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
         // アップロードされたCSVファイルを取得
         $csvFile = $request->file('csv_file');
 
@@ -45,14 +35,37 @@ class Admin_ShopController extends Controller
         $csvData = file_get_contents(storage_path('app/public/' . $csvPath));
         $lines = explode(PHP_EOL, $csvData);
 
-        foreach ($lines as $line) {
+        $errors = [];
+
+        foreach ($lines as $lineNumber => $line) {
             $data = str_getcsv($line);
 
             // データのバリデーション
-            if (count($data) !== 5) {
-                continue; // データの形式が正しくない場合はスキップ
+            $validator = Validator::make($data, [
+                '0' => 'required|max:50',
+                '1' => ['required', Rule::in(['東京都', '大阪府', '福岡県'])],
+                '2' => ['required', Rule::in(['寿司', '焼肉', 'イタリアン', '居酒屋', 'ラーメン'])],
+                '3' => 'required|max:400',
+                '4' => ['required', 'url', 'regex:/\.(jpeg|png)$/i'], // 画像URL：jpeg, png のみ対応
+            ]);
+
+            if ($validator->fails()) {
+                $errorMessages = [
+                    '0' => '店舗名は50文字以内で必須です。',
+                    '1' => 'エリアは「東京都」「大阪府」「福岡県」のいずれかで必須です。',
+                    '2' => 'ジャンルは「寿司」「焼肉」「イタリアン」「居酒屋」「ラーメン」のいずれかで必須です。',
+                    '3' => '店舗の概要は400文字以内で必須です。',
+                    '4' => '画像URLはjpeg、jpg、pngの形式で必須です。',
+                ];
+
+                foreach ($validator->errors()->keys() as $key) {
+                    $errors[] = $errorMessages[$key];
+                }
+
+                continue;
             }
 
+            // データを処理するロジック
             $name = $data[0];
             $area = $data[1];
             $genre = $data[2];
@@ -71,10 +84,7 @@ class Admin_ShopController extends Controller
             $shop = new Shop();
             $shop->name = $name;
             $shop->overview = $overview;
-
-            // 画像ファイルのファイル名を img カラムに保存（"img/" を含む形式）
             $shop->img = 'img/' . $imgFileName;
-
             $shop->user_id = Auth::id();
             $shop->save();
 
@@ -94,6 +104,11 @@ class Admin_ShopController extends Controller
         // 一時的に保存したCSVファイルを削除
         Storage::delete($csvPath);
 
+        if (!empty($errors)) {
+            return redirect()->route('admin.shop.index')->withErrors(['csv_file' => implode('<br>', $errors)])->withInput();
+        }
+
         return redirect()->route('admin.shop.index')->with('success', '店舗情報を作成しました');
     }
 }
+
