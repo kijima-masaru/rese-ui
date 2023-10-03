@@ -40,14 +40,14 @@
         </div>
         <!-- ページ本体 -->
         <div class="owner">
+            <div class="owner__title">
+                <h1>店舗情報を作成・更新できます。</h1>
+            </div>
             @if (session('success'))
                 <div class="alert-success">
                     {{ session('success') }}
                 </div>
             @endif
-            <div class="owner__title">
-                <h1>店舗情報を作成・更新できます。</h1>
-            </div>
             <div class="owner__new">
                 <div class="new__head">
                     <h2>店舗情報の新規作成</h2>

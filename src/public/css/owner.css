@@ -97,3 +97,36 @@ main {
     background-color: #0056b3;
     /* ホバー時の色 */
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    /* オーナータイトル */
+    .owner__title {
+        font-size: 18px;
+        margin-top: 100px;
+    }
+
+    /* 新規作成フォーム */
+    .new__form {
+        padding: 0 10px;
+    }
+
+    .form-control {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+
+    /* カードの幅とマージン調整 */
+    .edit__card {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    /* ボタンの幅調整 */
+    .new__button button,
+    .edit__button button,
+    .edit-image-button button {
+        width: 100%;
+        max-width: none;
+    }
+}
