@@ -21,7 +21,10 @@ main {
 /* ページ本体 */
 .admin__shop {
     text-align: center;
-    margin-top: 20px;
+    background-color: #444;
+    /* より暗めの背景色 */
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .admin__title h1 {
@@ -54,13 +57,6 @@ main {
 
 /* スマートフォン向けのスタイル */
 @media screen and (max-width: 767px) {
-    main {
-        padding: 10px;
-        /* マージンを減らしてコンパクトに */
-        margin-top: 30px;
-        /* マージンを調整 */
-    }
-
     .admin__shop {
         margin-top: 10px;
         /* マージンを調整 */
