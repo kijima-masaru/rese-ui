@@ -39,13 +39,13 @@
             </div>
         </div>
         <!-- ページ本体 -->
-        @if (session('success'))
-            <div class="alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
         <div class="admin__review">
             <h1>口コミ一覧</h1>
+            @if (session('success'))
+                <div class="alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="search-form">
                 <form action="{{ route('admin.reviews.search') }}" method="GET">
                     <div class="form-group">

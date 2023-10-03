@@ -114,12 +114,8 @@ table td form button:hover {
     .admin__review h1 {
         font-size: 24px;
         /* 見出しのフォントサイズを調整 */
-        margin-top: 100px;
-    }
-
-    .search-form {
-        padding: 10px;
-        /* パディングを調整 */
+        margin-top: 10px;
+        padding-top: 100px;
     }
 
     table th,
