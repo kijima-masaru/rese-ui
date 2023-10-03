@@ -12,14 +12,34 @@ class Shop extends Model
 
     protected $fillable = ['name', 'overview', 'img'];
 
-    public function isFavoritedBy(User $user): bool
+    // Favoriteとの関連を定義(1対0もしくは多)
+    public function favorites()
     {
-        return $this->favorites->contains('id', $user->id);
+        return $this->hasMany(Favorite::class);
     }
 
-    public function favorites(): BelongsToMany
+    // Reserveとの関連を定義(1対0もしくは多)
+    public function reserve()
     {
-        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
+        return $this->hasMany(Reserve::class);
+    }
+
+    // Areaとの関連を定義(1対1)
+    public function area()
+    {
+        return $this->hasOne(Area::class);
+    }
+
+    // Genreとの関連を定義(1対1)
+    public function genre()
+    {
+        return $this->hasOne(Genre::class);
+    }
+
+    // Reviewとの関連を定義(1対0もしくは多)
+    public function review()
+    {
+        return $this->hasMany(Review::class);
     }
 
     // 外部キーであるuser_idの設定
@@ -28,15 +48,10 @@ class Shop extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    // Areaモデルとのリレーションシップ
-    public function area()
+    // お気に入り登録機能のためのリレーション
+    public function favoritedByUsers(): BelongsToMany
     {
-        return $this->belongsTo(Area::class);
-    }
-
-    // Genreモデルとのリレーションシップ
-    public function genre()
-    {
-        return $this->belongsTo(Genre::class);
+        return $this->belongsToMany(User::class, 'favorites')->withTimestamps();
     }
 }
+

@@ -45,19 +45,32 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    //Reserveとの関連を定義
+    // Shopとの関連を定義(1対0もしくは多)
+    public function shop()
+    {
+        return $this->hasMany(Shop::class);
+    }
+
+    // Favoriteとの関連を定義(1対0もしくは多)
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
+    // Reserveとの関連を定義(1対0もしくは多)
     public function reserve()
     {
-        return $this->hasOne(Reserve::class);
+        return $this->hasMany(Reserve::class);
     }
 
-    //Favoriteとの関連を定義
-    public function favorite()
+    // Reviewとの関連を定義(1対0もしくは多)
+    public function review()
     {
-        return $this->hasOne(Favorite::class);
+        return $this->hasMany(Review::class);
     }
 
-    public function favorites(): BelongsToMany
+    // お気に入り登録機能のためのリレーション
+    public function favoriteShops(): BelongsToMany
     {
         return $this->belongsToMany(Shop::class, 'favorites')->withTimestamps();
     }

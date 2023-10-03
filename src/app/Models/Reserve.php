@@ -23,8 +23,4 @@ class Reserve extends Model
         return $this->belongsTo(Shop::class, 'shop_id');
     }
 
-    public function review()
-    {
-        return $this->hasOne(Review::class);
-    }
 }
