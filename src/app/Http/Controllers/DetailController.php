@@ -38,6 +38,10 @@ class DetailController extends Controller
 
         $reviews = $reviewsQuery->get();
 
-        return view('detail_shop', compact('shop', 'area', 'genre', 'reviews', 'sort'));
+        // 口コミの評価平均を計算
+        $averageRating = $reviews->avg('rating');
+
+        return view('detail_shop', compact('shop', 'area', 'genre', 'reviews', 'sort', 'averageRating'));
     }
+
 }

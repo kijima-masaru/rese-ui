@@ -207,6 +207,10 @@ main {
     }
 
     .detail__name h1 {
+        font-size: 22px;
+    }
+
+    .detail__name p {
         font-size: 20px;
     }
 
@@ -231,7 +235,7 @@ main {
     }
 
     .reserve__head h2 {
-        font-size: 20px;
+        font-size: 22px;
     }
 
     .reserve__form input {

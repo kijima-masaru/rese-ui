@@ -56,6 +56,7 @@
                 </div>
                 <div class="detail__name">
                     <h1>{{ $shop->name }}</h1>
+                    <p>★ {{ $averageRating !== null ? number_format($averageRating, 1) : '評価なし' }}</p>
                 </div>
                 <div class="detail__content">
                     <div class="detail__area">
