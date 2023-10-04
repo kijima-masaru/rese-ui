@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // テストアカウント作成のシーディング用
+        $this->call(TestUserSeeder::class);
+        // ダミーアカウント作成のシーディング用
         $this->call(UsersTableSeeder::class);
     }
 }
