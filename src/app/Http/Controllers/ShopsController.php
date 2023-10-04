@@ -11,28 +11,27 @@ use Illuminate\Support\Facades\DB;
 class ShopsController extends Controller
 {
     public function index()
-{
-    $shops = Shop::all(); // すべての店舗情報を取得
+    {
+        $shops = Shop::all(); // すべての店舗情報を取得
 
-    // エリアとジャンルを取得
-    $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-    $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+        // エリアとジャンルを取得
+        $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
+        $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
 
-    // エリアとジャンル情報を店舗と対応させる
-    $areaDataMap = [];
-    $genreDataMap = [];
+        // エリアとジャンル情報を店舗と対応させる
+        $areaDataMap = [];
+        $genreDataMap = [];
 
-    foreach ($areaData as $area) {
-        $areaDataMap[$area->shop_id] = $area;
+        foreach ($areaData as $area) {
+            $areaDataMap[$area->shop_id] = $area;
+        }
+
+        foreach ($genreData as $genre) {
+            $genreDataMap[$genre->shop_id] = $genre;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap')); // ビューにデータを渡す
     }
-
-    foreach ($genreData as $genre) {
-        $genreDataMap[$genre->shop_id] = $genre;
-    }
-
-    return view('shops', compact('shops', 'areaDataMap', 'genreDataMap')); // ビューにデータを渡す
-}
-
 
     // 店舗一覧ページの検索機能
     public function search(Request $request)
@@ -70,7 +69,19 @@ class ShopsController extends Controller
         $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
         $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
 
-        return view('shops', compact('shops', 'areaData', 'genreData'));
+        // エリアとジャンル情報を店舗と対応させる
+        $areaDataMap = [];
+        $genreDataMap = [];
+
+        foreach ($areaData as $area) {
+            $areaDataMap[$area->shop_id] = $area;
+        }
+
+        foreach ($genreData as $genre) {
+            $genreDataMap[$genre->shop_id] = $genre;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap'));
     }
 
     // ランダムにソートするメソッド
