@@ -51,10 +51,11 @@ class ShopsTableSeeder extends Seeder
 
         // ダミー店舗を30件生成
         for ($i = 1; $i <= 30; $i++) {
+            $genre = $faker->randomElement($genres);
             $shopId = DB::table('shops')->insertGetId([
                 'name' => $faker->randomElement($restaurantNames), // 飲食店名をランダムに選択
                 'overview' => $faker->realText(200), // 飲食店の概要を生成
-                'img' => 'shop' . $i . '.jpg',
+                'img' => $this->getImagePathByGenre($genre), // ジャンルに応じた画像パスを設定
                 'user_id' => 1, // ユーザーIDを適切な値に変更
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -70,11 +71,30 @@ class ShopsTableSeeder extends Seeder
 
             // ジャンルをシーディング
             DB::table('genres')->insert([
-                'genre' => $faker->randomElement($genres),
+                'genre' => $genre,
                 'shop_id' => $shopId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+        }
+    }
+
+    // ジャンルに応じた画像パスを返す関数
+    private function getImagePathByGenre($genre)
+    {
+        switch ($genre) {
+            case '寿司':
+                return 'img/sushi.png';
+            case '焼肉':
+                return 'img/yakiniku.png';
+            case 'イタリアン':
+                return 'img/italian.png';
+            case '居酒屋':
+                return 'img/izakaya.png';
+            case 'ラーメン':
+                return 'img/ramen.png';
+            default:
+                return 'img/default.png'; // ジャンルに該当しない場合のデフォルト画像パス
         }
     }
 }
