@@ -60,3 +60,31 @@ main {
 .table td {
     text-align: center;
 }
+
+/* スマートフォン向けのスタイル */
+@media screen and (max-width: 767px) {
+    main {
+        padding: 10px;
+        /* マージンを減らしてコンパクトに */
+        margin-top: 30px;
+        /* マージンを調整 */
+    }
+
+    /* コンテナ */
+    .container {
+        padding: 10px;
+        /* パディングを減らしてコンパクトに */
+    }
+
+    .container h1 {
+        font-size: 18px;
+    }
+
+    /* 予約詳細テーブル */
+    .table th,
+    .table td {
+        padding: 5px;
+        /* パディングを減らしてコンパクトに */
+        font-size: 10px;
+    }
+}
