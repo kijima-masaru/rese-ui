@@ -36,3 +36,4 @@ class EditController extends Controller
         return redirect()->back()->with('success', '予約情報が更新されました。');
     }
 }
+

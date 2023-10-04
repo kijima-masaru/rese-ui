@@ -62,11 +62,11 @@
                             </div>
                             <div class="form__group">
                                 <label for="day">日付:</label>
-                                <input type="date" id="day" name="day" value="{{ $reservation->day }}">
+                                <input type="date" id="day" name="day" value="{{ $reservation->day }}" min="{{ date('Y-m-d') }}">
                             </div>
                             <div class="form__group">
                                 <label for="time">時間:</label>
-                                <input type="time" id="time" name="time" value="{{ $reservation->time }}">
+                                <input type="time" id="time" name="time" value="{{ date('H:i', strtotime($reservation->time)) }}">
                             </div>
                             <div class="form__group">
                                 <label for="people">人数:</label>
@@ -82,5 +82,6 @@
             </div>
         </div>
     </main>
+    <script src="{{ asset('js/reservation_edit.js') }}"></script>
 </body>
 </html>
