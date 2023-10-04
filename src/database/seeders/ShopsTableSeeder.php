@@ -53,7 +53,7 @@ class ShopsTableSeeder extends Seeder
         for ($i = 1; $i <= 30; $i++) {
             $shopId = DB::table('shops')->insertGetId([
                 'name' => $faker->randomElement($restaurantNames), // 飲食店名をランダムに選択
-                'overview' => $faker->realText(100), // 飲食店の概要を生成
+                'overview' => $faker->realText(200), // 飲食店の概要を生成
                 'img' => 'shop' . $i . '.jpg',
                 'user_id' => 1, // ユーザーIDを適切な値に変更
                 'created_at' => now(),
