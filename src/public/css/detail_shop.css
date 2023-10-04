@@ -206,7 +206,7 @@ main {
         max-width: none;
     }
 
-    .detail__name {
+    .detail__name h1 {
         font-size: 20px;
     }
 
@@ -228,6 +228,10 @@ main {
         margin-top: 10px;
         margin-left: 0;
         padding: 10px;
+    }
+
+    .reserve__head h2 {
+        font-size: 20px;
     }
 
     .reserve__form input {
