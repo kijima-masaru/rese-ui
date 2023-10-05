@@ -15,7 +15,7 @@ class ReviewRequest extends FormRequest
     {
         return [
             'rating' => 'required|integer|between:1,5',
-            'comment' => 'nullable|string|max:400',
+            'comment' => 'required|string|max:400',
             'img' => 'nullable|image|mimes:jpeg,png|max:2048',
         ];
     }

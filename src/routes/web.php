@@ -40,8 +40,6 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::delete('/admin/reviews/{review}', [Admin_ReviewController::class, 'destroy'])->name('admin.reviews.destroy');
     // 管理者店舗情報作成ページを表示するためのルート
     Route::get('/admin/shop', [Admin_ShopController::class, 'index'])->name('admin.shop.index');
-    // 店舗情報の作成するためのルート
-    Route::post('/admin/store', [Admin_ShopController::class, 'store'])->name('admin.shop.store');
     // CSVファイルで店舗情報の作成するためのルート
     Route::post('/admin/store/import', [Admin_ShopController::class, 'import'])->name('admin.import');
 
