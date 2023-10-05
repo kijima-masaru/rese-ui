@@ -51,7 +51,7 @@ class ShopsController extends Controller
             $query->whereIn('id', function ($query) use ($area) {
                 $query->select('shop_id')
                     ->from('areas')
-                    ->where('area', $area);
+                    ->where('area', 'LIKE', "%$area%"); // 部分一致検索を追加
             });
         }
 
@@ -59,7 +59,7 @@ class ShopsController extends Controller
             $query->whereIn('id', function ($query) use ($genre) {
                 $query->select('shop_id')
                     ->from('genres')
-                    ->where('genre', $genre);
+                    ->where('genre', 'LIKE', "%$genre%"); // 部分一致検索を追加
             });
         }
 
