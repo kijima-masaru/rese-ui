@@ -70,11 +70,8 @@
                         <div class="shop__name">
                             <h2>{{ $shop->name }}</h2>
                         </div>
-                        @php
-                            $averageRating = $shop->reviews ? $shop->reviews->avg('rating') : null;
-                        @endphp
                         <div class="view__content">
-                            <p>★ {{ $averageRating !== null ? number_format($averageRating, 1) : '評価なし' }}</p>
+                            <p>★ {{ isset($avgRatingMap[$shop->id]) ? number_format($avgRatingMap[$shop->id], 1) : '評価なし' }}</p>
                         </div>
                         <div class="shop__view">
                             <div class="view__content">

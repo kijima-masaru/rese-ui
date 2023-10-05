@@ -14,9 +14,17 @@ class ShopsController extends Controller
     {
         $shops = Shop::all(); // すべての店舗情報を取得
 
+        // 各店舗の評価情報を取得
+        $shopIds = $shops->pluck('id');
+        $reviewsData = DB::table('reviews')
+            ->select('shop_id', DB::raw('AVG(rating) as avg_rating'))
+            ->whereIn('shop_id', $shopIds)
+            ->groupBy('shop_id')
+            ->get();
+
         // エリアとジャンルを取得
-        $areaData = Area::whereIn('shop_id', $shops->pluck('id'))->get();
-        $genreData = Genre::whereIn('shop_id', $shops->pluck('id'))->get();
+        $areaData = Area::whereIn('shop_id', $shopIds)->get();
+        $genreData = Genre::whereIn('shop_id', $shopIds)->get();
 
         // エリアとジャンル情報を店舗と対応させる
         $areaDataMap = [];
@@ -30,7 +38,14 @@ class ShopsController extends Controller
             $genreDataMap[$genre->shop_id] = $genre;
         }
 
-        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap')); // ビューにデータを渡す
+         // 各店舗の評価平均値をマップに格納
+        $avgRatingMap = [];
+
+        foreach ($reviewsData as $review) {
+            $avgRatingMap[$review->shop_id] = $review->avg_rating;
+        }
+
+        return view('shops', compact('shops', 'areaDataMap', 'genreDataMap', 'avgRatingMap')); // ビューにデータを渡す
     }
 
     // 店舗一覧ページの検索機能
