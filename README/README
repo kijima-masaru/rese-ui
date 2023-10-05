@@ -3,48 +3,48 @@ README
 
 ## アプリケーションURL README/img/pageディレクトリ内に各ページの画像あり
 
-ログインページの画像/login.blade.php
+ログインページの画像/login.png
 ・http://localhost/login
-会員登録ページの画像/register.blade.php
+会員登録ページの画像/register.png
 ・http://localhost/register
-認証メール確認ページの画像/verify-email.blade.php
+認証メール確認ページの画像/verify-email.png
 ・http://localhost/emailverify
-パスワード再設定用メール送信ページの画像/forgot-password.blade.php
+パスワード再設定用メール送信ページの画像/forgot-password.png
 ・http://localhost/forgot-password
-パスワード再設定ページの画像/reset-password.blade.php
+パスワード再設定ページの画像/reset-password.png
 ・http://localhost/forgot-password/~
 
-管理者ユーザー管理ページの画像/admin.blade.php
+管理者ユーザー管理ページの画像/admin.png
 ・http://localhost/admin
-管理者口コミ一覧ページの画像/
+管理者口コミ一覧ページの画像/admin_review.png
 ・http://localhost/admin/reviews
-管理者店舗情報作成ページの画像/
+管理者店舗情報作成ページの画像/admin_shop.png
 ・http://localhost/admin/shop
 
-店舗情報作成・更新ページの画像/owner.blade.php
+店舗情報作成・更新ページの画像/owner.png
 ・http://localhost/owner
-店舗予約情報確認ページの画像/owner_reserve.blade.php
+店舗予約情報確認ページの画像/owner_reserve.png
 ・http://localhost/owner_reserve
-QRコード読み込みページの画像/owner_qrcode.blade.php
+QRコード読み込みページの画像/owner_qrcode.png
 ・http://localhost/owner/qrcode
-個人予約情報確認ページの画像/show.blade
+個人予約情報確認ページの画像/show.png
 ・http://localhost/reservations/{reserve}
 
-店舗一覧ページの画像/shops.blade.php
+店舗一覧ページの画像/shops.png
 ・http://localhost/
-店舗詳細ページの画像/detail_shop.blade.php
+店舗詳細ページの画像/detail_shop.png
 ・http://localhost/shops/{shop}
-予約完了ページの画像/done.blade.php
+予約完了ページの画像/done.png
 ・http://localhost/done
-マイページの画像/mypage.blade.php
+マイページの画像/mypage.png
 ・http://localhost/mypage
-予約情報変更ページの画像/reservation_edit.blade.php
+予約情報変更ページの画像/reservation_edit.png
 ・http://localhost/edit
-口コミページの画像/review.blade.php
+口コミページの画像/review.png
 ・http://localhost/
-決済ページの画像/payment.blade.php
+決済ページの画像/payment.png
 ・http://localhost/review/{reserve}
-お支払い完了ページの画像/thanks.blade.php
+お支払い完了ページの画像/thanks.png
 ・http://localhost/thanks
 
 ## 他のリポジトリ
@@ -53,9 +53,15 @@ github URL:https://github.com/kijima-masaru/rese-ui.git
 ## 機能一覧
 
 ●ユーザーには管理者・店舗代表者・利用者の3種類のroleが存在します。以下はテスト用の3種類のアカウント(メールアドレスとパスワード)です。
+
+$ docker-compose exec php bash
+$ php artisan migrate
+$ php artisan db:seed
+
+・上記のコマンドでDBを作成した後、シーディングを行うとメール認証済みのテスト用アカウントが作成されます。
 管理者:admin@example.com、11111111
 店舗代表者:owner@example.com、22222222
-利用者:user@example.com、33333333
+一般ユーザー:user@example.com、33333333
 
 ※fortifyを使用したログイン、新規登録、パスワード再設定機能を実装しています。
 ●ログインページ
@@ -80,9 +86,9 @@ github URL:https://github.com/kijima-masaru/rese-ui.git
 ・CSVファイルをインポートすることで店舗情報を作成することができます。
 
 ※CSVファイルの記述方法
-・以下のようにCSVファイルに記述してください。
+・以下のような順番でCSVファイルに記述してください。(テンプレートがREADMEディレクトリにあります。)
 
-店舗名,エリア,ジャンル,概要,画像のURL
+店舗名(50文字以内),エリア(東京都,大阪府,福岡県のみ),ジャンル(寿司,焼肉,イタリアン,居酒屋,ラーメンのみ),概要(400字以内),画像のURL(jpeg,pngのみ)
 
 ●店舗情報作成・更新ページ
 ・roleが店舗代表者のユーザーがログインするとリダイレクトされます。
