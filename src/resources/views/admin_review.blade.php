@@ -50,6 +50,7 @@
                 <form action="{{ route('admin.reviews.search') }}" method="GET">
                     <div class="form-group">
                         <input type="text" name="user_name" placeholder="ユーザー名で検索">
+                        <input type="text" name="shop_name" placeholder="店舗名で検索">
                         <button type="submit">検索</button>
                     </div>
                 </form>

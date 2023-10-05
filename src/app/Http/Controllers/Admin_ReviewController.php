@@ -16,12 +16,25 @@ class Admin_ReviewController extends Controller
 
     public function search(Request $request)
     {
-        $searchTerm = $request->input('user_name'); // 検索キーワードを取得
+        $userName = $request->input('user_name'); // ユーザー名の検索キーワードを取得
+        $shopName = $request->input('shop_name'); // 店舗名の検索キーワードを取得
 
-        // ユーザー名に一致する口コミを検索
-        $reviews = Review::whereHas('user', function ($query) use ($searchTerm) {
-            $query->where('name', 'like', "%{$searchTerm}%");
-        })->get();
+        // レビューを検索
+        $reviews = Review::query();
+
+        if (!empty($userName)) {
+            $reviews->whereHas('user', function ($query) use ($userName) {
+                $query->where('name', 'like', "%{$userName}%");
+            });
+        }
+
+        if (!empty($shopName)) {
+            $reviews->whereHas('shop', function ($query) use ($shopName) {
+                $query->where('name', 'like', "%{$shopName}%");
+            });
+        }
+
+        $reviews = $reviews->get();
 
         return view('admin_review', ['reviews' => $reviews]);
     }
