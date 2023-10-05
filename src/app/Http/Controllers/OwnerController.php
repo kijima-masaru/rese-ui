@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Shop; // Shopモデルをインポート
 use App\Models\Area; // Areaモデルをインポート
 use App\Models\Genre; // Genreモデルをインポート
+use App\Http\Requests\OwnerRequest;
 
 class OwnerController extends Controller
 {
@@ -19,7 +20,7 @@ class OwnerController extends Controller
         return view('owner', compact('shops'));
     }
 
-    public function store(Request $request)
+    public function store(OwnerRequest $request)
     {
         // 画像をアップロード
         // ローカルストレージ用
