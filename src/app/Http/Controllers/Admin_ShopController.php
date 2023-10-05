@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CSVImportRequest;
 use App\Models\Shop;
@@ -111,4 +110,3 @@ class Admin_ShopController extends Controller
         return redirect()->route('admin.shop.index')->with('success', '店舗情報を作成しました');
     }
 }
-
