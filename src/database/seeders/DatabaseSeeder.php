@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call(TestUserSeeder::class);
         // ダミーアカウント作成のシーディング用
         $this->call(UsersTableSeeder::class);
-        // ダミー店舗作成のシーディング用
+        // 店舗作成のシーディング用
         $this->call(ShopsTableSeeder::class);
+        // ダミー店舗作成のシーディング用
+        $this->call(DummyShopsTableSeeder::class);
     }
 }
